@@ -1,0 +1,1273 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Masar — What could AI do for your business?</title>
+<meta name="description" content="Masar is the Agentic AI ecosystem. Describe a repetitive workflow in your business and discover where Agentic AI could help — and which solution could address it.">
+<meta name="theme-color" content="#08090B">
+<meta property="og:title" content="Masar — What could AI do for your business?">
+<meta property="og:description" content="Describe a repetitive workflow. Masar maps the AI opportunity and the solution that could address it.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2308090B'/%3E%3Ccircle cx='8' cy='16' r='2' fill='%23F5F5F0'/%3E%3Ccircle cx='16' cy='16' r='3.2' fill='%2366F6D2'/%3E%3Crect x='22' y='12.5' width='6.5' height='6.5' rx='1' fill='none' stroke='%237C8CFF' stroke-width='1.6'/%3E%3Cpath d='M10.4 16h2.6M19.4 16h2.2' stroke='%23F5F5F0' stroke-opacity='.4' stroke-width='1'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* ============================================================
+   MASAR — design tokens (carried from Masarite v2)
+   Single committed dark identity. Every colour painted explicitly.
+   ============================================================ */
+:root{
+  color-scheme:dark;
+  --bg:#08090B; --bg-2:#0D1013; --bg-3:#12161A;
+  --fg:#F5F5F0; --muted:#858A93; --dim:#737A84;
+  --mint:#66F6D2; --violet:#7C8CFF; --warn:#E8B15C; --warn-ink:#EAD3AE;
+  --line:rgba(255,255,255,.08); --line-2:rgba(255,255,255,.15);
+  --glass:rgba(255,255,255,.025); --glass-2:rgba(255,255,255,.045);
+  --display:"Archivo",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --body:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --gut:clamp(18px,5vw,72px); --maxw:1240px;
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;min-height:100vh}
+[hidden]{display:none!important}
+img{max-width:100%}
+::selection{background:var(--mint);color:#04120E}
+button{font-family:inherit}
+:focus-visible{outline:2px solid var(--mint);outline-offset:3px;border-radius:4px}
+
+/* ambient engineering rule grid */
+.grid-rails{position:fixed;inset:0;z-index:0;pointer-events:none;max-width:var(--maxw);margin:0 auto;
+  padding:0 var(--gut);display:grid;grid-template-columns:repeat(4,1fr);opacity:.5}
+.grid-rails span{border-left:1px solid rgba(255,255,255,.035)}
+.grid-rails span:last-child{border-right:1px solid rgba(255,255,255,.035)}
+@media(max-width:820px){.grid-rails{display:none}}
+
+/* typography */
+.display{font-family:var(--display);font-weight:700;letter-spacing:-.03em;line-height:.96;text-wrap:balance;margin:0}
+h1.display{font-size:clamp(2.35rem,5.6vw,4.6rem)}
+h2.display{font-size:clamp(1.8rem,4vw,3.1rem)}
+h3.display{font-size:clamp(1.25rem,2.1vw,1.6rem);line-height:1.12;letter-spacing:-.02em}
+.l2{color:var(--muted)}
+.lede{font-size:clamp(1rem,1.15vw,1.09rem);color:var(--muted);max-width:54ch;margin:0;line-height:1.62}
+.label{font-family:var(--mono);font-size:.688rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.mint{color:var(--mint)}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--gut);position:relative;z-index:1}
+.eyebrow{display:flex;align-items:center;gap:11px}
+.eyebrow i{width:5px;height:5px;background:var(--mint);border-radius:50%;box-shadow:0 0 10px var(--mint);flex:none}
+.sec{padding:clamp(64px,10vh,120px) 0}
+.sec-mark{display:flex;align-items:baseline;gap:14px;padding-bottom:14px;border-bottom:1px solid var(--line);
+  margin-bottom:clamp(34px,5.5vh,60px);flex-wrap:wrap}
+.sec-mark .role{color:var(--muted)}
+.sec-mark .of{margin-inline-start:auto;color:var(--dim)}
+.sec-head{display:flex;flex-direction:column;gap:20px}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-family:var(--body);font-size:.875rem;font-weight:500;
+  padding:12px 20px;min-height:44px;border-radius:8px;text-decoration:none;cursor:pointer;border:1px solid var(--line-2);
+  background:var(--glass);color:var(--fg);transition:.32s var(--ease);white-space:nowrap}
+.btn .ar{display:inline-block;transition:transform .32s var(--ease)}
+.btn:hover{background:var(--glass-2);border-color:rgba(255,255,255,.28)}
+.btn:hover .ar{transform:translateX(4px)}
+.btn:hover .ar.back{transform:translateX(-4px)}
+.btn-primary{background:var(--mint);color:#04120E;border-color:var(--mint);font-weight:600}
+.btn-primary:hover{background:#8BFFE0;border-color:#8BFFE0;box-shadow:0 0 0 1px rgba(102,246,210,.28),0 10px 40px -12px rgba(102,246,210,.5)}
+.btn-lg{padding:15px 26px;font-size:.938rem;letter-spacing:.02em}
+.btn-sm{padding:8px 14px;min-height:36px;font-size:.813rem}
+.btn-ghost{background:transparent;border-color:var(--line)}
+.btn-caps{text-transform:uppercase;letter-spacing:.12em;font-family:var(--mono);font-size:.75rem;font-weight:500}
+.btn[disabled]{opacity:.45;pointer-events:none}
+
+/* badges */
+.demo-flag{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:.656rem;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--warn);font-weight:500;border:1px solid rgba(232,177,92,.38);
+  background:rgba(232,177,92,.08);border-radius:5px;padding:4px 9px;line-height:1.4}
+.demo-flag::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--warn);flex:none}
+.verified{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:.656rem;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--mint);border:1px solid rgba(102,246,210,.3);background:rgba(102,246,210,.07);
+  border-radius:5px;padding:4px 9px;white-space:nowrap;line-height:1.4}
+.chip{display:inline-flex;align-items:center;font-family:var(--mono);font-size:.656rem;letter-spacing:.08em;padding:5px 10px;
+  border:1px solid var(--line-2);border-radius:6px;color:var(--fg);background:var(--bg-3)}
+.chip.k{color:var(--mint);border-color:rgba(102,246,210,.35);background:rgba(102,246,210,.06)}
+
+/* cards */
+.card{border:1px solid var(--line);border-radius:16px;background:var(--bg-2);padding:clamp(20px,2.6vw,28px)}
+.card.tint{border-color:rgba(102,246,210,.24);background:linear-gradient(170deg,rgba(102,246,210,.06),transparent 55%),var(--bg-2)}
+.card > .label{display:block;padding-bottom:10px;border-bottom:1px solid var(--line);margin-bottom:16px}
+
+/* reveal on scroll */
+.js .reveal{opacity:0;transform:translateY(16px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.js .reveal.in{opacity:1;transform:none}
+.js .reveal[data-d="1"]{transition-delay:.08s}.js .reveal[data-d="2"]{transition-delay:.16s}.js .reveal[data-d="3"]{transition-delay:.24s}
+
+/* ============================ NAV ============================ */
+#nav{position:fixed;top:0;left:0;right:0;z-index:60;border-bottom:1px solid transparent;
+  transition:background .4s var(--ease),border-color .4s}
+#nav.stuck,#nav.solid{background:rgba(8,9,11,.74);backdrop-filter:blur(18px) saturate(140%);-webkit-backdrop-filter:blur(18px) saturate(140%);
+  border-bottom-color:var(--line)}
+.nav-in{max-width:var(--maxw);margin:0 auto;padding:0 var(--gut);height:64px;display:flex;align-items:center;gap:20px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--fg);font-family:var(--display);font-weight:700;
+  font-size:1rem;letter-spacing:.2em;flex:none}
+.brand-mark{display:flex;gap:2.5px;align-items:center}
+.brand-mark i{width:4px;height:4px;background:var(--dim);border-radius:50%;transition:.4s var(--ease)}
+.brand:hover .brand-mark i:nth-child(1){background:var(--fg)}
+.brand:hover .brand-mark i:nth-child(2){background:var(--mint);box-shadow:0 0 8px var(--mint)}
+.brand:hover .brand-mark i:nth-child(3){background:var(--violet)}
+.steps{list-style:none;margin:0 auto;padding:0;display:flex;align-items:center;gap:4px}
+.steps li{display:flex;align-items:center}
+.steps li + li::before{content:"";width:22px;height:1px;background:var(--line-2);margin:0 6px}
+.steps a{display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:var(--dim);font-family:var(--mono);
+  font-size:.625rem;letter-spacing:.14em;text-transform:uppercase;padding:6px 8px;border-radius:6px;transition:.3s var(--ease)}
+.steps a b{display:grid;place-items:center;width:22px;height:22px;border-radius:50%;border:1px solid var(--line-2);font-weight:500;
+  font-size:.563rem;transition:.3s var(--ease)}
+.steps a.on{color:var(--fg)}
+.steps a.on b{border-color:var(--mint);color:var(--mint);box-shadow:0 0 0 3px rgba(102,246,210,.12)}
+.steps a.done{color:var(--muted)}
+.steps a.done b{background:var(--mint);border-color:var(--mint);color:#04120E}
+.steps a.locked{opacity:.5;cursor:default;pointer-events:none}
+.steps a:not(.locked):hover{color:var(--fg);background:var(--glass)}
+.nav-right{display:flex;align-items:center;gap:10px;flex:none}
+#navReset .ic{display:none;font-size:1.05rem;line-height:1}
+@media(max-width:720px){
+  .steps span{display:none}
+  .steps a.on span{display:inline}
+  .steps li + li::before{width:12px;margin:0 2px}
+  .nav-right .demo-flag{display:none}
+  .nav-in{gap:10px}
+}
+@media(max-width:560px){
+  .nav-in{gap:8px;padding:0 16px}
+  .brand{font-size:.9rem;letter-spacing:.16em;gap:8px}
+  .steps a{padding:6px 4px;gap:0}
+  .steps a span,.steps a.on span{display:none}
+  .steps li + li::before{width:10px;margin:0 2px}
+  #navReset{width:38px;padding:0;justify-content:center}
+  #navReset .tx{display:none}
+  #navReset .ic{display:inline}
+}
+
+/* ============================ SCREENS ============================ */
+main{position:relative;z-index:1}
+.screen{animation:screenIn .55s var(--ease) both}
+@keyframes screenIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.screen-in{padding:clamp(96px,14vh,140px) 0 clamp(60px,8vh,90px)}
+
+/* ============================ SCREEN 1 — DISCOVER ============================ */
+.hero{position:relative;min-height:min(96vh,900px);display:flex;align-items:center;padding:110px 0 50px;overflow:hidden}
+.hero-canvas{position:absolute;inset:0;z-index:0}
+.hero-canvas canvas{width:100%;height:100%;display:block}
+.hero-scrim{position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(100deg,var(--bg) 0%,rgba(8,9,11,.86) 30%,rgba(8,9,11,.35) 58%,rgba(8,9,11,.5) 100%),
+  linear-gradient(to top,var(--bg) 0,transparent 26%)}
+.hero .wrap{z-index:2;width:100%}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(30px,5vw,72px);align-items:center}
+.hero-copy{display:flex;flex-direction:column;gap:24px;max-width:600px}
+.pipeline{display:flex;flex-wrap:wrap;align-items:center;gap:6px 9px;font-family:var(--mono);font-size:.625rem;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--dim)}
+.pipeline b{font-weight:500;color:var(--fg)}
+.pipeline i{font-style:normal;opacity:.5}
+.legend{display:flex;flex-wrap:wrap;gap:10px 18px}
+.legend div{display:flex;align-items:center;gap:9px;font-family:var(--mono);font-size:.625rem;letter-spacing:.13em;text-transform:uppercase;color:var(--dim)}
+.dot-b{width:5px;height:5px;border-radius:50%;background:var(--fg);flex:none}
+.dot-a{width:8px;height:8px;border-radius:50%;background:var(--mint);flex:none;box-shadow:0 0 9px rgba(102,246,210,.75)}
+.dot-e{width:10px;height:10px;border-radius:2px;border:1px solid var(--violet);flex:none;box-shadow:0 0 9px rgba(124,140,255,.35)}
+@media(max-width:960px){
+  .hero{min-height:auto;padding:96px 0 40px}
+  .hero-grid{grid-template-columns:1fr;gap:34px}
+  .hero-canvas{opacity:.55}
+  .hero-scrim{background:linear-gradient(to bottom,rgba(8,9,11,.6),rgba(8,9,11,.85) 70%,var(--bg))}
+}
+
+/* the discover form */
+.form-card{display:flex;flex-direction:column;gap:22px;border:1px solid var(--line-2);border-radius:18px;
+  background:rgba(13,16,19,.88);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  padding:clamp(20px,2.6vw,30px);box-shadow:0 40px 100px -40px rgba(0,0,0,.9)}
+.fc-h{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.fc-h .label{color:var(--mint)}
+.fgroup{display:flex;flex-direction:column;gap:10px}
+.fgroup > label,.fgroup > .flabel{font:500 .625rem/1.4 var(--mono);letter-spacing:.15em;text-transform:uppercase;color:var(--muted);display:flex;
+  justify-content:space-between;gap:10px;flex-wrap:wrap}
+.fgroup > label em,.fgroup > .flabel em{font-style:normal;text-transform:none;letter-spacing:0;font-family:var(--body);font-size:.813rem;color:var(--dim)}
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chipbtn{background:var(--bg-3);border:1px solid var(--line);border-radius:7px;color:var(--muted);cursor:pointer;
+  font:500 .813rem/1.2 var(--body);padding:10px 14px;min-height:40px;transition:.25s var(--ease)}
+.chipbtn:hover{color:var(--fg);border-color:var(--line-2)}
+.chipbtn[aria-checked="true"]{color:var(--mint);border-color:rgba(102,246,210,.5);background:rgba(102,246,210,.08)}
+.fgroup.invalid .chipbtn{border-color:rgba(232,177,92,.4)}
+.fgroup.invalid .chipbtn[aria-checked="true"]{border-color:rgba(102,246,210,.5)}
+textarea.work{width:100%;background:var(--bg-3);border:1px solid var(--line);border-radius:10px;color:var(--fg);font-family:var(--body);
+  font-size:.938rem;padding:14px 15px;resize:vertical;min-height:118px;line-height:1.55;transition:border-color .25s,box-shadow .25s}
+textarea.work:focus{outline:none;border-color:rgba(102,246,210,.42);box-shadow:0 0 0 3px rgba(102,246,210,.09)}
+textarea.work::placeholder{color:var(--dim)}
+.fgroup.invalid textarea.work{border-color:rgba(232,177,92,.55)}
+.err{font-size:.75rem;color:var(--warn);display:flex;gap:7px;align-items:center}
+.err::before{content:"!";font-family:var(--mono);font-weight:500;width:14px;height:14px;border-radius:50%;border:1px solid currentColor;
+  display:inline-grid;place-items:center;font-size:.563rem;flex:none}
+.examples{display:flex;flex-wrap:wrap;gap:7px;align-items:center}
+.examples .label{margin-inline-end:4px}
+.ex{font-family:var(--body);font-size:.75rem;padding:7px 11px;border:1px solid var(--line);border-radius:6px;background:transparent;
+  color:var(--muted);cursor:pointer;transition:.25s;text-align:start;line-height:1.35}
+.ex:hover{color:var(--fg);border-color:var(--line-2);background:var(--glass-2)}
+.form-foot{display:flex;flex-direction:column;gap:12px}
+.form-foot .btn{width:100%}
+.how-note{font-size:.75rem;color:var(--dim);margin:0;line-height:1.5}
+
+/* ecosystem pathway */
+.path{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line);
+  border:1px solid var(--line);border-radius:16px;overflow:hidden;counter-reset:st}
+.path li{background:var(--bg-2);padding:clamp(18px,2.2vw,26px);display:flex;flex-direction:column;gap:10px;position:relative;min-height:190px;
+  transition:background .35s}
+.path li:hover{background:var(--bg-3)}
+.path li.here{background:linear-gradient(180deg,rgba(102,246,210,.07),transparent 70%),var(--bg-2)}
+.path .st{font-family:var(--mono);font-size:.625rem;letter-spacing:.15em;text-transform:uppercase;color:var(--dim);display:flex;justify-content:space-between;gap:8px}
+.path li.here .st{color:var(--mint)}
+.path h3{font:700 clamp(1.15rem,1.7vw,1.5rem)/1.05 var(--display);letter-spacing:-.02em;margin:0}
+.path .who{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.625rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.path .who i{width:6px;height:6px;border-radius:50%;background:var(--dim);flex:none}
+.path li.here .who i{background:var(--mint);box-shadow:0 0 8px var(--mint)}
+.path p{margin:0;font-size:.813rem;color:var(--muted);line-height:1.5}
+.path .now{margin-top:auto;font-family:var(--mono);font-size:.563rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mint)}
+.path li:not(:last-child)::after{content:"→";position:absolute;inset-inline-end:-9px;top:22px;z-index:2;font-family:var(--mono);font-size:.75rem;
+  color:var(--dim);background:var(--bg);width:18px;height:18px;display:grid;place-items:center;border-radius:50%}
+@media(max-width:1000px){.path{grid-template-columns:repeat(2,1fr)}.path li{min-height:0}.path li:not(:last-child)::after{display:none}
+  .path li:last-child{grid-column:1/-1}}
+@media(max-width:560px){.path{grid-template-columns:1fr}}
+.vchain{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;margin-top:22px;font-family:var(--mono);font-size:.688rem;letter-spacing:.12em;text-transform:uppercase}
+.vchain span{color:var(--fg);padding:8px 12px;border:1px solid var(--line-2);border-radius:6px;background:var(--bg-2)}
+.vchain span.hi{color:var(--mint);border-color:rgba(102,246,210,.4)}
+.vchain i{font-style:normal;color:var(--dim)}
+.eco-note{margin:18px 0 0;font-size:.844rem;color:var(--muted);max-width:70ch}
+.eco-note b{color:var(--fg);font-weight:500}
+
+/* saudi */
+.chain{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.link{background:var(--bg-2);padding:18px 20px}
+.link .lk{font:500 .563rem/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--mint)}
+.link h4{font:600 1.02rem/1.25 var(--display);letter-spacing:-.01em;margin:10px 0 6px}
+.link p{font-size:.781rem;color:var(--muted);margin:0}
+.link:last-child{background:linear-gradient(135deg,rgba(102,246,210,.08),transparent 70%),var(--bg-2)}
+@media(max-width:960px){.chain{grid-template-columns:repeat(2,1fr)}.link:last-child{grid-column:1/-1}}
+@media(max-width:520px){.chain{grid-template-columns:1fr}}
+.saudi-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:14px;margin-top:14px}
+@media(max-width:900px){.saudi-grid{grid-template-columns:1fr}}
+.prios{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.prios div{background:var(--bg-2);padding:14px 16px;font-size:.844rem;color:var(--fg);display:flex;gap:10px;align-items:baseline}
+.prios div::before{content:"—";color:var(--mint);font-family:var(--mono);flex:none}
+@media(max-width:480px){.prios{grid-template-columns:1fr}}
+.geo{display:flex;flex-direction:column;gap:14px;justify-content:center}
+.geo-line{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-family:var(--display);font-weight:700;letter-spacing:-.02em;font-size:clamp(1.2rem,2vw,1.6rem)}
+.geo-line i{font-style:normal;color:var(--dim);font-family:var(--mono);font-weight:400;font-size:1rem}
+.geo-line .g1{color:var(--fg)}.geo-line .g2{color:var(--muted)}.geo-line .g3{color:var(--dim)}
+.indep{margin:16px 0 0;font-size:.781rem;color:var(--dim);max-width:78ch;line-height:1.55}
+
+/* ============================ ANALYSIS OVERLAY ============================ */
+.overlay{position:fixed;inset:0;z-index:120;display:grid;place-items:center;padding:20px;
+  background:rgba(4,5,6,.86);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);animation:fade .35s var(--ease)}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+.abox{width:min(560px,100%);border:1px solid var(--line-2);border-radius:20px;background:var(--bg-2);overflow:hidden;
+  box-shadow:0 60px 140px -50px rgba(0,0,0,.95);animation:rise .45s var(--ease);position:relative}
+@keyframes rise{from{opacity:0;transform:translateY(22px) scale(.98)}to{opacity:1;transform:none}}
+.abox-h{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:18px 24px;border-bottom:1px solid var(--line);
+  background:linear-gradient(170deg,rgba(102,246,210,.06),transparent 70%)}
+.abox-h .ttl{font:500 .688rem/1.4 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--mint);display:flex;align-items:center;gap:9px}
+.abox-h .ttl .sp{width:9px;height:9px;border:1px solid var(--mint);border-top-color:transparent;border-radius:50%;animation:spin .7s linear infinite;flex:none}
+@keyframes spin{to{transform:rotate(360deg)}}
+.abar{height:2px;background:var(--line)}
+.abar i{display:block;height:100%;width:0;background:var(--mint);transition:width .65s var(--ease);box-shadow:0 0 12px rgba(102,246,210,.6)}
+.abody{padding:22px 24px 26px;display:flex;flex-direction:column;gap:0;min-height:300px}
+.aquote{font-size:.844rem;color:var(--muted);border-inline-start:2px solid var(--line-2);padding-inline-start:14px;margin:0 0 18px;line-height:1.5;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.aquote b{color:var(--fg);font-weight:500}
+.astep{display:grid;grid-template-columns:24px 1fr auto;gap:14px;align-items:center;padding:13px 0;border-top:1px solid var(--line);
+  color:var(--dim);font-size:.906rem;transition:color .4s var(--ease)}
+.astep:last-of-type{border-bottom:1px solid var(--line)}
+.astep .ring{width:20px;height:20px;border-radius:50%;border:1px solid var(--line-2);display:grid;place-items:center;font-size:9px;color:#04120E;
+  transition:.35s var(--ease);position:relative}
+.astep.active{color:var(--fg)}
+.astep.active .ring{border-color:var(--mint);border-top-color:transparent;animation:spin .8s linear infinite}
+.astep.done{color:var(--fg)}
+.astep.done .ring{background:var(--mint);border-color:var(--mint)}
+.astep .n{font-family:var(--mono);font-size:.563rem;letter-spacing:.14em;color:var(--dim)}
+.astep.done .n{color:var(--mint)}
+.afound{margin-top:auto;padding-top:22px;display:flex;flex-direction:column;gap:12px;align-items:flex-start;opacity:0;transform:translateY(8px);
+  transition:.6s var(--ease)}
+.afound.in{opacity:1;transform:none}
+.found-badge{display:inline-flex;align-items:center;gap:9px;font-family:var(--mono);font-size:.719rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--mint);border:1px solid rgba(102,246,210,.4);background:rgba(102,246,210,.08);border-radius:7px;padding:9px 14px;position:relative}
+.found-badge::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--mint);flex:none;box-shadow:0 0 10px var(--mint)}
+.afound.in .found-badge{animation:vpulse 1.3s var(--ease) .15s 1}
+@keyframes vpulse{0%{box-shadow:0 0 0 0 rgba(102,246,210,.45)}60%{box-shadow:0 0 0 14px rgba(102,246,210,0)}100%{box-shadow:0 0 0 0 rgba(102,246,210,0)}}
+.afound .sol{font:700 clamp(1.4rem,3vw,1.9rem)/1.1 var(--display);letter-spacing:-.025em}
+.afound .sol span{display:block;font:400 .844rem/1.5 var(--body);color:var(--muted);margin-top:6px;letter-spacing:0}
+
+/* ============================ SCREEN 2 — OPPORTUNITY ============================ */
+.found-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:22px}
+.opp-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:14px;margin-top:clamp(30px,5vh,48px)}
+@media(max-width:900px){.opp-grid{grid-template-columns:1fr}}
+.wf-chips{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:14px}
+.quote{font-size:1rem;line-height:1.55;color:var(--fg);border-inline-start:2px solid var(--mint);padding-inline-start:16px;margin:0;
+  overflow-wrap:anywhere}
+.quote-meta{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:16px;font-size:.75rem;color:var(--dim)}
+.quote-meta b{color:var(--muted);font-weight:500;font-family:var(--mono);font-size:.656rem;letter-spacing:.1em;text-transform:uppercase;margin-inline-end:6px}
+.opp-text{margin:0;font-size:.938rem;color:var(--fg);line-height:1.6}
+.opp-text + .opp-text{margin-top:10px;color:var(--muted)}
+.split2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
+@media(max-width:560px){.split2{grid-template-columns:1fr}}
+.mini{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:var(--bg)}
+.mini .k{font:500 .563rem/1.4 var(--mono);letter-spacing:.14em;text-transform:uppercase;margin-bottom:9px;display:block}
+.mini.ai .k{color:var(--mint)}
+.mini.hu .k{color:#B7C0FF}
+.mini ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.mini li{font-size:.813rem;color:var(--muted);display:flex;gap:8px;line-height:1.45}
+.mini li::before{content:"";width:5px;height:5px;border-radius:50%;flex:none;margin-top:8px;background:var(--dim)}
+.mini.ai li::before{background:var(--mint)}
+.mini.hu li::before{background:var(--violet)}
+.sol-card{margin-top:14px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px 30px;align-items:start}
+@media(max-width:760px){.sol-card{grid-template-columns:1fr}}
+.sol-card > .label{grid-column:1/-1;display:block;padding-bottom:10px;border-bottom:1px solid var(--line);margin-bottom:4px}
+.sol-name{font:700 clamp(1.6rem,3.4vw,2.4rem)/1.05 var(--display);letter-spacing:-.03em;margin:0}
+.sol-dept{font-family:var(--mono);font-size:.688rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mint);margin:10px 0 12px}
+.sol-desc{margin:0;font-size:.938rem;color:var(--muted);max-width:56ch;line-height:1.6}
+.sol-badges{display:flex;flex-wrap:wrap;gap:8px;align-items:flex-start;justify-content:flex-end}
+@media(max-width:760px){.sol-badges{justify-content:flex-start}}
+.sol-match{display:flex;flex-direction:column;gap:6px;align-items:flex-end;text-align:end}
+@media(max-width:760px){.sol-match{align-items:flex-start;text-align:start}}
+.sol-match .conf{font:500 .625rem/1.4 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+
+/* journeys — before / with masar (carried from v2, enlarged) */
+.journeys{display:grid;grid-template-columns:1fr 1.15fr;gap:14px;margin-top:14px}
+@media(max-width:860px){.journeys{grid-template-columns:1fr}}
+.jcol{border:1px solid var(--line);border-radius:16px;padding:clamp(20px,2.4vw,28px)}
+.jcol.old{border-style:dashed}
+.jcol.new{border-color:rgba(102,246,210,.28);background:linear-gradient(180deg,rgba(102,246,210,.05),transparent 60%),var(--bg-2)}
+.jhead{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:18px;flex-wrap:wrap}
+.jhead .t{font-family:var(--mono);font-size:.688rem;letter-spacing:.16em;text-transform:uppercase}
+.jcol.old .jhead .t{color:var(--muted)}
+.jcol.new .jhead .t{color:var(--mint)}
+.jhead .v{font-size:.75rem;color:var(--dim)}
+.jlist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.jlist li{display:grid;grid-template-columns:28px 1fr;gap:14px;align-items:start;position:relative;padding:9px 0}
+.jlist li::before{content:"";position:absolute;inset-inline-start:13px;top:38px;bottom:-9px;width:1px;background:var(--line-2)}
+.jlist li:last-child::before{display:none}
+.jlist .n{width:27px;height:27px;border-radius:50%;border:1px solid var(--line-2);display:grid;place-items:center;font-family:var(--mono);
+  font-size:.563rem;color:var(--dim);background:var(--bg);position:relative;z-index:1;transition:.5s var(--ease)}
+.jlist .s{font-size:.969rem;color:var(--muted);padding-top:3px;transition:color .5s var(--ease);font-weight:500}
+.jcol.old .jlist li::before{background:repeating-linear-gradient(to bottom,var(--line-2) 0 3px,transparent 3px 7px)}
+.jcol.old li:last-child .n{border-color:rgba(232,177,92,.55);border-style:dashed;color:var(--warn)}
+.jcol.old li:last-child .s{color:var(--warn-ink)}
+.jcol.new .jlist li{opacity:.3;transition:opacity .5s var(--ease)}
+.jcol.new.lit .jlist li{opacity:1}
+.jcol.new.lit .n{border-color:rgba(102,246,210,.6);color:var(--mint);background:#0B1614}
+.jcol.new.lit .s{color:var(--fg)}
+.jcol.new.lit .jlist li::before{background:rgba(102,246,210,.35)}
+.jcol.new.lit li:nth-child(2){transition-delay:.18s}.jcol.new.lit li:nth-child(3){transition-delay:.36s}.jcol.new.lit li:nth-child(4){transition-delay:.54s}
+.jcol.new.lit li:nth-child(5){transition-delay:.72s}
+.jcol.new .jfoot{margin-top:16px;padding-top:14px;border-top:1px solid var(--line);font-size:.781rem;color:var(--muted);opacity:0;transition:opacity .6s .8s}
+.jcol.new.lit .jfoot{opacity:1}
+.jcol.big .jlist .s{font-size:clamp(1rem,1.4vw,1.15rem)}
+.jcol.big .jlist li{padding:12px 0}
+.jcol.big .jlist li::before{top:44px;bottom:-12px}
+
+/* cta row */
+.cta-row{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;margin-top:clamp(30px,5vh,46px);padding-top:22px;border-top:1px solid var(--line)}
+.cta-row .primary{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+@media(max-width:560px){.cta-row .btn{width:100%}.cta-row,.cta-row .primary{flex-direction:column;align-items:stretch}}
+
+/* ============================ SCREEN 3 — SOLUTION ============================ */
+.sol-head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px 30px;align-items:end;margin-bottom:clamp(30px,5vh,48px)}
+@media(max-width:760px){.sol-head{grid-template-columns:1fr;align-items:start}}
+.sol-head .badges{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end}
+@media(max-width:760px){.sol-head .badges{justify-content:flex-start}}
+.sol-head .lede{margin-top:16px}
+.sgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:860px){.sgrid{grid-template-columns:1fr}}
+.list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:0}
+.list li{display:flex;gap:12px;align-items:flex-start;padding:11px 0;border-top:1px solid var(--line);font-size:.906rem;color:var(--fg);line-height:1.5}
+.list li:last-child{border-bottom:1px solid var(--line)}
+.list li i{font-style:normal;flex:none;width:18px;height:18px;border-radius:50%;display:grid;place-items:center;font-size:9px;margin-top:3px}
+.list.caps li i{background:var(--mint);color:#04120E}
+.list.lims li{color:var(--muted)}
+.list.lims li i{border:1px solid rgba(232,177,92,.55);color:var(--warn);font-family:var(--mono);font-size:.563rem}
+.prob{margin:0;font-size:1rem;color:var(--fg);line-height:1.65;max-width:70ch}
+
+/* how it works */
+.hiw{display:grid;grid-template-columns:1fr 34px 1fr 34px 1fr 34px 1fr;align-items:stretch;margin-top:6px}
+.hnode{border:1px solid var(--line);border-radius:14px;background:var(--bg);padding:18px;display:flex;flex-direction:column;gap:9px;min-height:150px;
+  position:relative;transition:border-color .4s}
+.hnode .hk{font:500 .625rem/1.4 var(--mono);letter-spacing:.15em;text-transform:uppercase;color:var(--dim);display:flex;align-items:center;gap:8px}
+.hnode .hk i{width:6px;height:6px;border-radius:50%;background:var(--dim);flex:none}
+.hnode.ai .hk{color:var(--mint)}.hnode.ai .hk i{background:var(--mint);box-shadow:0 0 8px var(--mint)}
+.hnode.hu .hk{color:#B7C0FF}.hnode.hu .hk i{background:var(--violet);border-radius:2px}
+.hnode.ai{border-color:rgba(102,246,210,.28);background:linear-gradient(180deg,rgba(102,246,210,.05),transparent 70%),var(--bg)}
+.hnode .ht{font:600 1rem/1.3 var(--body)}
+.hnode .hd{font-size:.781rem;color:var(--muted);line-height:1.5;margin:0}
+.hlink{position:relative;align-self:center;height:1px;background:var(--line-2);overflow:visible}
+.hlink::after{content:"";position:absolute;top:-2px;left:0;width:5px;height:5px;border-radius:50%;background:var(--mint);box-shadow:0 0 8px var(--mint);
+  animation:travel 2.4s var(--ease) infinite}
+.hlink:nth-of-type(4)::after{animation-delay:.8s}.hlink:nth-of-type(6)::after{animation-delay:1.6s}
+@keyframes travel{0%{left:0;opacity:0}15%{opacity:1}85%{opacity:1}100%{left:calc(100% - 5px);opacity:0}}
+@media(max-width:860px){
+  .hiw{grid-template-columns:1fr}
+  .hnode{min-height:0}
+  .hlink{width:1px;height:30px;justify-self:center;align-self:auto}
+  .hlink::after{left:-2px;top:0;animation-name:travelv}
+  @keyframes travelv{0%{top:0;opacity:0}15%{opacity:1}85%{opacity:1}100%{top:calc(100% - 5px);opacity:0}}
+}
+
+/* verified block */
+.vblock{margin-top:14px;display:grid;grid-template-columns:auto minmax(0,1fr);gap:18px 24px;align-items:start;border:1px solid rgba(102,246,210,.22);
+  border-radius:16px;padding:clamp(20px,2.6vw,28px);background:linear-gradient(170deg,rgba(102,246,210,.05),transparent 55%),var(--bg-2)}
+@media(max-width:640px){.vblock{grid-template-columns:1fr}}
+.vseal{width:64px;height:64px;border-radius:50%;border:1px solid rgba(102,246,210,.45);display:grid;place-items:center;color:var(--mint);
+  font-size:22px;background:rgba(102,246,210,.06);position:relative;flex:none}
+.vseal::after{content:"";position:absolute;inset:-7px;border-radius:50%;border:1px dashed rgba(102,246,210,.28)}
+.vblock h3{margin:0;font:700 1.2rem/1.15 var(--display);letter-spacing:-.02em;color:var(--mint);text-transform:uppercase;letter-spacing:.08em;font-size:1rem}
+.vblock p{margin:8px 0 0;font-size:.906rem;color:var(--fg)}
+.vcrit{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}
+.vdis{grid-column:1/-1;border-top:1px dashed var(--line-2);padding-top:14px;font-size:.781rem;color:var(--muted);line-height:1.55;margin:0}
+.vdis b{color:var(--fg);font-weight:500}
+
+/* ============================ MODAL ============================ */
+.modal{position:fixed;inset:0;z-index:130;display:flex;align-items:center;justify-content:center;padding:18px}
+.modal-bg{position:absolute;inset:0;background:rgba(4,5,6,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);animation:fade .3s var(--ease)}
+.modal-box{position:relative;width:min(560px,100%);max-height:90vh;overflow-y:auto;border:1px solid var(--line-2);border-radius:18px;background:var(--bg-2);
+  box-shadow:0 50px 120px -40px rgba(0,0,0,.95);animation:rise .42s var(--ease)}
+.modal-head{padding:22px 26px;border-bottom:1px solid var(--line);background:linear-gradient(170deg,rgba(102,246,210,.06),transparent 70%);
+  display:flex;justify-content:space-between;align-items:flex-start;gap:18px}
+.modal-head h2{font:700 clamp(1.35rem,3vw,1.7rem)/1.1 var(--display);letter-spacing:-.025em;margin:8px 0 0}
+.modal-body{padding:22px 26px 26px;display:flex;flex-direction:column;gap:18px}
+.modal-body p{margin:0;color:var(--muted);font-size:.938rem;line-height:1.6}
+.modal-body p b{color:var(--fg);font-weight:500}
+.x{background:none;border:1px solid var(--line);color:var(--muted);width:36px;height:36px;border-radius:8px;cursor:pointer;flex:none;font-size:15px;line-height:1;transition:.25s}
+.x:hover{color:var(--fg);border-color:var(--line-2);background:var(--glass)}
+.msum{display:grid;grid-template-columns:auto 1fr;gap:8px 16px;font-size:.813rem;border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:var(--bg)}
+.msum dt{font:500 .563rem/1.9 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+.msum dd{margin:0;color:var(--fg);overflow-wrap:anywhere}
+.modal-foot{display:flex;gap:10px;flex-wrap:wrap;padding-top:6px}
+@media(max-width:520px){.modal-foot .btn{width:100%}}
+.ok-seal{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:.719rem;letter-spacing:.18em;text-transform:uppercase;color:var(--mint);
+  border:1px solid rgba(102,246,210,.4);background:rgba(102,246,210,.08);border-radius:7px;padding:10px 14px;animation:vpulse 1.3s var(--ease) .1s 1}
+.ok-seal i{width:18px;height:18px;border-radius:50%;background:var(--mint);color:#04120E;display:grid;place-items:center;font-size:10px;font-style:normal}
+.gen-status{font-family:var(--mono);font-size:.688rem;letter-spacing:.13em;text-transform:uppercase;color:var(--mint);display:flex;align-items:center;gap:9px}
+.gen-status .sp{width:9px;height:9px;border:1px solid var(--mint);border-top-color:transparent;border-radius:50%;animation:spin .7s linear infinite;flex:none}
+.next{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.next li{display:flex;gap:12px;align-items:center;padding:10px 0;border-top:1px solid var(--line);font-size:.875rem;color:var(--muted);opacity:0;transform:translateX(-6px);transition:.4s var(--ease)}
+.next li.in{opacity:1;transform:none;color:var(--fg)}
+.next li:last-child{border-bottom:1px solid var(--line)}
+.next .ck{width:17px;height:17px;border-radius:50%;border:1px solid var(--line-2);flex:none;display:grid;place-items:center;font-size:9px;color:var(--bg);transition:.35s}
+.next li.in .ck{background:var(--mint);border-color:var(--mint)}
+
+/* ============================ FOOTER ============================ */
+footer{border-top:1px solid var(--line);padding:40px 0 34px;background:var(--bg);position:relative;z-index:1}
+.foot-grid{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:flex-start}
+.foot-brand{display:flex;flex-direction:column;gap:10px}
+.foot-links{display:flex;gap:clamp(18px,3vw,40px);flex-wrap:wrap}
+.foot-links a,.foot-links button{color:var(--muted);text-decoration:none;font-size:.813rem;transition:color .25s;background:none;border:0;padding:0;cursor:pointer;font-family:var(--body)}
+.foot-links a:hover,.foot-links button:hover{color:var(--fg)}
+.foot-bot{display:flex;justify-content:space-between;gap:14px 20px;flex-wrap:wrap;margin-top:30px;padding-top:18px;border-top:1px solid var(--line)}
+.foot-bot .label{line-height:1.6;letter-spacing:.1em}
+
+/* reduced motion */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+  .js .reveal{opacity:1;transform:none}
+  .jcol.new .jlist li{opacity:1}
+  .hlink::after{display:none}
+}
+</style>
+</head>
+<body>
+
+<div class="grid-rails" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+
+<header id="nav">
+  <div class="nav-in">
+    <a class="brand" href="#/discover" id="brandLink" aria-label="Masar — start"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>MASAR</a>
+    <ol class="steps" id="steps" aria-label="Progress">
+      <li><a href="#/discover" data-step="discover"><b>01</b><span>Discover</span></a></li>
+      <li><a href="#/opportunity" data-step="opportunity"><b>02</b><span>Opportunity</span></a></li>
+      <li><a href="#/solution" data-step="solution"><b>03</b><span>Solution</span></a></li>
+    </ol>
+    <div class="nav-right">
+      <span class="demo-flag">Prototype</span>
+      <button class="btn btn-sm btn-ghost" type="button" id="navReset" aria-label="Start again" hidden><span class="ic" aria-hidden="true">&#8635;</span><span class="tx">Start again</span></button>
+    </div>
+  </div>
+</header>
+
+<main id="app">
+
+<!-- ======================= SCREEN 1 — DISCOVER ======================= -->
+<section class="screen" id="s-discover" data-screen="discover">
+  <div class="hero" id="top">
+    <div class="hero-canvas" id="heroStage"><canvas id="heroCanvas" aria-hidden="true"></canvas></div>
+    <div class="hero-scrim"></div>
+    <div class="wrap">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow"><i></i><span class="label">The Agentic AI ecosystem &nbsp;/&nbsp; built for Saudi businesses</span></div>
+          <h1 class="display" id="h-discover" tabindex="-1">What could AI do<br><span class="l2">for your business?</span></h1>
+          <p class="lede">Tell Masar about a repetitive workflow in your business and discover where Agentic AI could help &#8212; and which solution could address it.</p>
+          <div class="pipeline" aria-label="How it works: business problem, AI opportunity, AI solution, builder">
+            <b>Business problem</b><i>&#8594;</i>AI opportunity<i>&#8594;</i><b>AI solution</b><i>&#8594;</i>Builder
+          </div>
+          <div class="legend" aria-hidden="true">
+            <div><span class="dot-b"></span>Builders</div>
+            <div><span class="dot-a"></span>AI solutions</div>
+            <div><span class="dot-e"></span>Businesses</div>
+          </div>
+        </div>
+
+        <form class="form-card" id="discoverForm" novalidate>
+          <div class="fc-h"><span class="label">Step 01 &#183; Discover</span><span class="how-note">About one minute</span></div>
+
+          <div class="fgroup" id="gBiz">
+            <span class="flabel" id="lblBiz">Business type</span>
+            <div class="chips" role="radiogroup" aria-labelledby="lblBiz" id="bizChips"></div>
+            <span class="err" id="errBiz" hidden>Choose the type of business you run.</span>
+          </div>
+
+          <div class="fgroup" id="gDept">
+            <span class="flabel" id="lblDept">Department</span>
+            <div class="chips" role="radiogroup" aria-labelledby="lblDept" id="deptChips"></div>
+            <span class="err" id="errDept" hidden>Choose the department where the work happens.</span>
+          </div>
+
+          <div class="fgroup" id="gWork">
+            <label for="fWork">Workflow <em>What repetitive task takes too much time?</em></label>
+            <textarea class="work" id="fWork" dir="auto" rows="4" maxlength="600" placeholder="Describe what your team currently does manually&#8230;"></textarea>
+            <div class="examples" id="examples"><span class="label">Try an example</span></div>
+            <span class="err" id="errWork" hidden>Describe the task in a sentence or two so Masar has something to analyze.</span>
+          </div>
+
+          <div class="form-foot">
+            <button class="btn btn-primary btn-lg btn-caps" type="submit" id="analyzeBtn">Analyze my workflow <span class="ar">&#8594;</span></button>
+            <p class="how-note">Prototype analysis runs locally in your browser &#8212; rule-based, no AI model is called. Nothing you type is sent or stored.</p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ecosystem positioning -->
+  <section class="sec" id="ecosystem">
+    <div class="wrap">
+      <div class="sec-mark reveal"><span class="label role">The Masar ecosystem</span><span class="label of">One pathway &#183; five stages</span></div>
+      <div class="sec-head">
+        <h2 class="display reveal">One ecosystem.<br><span class="l2">Learn &#8594; Build &#8594; Connect &#8594; Adopt &#8594; Scale.</span></h2>
+        <p class="lede reveal" data-d="1">Masar is not four separate products. It is one pathway where a learner becomes a builder, a builder solves a real business problem, and a working solution creates the next opportunity.</p>
+      </div>
+      <ol class="path reveal" data-d="1" style="margin-top:clamp(34px,5vh,52px)">
+        <li><span class="st">01</span><h3>Learn</h3><span class="who"><i></i>Learners</span><p>People who want to learn how to build Agentic AI.</p></li>
+        <li><span class="st">02</span><h3>Build</h3><span class="who"><i></i>Builders</span><p>People who build AI agents and AI solutions.</p></li>
+        <li class="here"><span class="st">03 <span>This prototype</span></span><h3>Connect</h3><span class="who"><i></i>Businesses</span><p>Businesses with repetitive work meet the builders and solutions that fit.</p><span class="now">You are here</span></li>
+        <li class="here"><span class="st">04 <span>This prototype</span></span><h3>Adopt</h3><span class="who"><i></i>AI solutions</span><p>A relevant solution is evaluated, implemented and kept working.</p></li>
+        <li><span class="st">05</span><h3>Scale</h3><span class="who"><i></i>Opportunities</span><p>Working solutions create growth, new builders and new investment opportunities.</p></li>
+      </ol>
+      <div class="vchain reveal" data-d="2" aria-label="Learners to builders to businesses to AI solutions to opportunities">
+        <span>Learners</span><i>&#8594;</i><span>Builders</span><i>&#8594;</i><span class="hi">Businesses</span><i>&#8594;</i><span class="hi">AI solutions</span><i>&#8594;</i><span>Opportunities</span>
+      </div>
+      <p class="eco-note reveal" data-d="2"><b>Tonight&#8217;s proof point is one interaction:</b> a business problem becomes an AI opportunity, and an AI opportunity becomes a solution with a builder behind it. Everything else in the ecosystem grows from that.</p>
+    </div>
+  </section>
+
+  <!-- saudi positioning -->
+  <section class="sec" id="saudi" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-mark reveal"><span class="label role">Saudi Arabia &#183; Vision 2030</span><span class="label of">Why Saudi, and why now</span></div>
+      <div class="sec-head">
+        <h2 class="display reveal">Built for the next generation<br><span class="l2">of Saudi businesses.</span></h2>
+        <p class="lede reveal" data-d="1">Saudi Arabia is investing in AI talent and digital infrastructure. Capability is half the equation; the other half is businesses actually putting AI to work. Masar is designed to be that layer.</p>
+      </div>
+      <div class="chain reveal" data-d="1" style="margin-top:clamp(30px,5vh,48px)">
+        <div class="link"><span class="lk">01</span><h4>AI capability</h4><p>Learners gain the skills to build Agentic AI.</p></div>
+        <div class="link"><span class="lk">02</span><h4>Builders</h4><p>Saudi builders create solutions for real local workflows.</p></div>
+        <div class="link"><span class="lk">03</span><h4>Business adoption</h4><p>SMEs adopt practical AI without hiring an AI team.</p></div>
+        <div class="link"><span class="lk">04</span><h4>Productivity</h4><p>Repetitive work shrinks; people focus on judgment.</p></div>
+        <div class="link"><span class="lk">05</span><h4>Economic value</h4><p>A more diversified, knowledge-based economy.</p></div>
+      </div>
+      <div class="saudi-grid">
+        <div class="prios reveal" aria-label="Vision 2030 priorities Masar aligns with">
+          <div>AI adoption</div><div>Digital transformation</div><div>Entrepreneurship</div><div>Innovation</div>
+          <div>Productivity</div><div>Economic diversification</div><div>Knowledge-based economy</div><div>SME growth</div>
+        </div>
+        <div class="card geo reveal" data-d="1">
+          <span class="label">Where Masar grows</span>
+          <div class="geo-line" aria-label="Saudi Arabia, then GCC, then global"><span class="g1">Saudi Arabia</span><i>&#8594;</i><span class="g2">GCC</span><i>&#8594;</i><span class="g3">Global</span></div>
+          <p class="how-note" style="font-size:.813rem">Saudi ecosystem first: Arabic-first workflows, local platforms and local builders. Then the region, then the world.</p>
+        </div>
+      </div>
+      <p class="indep reveal">Masar is aligned with Saudi Vision 2030 priorities. It is an independent startup, not an official government product, and is not affiliated with, partnered with, or endorsed by any government entity, including SDAIA.</p>
+    </div>
+  </section>
+</section>
+
+<!-- ======================= SCREEN 2 — OPPORTUNITY ======================= -->
+<section class="screen" id="s-opportunity" data-screen="opportunity" hidden>
+  <div class="screen-in"><div class="wrap" id="oppRoot"></div></div>
+</section>
+
+<!-- ======================= SCREEN 3 — SOLUTION ======================= -->
+<section class="screen" id="s-solution" data-screen="solution" hidden>
+  <div class="screen-in"><div class="wrap" id="solRoot"></div></div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="#/discover"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>MASAR</a>
+        <span class="label">The Agentic AI ecosystem</span>
+      </div>
+      <div class="foot-links">
+        <a href="#/discover">Discover</a>
+        <a href="#ecosystem" data-anchor="ecosystem">Ecosystem</a>
+        <a href="#saudi" data-anchor="saudi">Saudi &#183; 2030</a>
+        <button type="button" data-action="reset">Start again</button>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span class="label">&#169; 2026 Masar &#183; Prototype</span>
+      <span class="label">The solutions shown are fictional prototype examples, not real customers, companies or deployed products.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- analysis overlay -->
+<div class="overlay" id="analysis" role="dialog" aria-modal="true" aria-labelledby="aTitle" hidden>
+  <div class="abox">
+    <div class="abox-h"><span class="ttl" id="aTitle"><span class="sp" id="aSpin"></span>Masar analysis</span><span class="demo-flag">Prototype &#183; local</span></div>
+    <div class="abar"><i id="aBar"></i></div>
+    <div class="abody">
+      <p class="aquote" id="aQuote"></p>
+      <div id="aSteps"></div>
+      <div class="afound" id="aFound"></div>
+    </div>
+  </div>
+</div>
+
+<!-- connect modal -->
+<div class="modal" id="connect" role="dialog" aria-modal="true" aria-labelledby="cTitle" hidden>
+  <div class="modal-bg" data-action="close-connect"></div>
+  <div class="modal-box" id="connectBox"></div>
+</div>
+
+<script>
+(function(){
+"use strict";
+document.documentElement.classList.add('js');
+var REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
+var isSmall = function(){ return innerWidth < 900; };
+
+/* ============================================================
+   DATA — prototype solution catalogue.
+   Fictional demo solutions. Not real customers, companies or
+   deployed products.
+   ============================================================ */
+var BUSINESS = ['Retail','Restaurant','E-commerce','Recruitment','Professional Services','Other'];
+var DEPTS = ['Finance & Accounting','HR & Recruitment','Customer Service','Sales','Marketing','Operations'];
+
+var EXAMPLES = [
+  {t:'Every week we manually take information from invoices and enter it into a spreadsheet.', dept:'Finance & Accounting'},
+  {t:'Our staff answer the same customer questions on WhatsApp about orders and delivery every day.', dept:'Customer Service'},
+  {t:'We receive hundreds of CVs by email and read each one to shortlist candidates.', dept:'HR & Recruitment'},
+  {t:'Every morning someone checks stock levels in each branch and updates the reorder sheet by hand.', dept:'Operations'}
+];
+
+var SOLUTIONS = [
+{ id:'invoiceflow', name:'InvoiceFlow AI', dept:'Finance & Accounting', kind:'Document workflow automation',
+  desc:'AI-powered workflow automation for extracting information from invoices and structuring it for accounting workflows.',
+  short:'Extract information from incoming invoices, structure the data and prepare it for human review.',
+  keywords:['invoice','receipt','spreadsheet','excel','sheet','bookkeeping','accounting','accountant','expense','financial record','ledger','vat','tax','payment','reconcil','purchase order','bill','فاتورة','فواتير','محاسب','مصاريف','إيصال'],
+  bias:{'Finance & Accounting':1.5},
+  oppLead:'The repetitive part of this workflow is reading documents and re-typing the same fields into a system.',
+  oppBody:'That is structured, rule-based work. An Agentic AI workflow can read each incoming document, extract the fields your team enters today, and hand a structured draft to a person for review &#8212; so your team checks instead of types.',
+  ai:['Reading each incoming document','Extracting the same fields every time','Entering the data into the spreadsheet or system','Flagging entries that look incomplete'],
+  human:['Checking flagged or unusual entries','Approving before anything is posted','Handling exceptions and supplier questions'],
+  problem:'Finance teams spend hours every week reading invoices and receipts and re-typing the same fields &#8212; supplier, date, amounts, VAT &#8212; into spreadsheets or accounting systems. The work is repetitive, error-prone and delays month-end. The team&#8217;s judgment is needed for the exceptions, not the typing.',
+  flow:[['Input','Invoices and receipts arrive','PDF, photo or email attachment'],['AI processing','Fields are extracted and structured','Supplier, date, line items, totals, VAT'],['Human review','A person checks what is flagged','Low-confidence fields are highlighted'],['Output','Clean records, ready to use','Spreadsheet rows or accounting draft entries']],
+  caps:['Extract information from invoices and receipts','Structure information into consistent fields','Reduce repetitive data entry','Identify missing or inconsistent information','Prepare entries for human review'],
+  limits:['Human review remains important','Accuracy depends on document and input quality','Does not make final financial decisions','Does not replace professional accounting judgment'],
+  before:['Manual extraction','Data entry','Checking','Spreadsheet update'],
+  after:['Document received','AI extracts information','Structured output','Human review'],
+  before3:['Manual work','Data entry','Checking','Updating systems'],
+  after3:['Information received','AI processes workflow','Human reviews','Structured output'] },
+
+{ id:'supportflow', name:'SupportFlow AI', dept:'Customer Service', kind:'Customer inquiry workflow',
+  desc:'An AI workflow for handling repetitive customer inquiries and routing more complex requests for human review.',
+  short:'Answer repetitive customer questions consistently, and route complex or sensitive requests to your team.',
+  keywords:['customer','question','whatsapp','support','inquir','enquir','complaint','message','chat','reply','respond','ticket','order status','delivery','shipping','faq','client','caller','call','عملاء','عميل','واتساب','استفسار','رسائل','شكوى','أسئلة'],
+  bias:{'Customer Service':1.5,'Sales':.5,'Marketing':.5},
+  oppLead:'The repetitive part of this workflow is answering the same questions again and again, one message at a time.',
+  oppBody:'Most of those questions have a known answer. An Agentic AI workflow can understand each inquiry, answer the routine ones consistently from your own information, and route anything complex, sensitive or unusual to a person &#8212; so your team handles the exceptions, not the repetition.',
+  ai:['Understanding what each customer is asking','Answering routine questions from your information','Collecting the details a person will need','Routing complex requests to the right team member'],
+  human:['Complaints, refunds and sensitive cases','Anything the AI is not confident about','Final decisions about the customer'],
+  problem:'Customer-facing teams answer the same questions dozens of times a day &#8212; order status, opening hours, prices, policies. Each reply is typed by hand, response times stretch, and the genuinely difficult conversations get less attention than they deserve.',
+  flow:[['Input','A customer sends a message','WhatsApp, chat, email or a web form'],['AI processing','The request is understood and drafted','Routine answers from your own information'],['Human review','Complex cases go to your team','Complaints and exceptions are handed over'],['Output','A consistent, timely answer','Every conversation logged for review']],
+  caps:['Understand repetitive customer inquiries','Answer routine questions consistently','Route complex requests for human review','Collect information needed to resolve a case','Keep a record of every conversation'],
+  limits:['Human review remains important','Accuracy depends on the quality of your information','Does not resolve complaints or refunds on its own','Does not replace your team&#8217;s judgment with customers'],
+  before:['Message arrives','Staff read and search','Type the reply','Repeat for the next message'],
+  after:['Message received','AI understands and drafts','Routine answered, complex routed','Human handles exceptions'],
+  before3:['Manual work','Reading and searching','Typing replies','Updating records'],
+  after3:['Information received','AI processes workflow','Human reviews','Structured output'] },
+
+{ id:'recruitmatch', name:'RecruitMatch AI', dept:'HR & Recruitment', kind:'Recruitment screening workflow',
+  desc:'An AI-assisted recruitment workflow that helps organize and screen candidates against defined criteria.',
+  short:'Organize incoming applications and screen candidates against the criteria you define, ready for your decision.',
+  keywords:['cv','resume','candidate','recruit','hiring','hire','interview','applicant','application','shortlist','screen','job post','vacancy','talent','onboard','سيرة','مرشح','توظيف','مقابلة','متقدم'],
+  bias:{'HR & Recruitment':1.5},
+  oppLead:'The repetitive part of this workflow is reading every application and checking it against the same criteria by hand.',
+  oppBody:'Screening is structured work: the same questions asked of every candidate. An Agentic AI workflow can organize incoming applications, extract the relevant details, and screen them against criteria you define &#8212; so your team spends its time on the shortlist, not the pile.',
+  ai:['Organizing applications as they arrive','Extracting experience, skills and availability','Screening against your defined criteria','Preparing a structured shortlist'],
+  human:['Setting and adjusting the criteria','Reviewing the shortlist and edge cases','Every interview and hiring decision'],
+  problem:'Recruiters and hiring managers receive far more applications than they can read carefully. CVs arrive in different formats, the same criteria are checked by hand for each one, and strong candidates can be missed simply because of volume.',
+  flow:[['Input','Applications arrive','Email, job boards or a careers form'],['AI processing','Details are organized and screened','Against the criteria you define'],['Human review','You review the shortlist','Edge cases and judgment calls stay with you'],['Output','A structured shortlist','Ready for interviews and decisions']],
+  caps:['Organize applications from different sources','Extract experience, skills and availability','Screen candidates against defined criteria','Identify missing information in applications','Prepare a structured shortlist for review'],
+  limits:['Human review remains important','Accuracy depends on application quality','Does not make hiring decisions','Does not replace the recruiter&#8217;s judgment or the interview'],
+  before:['CVs arrive by email','Manual reading','Spreadsheet shortlist','Scheduling by hand'],
+  after:['Applications received','AI organizes and screens','Structured shortlist','Human decides'],
+  before3:['Manual work','Reading every CV','Checking criteria','Updating the tracker'],
+  after3:['Information received','AI processes workflow','Human reviews','Structured output'] },
+
+{ id:'workflowpilot', name:'WorkflowPilot AI', dept:'Operations', kind:'Multi-step operations workflow', fallback:true,
+  desc:'An AI workflow designed to identify repetitive operational tasks, organize information and assist teams with multi-step processes.',
+  short:'Organize the information behind a repetitive multi-step process and prepare each step for your team to review.',
+  keywords:['stock','inventory','report','schedul','order','data entry','copy','paste','update','form','checklist','manual','tracking','follow','lead','quote','reorder','branch','supplier','log','record','approval','مخزون','تقرير','جدول','متابعة'],
+  bias:{'Operations':1,'Sales':.5,'Marketing':.5},
+  oppLead:'The repetitive part of this workflow is gathering information from several places and repeating the same steps every time.',
+  oppBody:'Multi-step routines like this follow a pattern. An Agentic AI workflow can collect the information, organize it into a consistent structure, and prepare each step for your team to review &#8212; so people make the decisions while the routine moves on its own.',
+  ai:['Collecting information from the places it lives today','Organizing it into a consistent structure','Preparing the repeated steps','Highlighting anything unusual'],
+  human:['Reviewing the prepared steps','Approving actions that matter','Handling exceptions'],
+  problem:'Operations teams run the same multi-step routine every day or week &#8212; checking, collecting, copying and updating. Each step is small, but together they consume hours and depend on one person remembering every step.',
+  flow:[['Input','Information from your systems and team','Sheets, messages, reports, forms'],['AI processing','The routine is organized and prepared','Consistent structure, every time'],['Human review','Your team reviews and approves','Exceptions stay with people'],['Output','A completed, documented routine','Updated records and a clear log']],
+  caps:['Identify repetitive operational tasks','Organize information from several sources','Assist with multi-step processes','Highlight unusual or missing information','Prepare each step for human review'],
+  limits:['Human review remains important','Accuracy depends on input quality','Does not take actions without approval','Does not replace operational judgment'],
+  before:['Task arrives','Gather information by hand','Repeat the same steps','Update systems'],
+  after:['Information received','AI organizes the routine','Structured output','Human review'],
+  before3:['Manual work','Data entry','Checking','Updating systems'],
+  after3:['Information received','AI processes workflow','Human reviews','Structured output'] }
+];
+function solById(id){ for (var i=0;i<SOLUTIONS.length;i++) if (SOLUTIONS[i].id===id) return SOLUTIONS[i]; return null; }
+
+/* ============================================================
+   RECOMMENDATION ENGINE — local, rule-based, deterministic.
+   Keyword evidence outweighs department; department breaks ties;
+   WorkflowPilot is the honest fallback.
+   ============================================================ */
+function esc(s){ return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+/* "HR & Recruitment" -> "HR & recruitment": lower-case for prose, but keep acronyms */
+function deptPhrase(d){ return String(d).split(' ').map(function(w){ return /^[A-Z&]{2,}$/.test(w) ? w : w.toLowerCase(); }).join(' '); }
+function escRe(s){ return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); }
+function hits(text, kw){
+  var latin = /^[a-z0-9 \-]+$/i.test(kw);
+  if (!latin) return text.indexOf(kw) > -1;
+  return new RegExp('(^|[^a-z])'+escRe(kw), 'i').test(text);
+}
+var FREQ = [
+  [/\b(every|each)\s+(day|morning|evening|night|shift)\b|\bdaily\b|كل يوم/i,'Daily'],
+  [/\b(every|each)\s+week\b|\bweekly\b|كل أسبوع/i,'Weekly'],
+  [/\b(every|each)\s+month\b|\bmonthly\b|month[- ]end|كل شهر/i,'Monthly'],
+  [/\b(every|each)\s+(hour|time|order|customer|message|invoice|application)\b|\bconstantly\b|\ball day\b/i,'Continuous']
+];
+function recommend(text, dept, biz){
+  var s = ' ' + text.toLowerCase() + ' ';
+  var scored = SOLUTIONS.map(function(sol){
+    var matched = [];
+    sol.keywords.forEach(function(k){ if (hits(s, k)) matched.push(k); });
+    var kwScore = matched.length * 2;
+    var bias = (sol.bias && sol.bias[dept]) || 0;
+    return {sol:sol, matched:matched, kw:kwScore, bias:bias, score: kwScore + bias + (sol.fallback ? 0.1 : 0)};
+  });
+  scored.sort(function(a,b){ return b.score - a.score || b.kw - a.kw; });
+  var best = scored[0];
+  var anyKw = scored.some(function(x){ return x.kw > 0; });
+  if (!anyKw){
+    /* nothing in the text: department decides, otherwise the operations fallback */
+    var byDept = scored.filter(function(x){ return x.bias >= 1; })[0];
+    best = byDept || scored.filter(function(x){ return x.sol.fallback; })[0];
+  }
+  var freq = null;
+  for (var i=0;i<FREQ.length;i++){ if (FREQ[i][0].test(text)){ freq = FREQ[i][1]; break; } }
+  var manual = /\b(manual|manually|by hand|hand[- ]typed|re-?typ|copy|paste)\b|يدوي/i.test(text);
+  var conf = best.matched.length >= 2 ? 'Strong match' : best.matched.length === 1 ? 'Likely match' : (best.bias >= 1 ? 'Based on your department' : 'General operations match');
+  /* show the human-readable form of what was detected */
+  var seen = {}, signals = [];
+  best.matched.forEach(function(k){
+    var label = k.replace(/\s+$/,'');
+    if (/^(inquir|enquir)$/.test(label)) label = 'inquiries';
+    if (label === 'reconcil') label = 'reconciliation';
+    if (label === 'schedul') label = 'scheduling';
+    if (label === 'recruit') label = 'recruitment';
+    if (label === 'screen') label = 'screening';
+    if (!seen[label]){ seen[label] = 1; signals.push(label); }
+  });
+  return { id:best.sol.id, signals:signals.slice(0,5), confidence:conf, frequency:freq, manual:manual, business:biz, department:dept };
+}
+
+/* ============================================================
+   STATE — kept in memory and mirrored to sessionStorage so a
+   refresh on screen 2 or 3 keeps the user's input.
+   ============================================================ */
+var KEY = 'masar.prototype.v1';
+var state = { business:'', department:'', workflow:'', result:null, requested:false };
+try { var saved = JSON.parse(sessionStorage.getItem(KEY) || 'null'); if (saved && typeof saved === 'object') state = Object.assign(state, saved); } catch(e){}
+function save(){ try { sessionStorage.setItem(KEY, JSON.stringify(state)); } catch(e){} }
+function resetState(){ state = { business:'', department:'', workflow:'', result:null, requested:false }; try { sessionStorage.removeItem(KEY); } catch(e){} }
+
+/* ============================================================
+   SCREEN 1 — form
+   ============================================================ */
+var form = document.getElementById('discoverForm'), fWork = document.getElementById('fWork');
+var bizChips = document.getElementById('bizChips'), deptChips = document.getElementById('deptChips'), exWrap = document.getElementById('examples');
+
+function chipsHTML(list, key){
+  return list.map(function(v){
+    return '<button class="chipbtn" type="button" role="radio" aria-checked="'+(state[key] === v)+'" data-'+key+'="'+esc(v)+'">'+esc(v)+'</button>';
+  }).join('');
+}
+function renderChips(){
+  bizChips.innerHTML = chipsHTML(BUSINESS, 'business');
+  deptChips.innerHTML = chipsHTML(DEPTS, 'department');
+}
+function pick(key, value, group){
+  state[key] = value; save();
+  group.querySelectorAll('.chipbtn').forEach(function(b){ b.setAttribute('aria-checked', b.dataset[key] === value); });
+  clearErr(group.parentElement);
+}
+bizChips.addEventListener('click', function(e){ var b = e.target.closest('[data-business]'); if (b) pick('business', b.dataset.business, bizChips); });
+deptChips.addEventListener('click', function(e){ var b = e.target.closest('[data-department]'); if (b) pick('department', b.dataset.department, deptChips); });
+/* keyboard: arrow keys move within a radiogroup */
+[bizChips, deptChips].forEach(function(g){
+  g.addEventListener('keydown', function(e){
+    if (['ArrowRight','ArrowLeft','ArrowDown','ArrowUp'].indexOf(e.key) < 0) return;
+    var btns = [].slice.call(g.querySelectorAll('.chipbtn')), i = btns.indexOf(document.activeElement);
+    if (i < 0) return; e.preventDefault();
+    var n = (e.key === 'ArrowRight' || e.key === 'ArrowDown') ? (i+1) % btns.length : (i-1+btns.length) % btns.length;
+    btns[n].focus(); btns[n].click();
+  });
+});
+exWrap.insertAdjacentHTML('beforeend', EXAMPLES.map(function(x, i){ return '<button class="ex" type="button" data-ex="'+i+'">'+esc(x.t.length > 58 ? x.t.slice(0, 56).replace(/\s+\S*$/,'') + '…' : x.t)+'</button>'; }).join(''));
+exWrap.addEventListener('click', function(e){
+  var b = e.target.closest('[data-ex]'); if (!b) return;
+  var x = EXAMPLES[+b.dataset.ex];
+  fWork.value = x.t; state.workflow = x.t;
+  if (!state.department) pick('department', x.dept, deptChips);
+  save(); clearErr(document.getElementById('gWork'));
+  fWork.focus({preventScroll:true});
+});
+fWork.addEventListener('input', function(){ state.workflow = fWork.value; save(); if (fWork.value.trim().length >= 12) clearErr(document.getElementById('gWork')); });
+fWork.addEventListener('keydown', function(e){ if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)){ e.preventDefault(); form.requestSubmit ? form.requestSubmit() : onSubmit(e); } });
+
+function setErr(group, on){ group.classList.toggle('invalid', on); group.querySelector('.err').hidden = !on; }
+function clearErr(group){ setErr(group, false); }
+function validate(){
+  var ok = true, first = null;
+  var gB = document.getElementById('gBiz'), gD = document.getElementById('gDept'), gW = document.getElementById('gWork');
+  if (!state.business){ setErr(gB, true); ok = false; first = first || gB.querySelector('.chipbtn'); } else clearErr(gB);
+  if (!state.department){ setErr(gD, true); ok = false; first = first || gD.querySelector('.chipbtn'); } else clearErr(gD);
+  if ((fWork.value || '').trim().length < 12){ setErr(gW, true); ok = false; first = first || fWork; } else clearErr(gW);
+  if (first){ first.focus({preventScroll:true}); first.scrollIntoView({block:'center', behavior: REDUCED ? 'auto' : 'smooth'}); }
+  return ok;
+}
+function onSubmit(e){
+  e.preventDefault();
+  if (!validate()) return;
+  state.workflow = fWork.value.trim(); state.requested = false; save();
+  runAnalysis();
+}
+form.addEventListener('submit', onSubmit);
+function restoreForm(){ renderChips(); fWork.value = state.workflow || ''; }
+restoreForm();
+
+/* ============================================================
+   ANALYSIS — the moment between "my problem" and "an opportunity"
+   ============================================================ */
+var overlay = document.getElementById('analysis'), aSteps = document.getElementById('aSteps'), aFound = document.getElementById('aFound'),
+    aBar = document.getElementById('aBar'), aQuote = document.getElementById('aQuote'), aSpin = document.getElementById('aSpin');
+var STEPS = ['Reading your workflow','Identifying repetitive tasks','Mapping AI opportunities','Finding a suitable solution'];
+var aTimers = [];
+function runAnalysis(){
+  aTimers.forEach(clearTimeout); aTimers = [];
+  aQuote.innerHTML = '<b>'+esc(state.department)+' &#183; '+esc(state.business)+'</b> &#8212; &#8220;'+esc(state.workflow)+'&#8221;';
+  aSteps.innerHTML = STEPS.map(function(s, i){ return '<div class="astep" data-i="'+i+'"><span class="ring">&#10003;</span><span>'+s+'</span><span class="n">0'+(i+1)+'</span></div>'; }).join('');
+  aFound.className = 'afound'; aFound.innerHTML = ''; aBar.style.width = '0%'; aSpin.hidden = false;
+  overlay.hidden = false; document.body.style.overflow = 'hidden';
+  var gap = REDUCED ? 0 : 720, rows = aSteps.querySelectorAll('.astep');
+  rows.forEach(function(r, i){
+    aTimers.push(setTimeout(function(){
+      if (i > 0) rows[i-1].classList.replace('active','done');
+      r.classList.add('active'); aBar.style.width = ((i+1)/ (STEPS.length+1) * 100) + '%';
+      if (i === 2){ state.result = recommend(state.workflow, state.department, state.business); save(); }
+    }, gap * i + 120));
+  });
+  aTimers.push(setTimeout(function(){
+    rows[rows.length-1].classList.replace('active','done'); aBar.style.width = '100%'; aSpin.hidden = true;
+    var sol = solById(state.result.id);
+    aFound.innerHTML = '<span class="found-badge">AI opportunity found</span><div class="sol">'+esc(sol.name)+'<span>'+esc(sol.dept)+' &#183; '+esc(sol.kind)+'</span></div>';
+    requestAnimationFrame(function(){ aFound.classList.add('in'); });
+  }, gap * STEPS.length + 160));
+  aTimers.push(setTimeout(function(){
+    overlay.hidden = true; document.body.style.overflow = '';
+    location.hash = '#/opportunity';
+  }, gap * STEPS.length + (REDUCED ? 200 : 1650)));
+}
+
+/* ============================================================
+   SCREEN 2 — opportunity
+   ============================================================ */
+var oppRoot = document.getElementById('oppRoot');
+function journeysHTML(sol, before, after, oldTitle, newTitle, big, foot){
+  function li(steps, idx){ return steps.map(function(s, i){ return '<li><span class="n">'+(idx ? '0'+(i+1) : (i+1))+'</span><span class="s">'+esc(s)+'</span></li>'; }).join(''); }
+  return '<div class="journeys">'+
+    '<div class="jcol old'+(big ? ' big' : '')+'"><div class="jhead"><span class="t">'+oldTitle+'</span><span class="v">Manual &#183; repeated every time</span></div><ol class="jlist">'+li(before)+'</ol></div>'+
+    '<div class="jcol new'+(big ? ' big' : '')+'" data-lit><div class="jhead"><span class="t">'+newTitle+'</span><span class="v">'+esc(sol.name)+'</span></div><ol class="jlist">'+li(after, true)+'</ol>'+
+    (foot ? '<div class="jfoot">'+foot+'</div>' : '')+'</div></div>';
+}
+function renderOpportunity(){
+  var r = state.result, sol = solById(r.id);
+  var sig = r.signals.length ? r.signals.map(function(s){ return '<span class="chip k">'+esc(s)+'</span>'; }).join('') : '';
+  oppRoot.innerHTML =
+    '<div class="sec-mark"><span class="label role">Step 02 &#183; AI opportunity</span><span class="label of">Business problem &#8594; AI opportunity</span></div>'+
+    '<div class="found-row"><span class="found-badge">AI opportunity found</span><span class="demo-flag">Prototype analysis &#183; rule-based</span></div>'+
+    '<h1 class="display" id="h-opportunity" tabindex="-1">We found an AI opportunity<br><span class="l2">in your '+esc(deptPhrase(r.department))+' workflow.</span></h1>'+
+    '<div class="opp-grid">'+
+      '<article class="card"><span class="label">Your workflow</span>'+
+        '<div class="wf-chips"><span class="chip">'+esc(r.business)+'</span><span class="chip">'+esc(r.department)+'</span>'+(r.frequency ? '<span class="chip">'+esc(r.frequency)+'</span>' : '')+'</div>'+
+        '<blockquote class="quote">&#8220;'+esc(state.workflow)+'&#8221;</blockquote>'+
+        '<div class="quote-meta">'+(sig ? '<span><b>Detected</b>'+sig+'</span>' : '<span><b>Detected</b><span class="chip">repetitive '+esc(r.department.toLowerCase())+' work</span></span>')+
+        (r.manual ? '<span><b>Pattern</b>Manual, repeated by hand</span>' : '')+'</div>'+
+      '</article>'+
+      '<article class="card tint"><span class="label">The opportunity</span>'+
+        '<p class="opp-text">'+sol.oppLead+'</p><p class="opp-text">'+sol.oppBody+'</p>'+
+        '<div class="split2"><div class="mini ai"><span class="k">Could be assisted or automated by Agentic AI</span><ul>'+sol.ai.map(function(x){ return '<li>'+x+'</li>'; }).join('')+'</ul></div>'+
+        '<div class="mini hu"><span class="k">Stays with your team</span><ul>'+sol.human.map(function(x){ return '<li>'+x+'</li>'; }).join('')+'</ul></div></div>'+
+      '</article>'+
+    '</div>'+
+    '<article class="card sol-card"><span class="label">Recommended solution</span>'+
+      '<div><h2 class="sol-name">'+esc(sol.name)+'</h2><div class="sol-dept">'+esc(sol.dept)+' &#183; '+esc(sol.kind)+'</div><p class="sol-desc">'+sol.short+'</p></div>'+
+      '<div class="sol-match"><div class="sol-badges"><span class="verified">&#10003; Masar Verified</span><span class="demo-flag">Example solution</span></div><span class="conf">'+esc(r.confidence)+'</span></div>'+
+    '</article>'+
+    journeysHTML(sol, sol.before, sol.after, 'Before', 'With Masar', false, 'The repetition moves to the AI workflow. Review and decisions stay with your team.')+
+    '<div class="cta-row"><button class="btn btn-ghost" type="button" data-action="back-discover"><span class="ar back">&#8592;</span> Back</button>'+
+    '<div class="primary"><span class="how-note">Step 03 shows how '+esc(sol.name)+' works, what it can do, and what it can&#8217;t.</span>'+
+    '<a class="btn btn-primary btn-lg btn-caps" href="#/solution">Explore solution <span class="ar">&#8594;</span></a></div></div>';
+}
+
+/* ============================================================
+   SCREEN 3 — solution detail
+   ============================================================ */
+var solRoot = document.getElementById('solRoot');
+function renderSolution(){
+  var r = state.result, sol = solById(r.id);
+  var kinds = ['', 'ai', 'hu', ''];
+  var hiw = sol.flow.map(function(f, i){
+    return (i ? '<div class="hlink" aria-hidden="true"></div>' : '')+
+      '<div class="hnode '+kinds[i]+'"><span class="hk"><i></i>'+esc(f[0])+'</span><span class="ht">'+esc(f[1])+'</span><p class="hd">'+esc(f[2])+'</p></div>';
+  }).join('');
+  solRoot.innerHTML =
+    '<div class="sec-mark"><span class="label role">Step 03 &#183; Solution</span><span class="label of">AI opportunity &#8594; AI solution &#8594; Builder</span></div>'+
+    '<div class="sol-head"><div><div class="sol-dept" style="margin:0 0 12px">'+esc(sol.dept)+' &#183; '+esc(sol.kind)+'</div>'+
+      '<h1 class="display" id="h-solution" tabindex="-1">'+esc(sol.name)+'</h1><p class="lede">'+sol.desc+'</p></div>'+
+      '<div class="badges"><span class="verified">&#10003; Masar Verified</span><span class="demo-flag">Fictional example &#183; not a deployed product</span></div></div>'+
+    '<div class="sgrid">'+
+      '<article class="card reveal"><span class="label">Problem it solves</span><p class="prob">'+sol.problem+'</p>'+
+        '<div class="quote-meta" style="margin-top:18px"><span><b>Your case</b>'+esc(r.business)+' &#183; '+esc(r.department)+(r.frequency ? ' &#183; '+esc(r.frequency) : '')+'</span></div></article>'+
+      '<article class="card reveal" data-d="1"><span class="label">Your workflow</span><blockquote class="quote">&#8220;'+esc(state.workflow)+'&#8221;</blockquote>'+
+        '<div class="quote-meta"><span><b>Match</b>'+esc(r.confidence)+'</span>'+(r.signals.length ? '<span><b>Detected</b>'+r.signals.map(function(s){ return '<span class="chip k">'+esc(s)+'</span>'; }).join(' ')+'</span>' : '')+'</div></article>'+
+    '</div>'+
+    '<article class="card reveal" style="margin-top:14px"><span class="label">How it works</span><div class="hiw">'+hiw+'</div></article>'+
+    '<div class="sgrid" style="margin-top:14px">'+
+      '<article class="card reveal"><span class="label">Capabilities</span><ul class="list caps">'+sol.caps.map(function(c){ return '<li><i>&#10003;</i>'+c+'</li>'; }).join('')+'</ul></article>'+
+      '<article class="card reveal" data-d="1"><span class="label">Limitations</span><ul class="list lims">'+sol.limits.map(function(c){ return '<li><i>!</i>'+c+'</li>'; }).join('')+'</ul>'+
+        '<p class="how-note" style="margin-top:14px">Stated plainly so the business knows what it is adopting. Credible beats impressive.</p></article>'+
+    '</div>'+
+    '<div class="sec-mark reveal" style="margin:clamp(40px,7vh,64px) 0 0;padding-bottom:0;border:0"><span class="label role">Before / after</span><span class="label of">What changes for your team</span></div>'+
+    '<div class="reveal">'+journeysHTML(sol, sol.before3, sol.after3, 'Before Masar', 'With an AI solution', true, 'People stop doing the repetition and start doing the review. The decisions never leave your team.')+'</div>'+
+    '<div class="vblock reveal"><div class="vseal" aria-hidden="true">&#10003;</div>'+
+      '<div><h3>&#10003; Masar Verified</h3><p>Evaluated by Masar against defined workflow, reliability, safety and suitability criteria.</p>'+
+      '<div class="vcrit"><span class="chip">Workflow fit</span><span class="chip">Reliability</span><span class="chip">Safety &amp; permissions</span><span class="chip">Suitability for SMEs</span><span class="chip">Human review built in</span></div></div>'+
+      '<p class="vdis"><b>Masar Verified is a Masar evaluation label</b> and does not represent government approval or SDAIA certification. It is not a government, SDAIA or Vision 2030 certification, and it does not imply official endorsement of any kind.</p></div>'+
+    '<div class="cta-row"><button class="btn btn-ghost" type="button" data-action="back-opportunity"><span class="ar back">&#8592;</span> Back</button>'+
+    '<div class="primary"><span class="how-note">Masar connects your business with a builder who can implement '+esc(sol.name)+'.</span>'+
+    '<button class="btn btn-primary btn-lg btn-caps" type="button" data-action="open-connect">Connect with builder <span class="ar">&#8594;</span></button></div></div>';
+}
+
+/* ============================================================
+   CONNECT WITH BUILDER — modal
+   ============================================================ */
+var connect = document.getElementById('connect'), connectBox = document.getElementById('connectBox'), lastFocus = null, cTimers = [];
+function openConnect(){
+  var sol = solById(state.result.id);
+  connectBox.innerHTML =
+    '<div class="modal-head"><div><span class="label">Connect with builder</span><h2 id="cTitle">Ready to connect?</h2></div>'+
+    '<button class="x" type="button" data-action="close-connect" aria-label="Close">&#10005;</button></div>'+
+    '<div class="modal-body">'+
+      '<p>Masar can connect your business with a builder who can help implement <b>'+esc(sol.name)+'</b> for your '+esc(deptPhrase(state.department))+' workflow.</p>'+
+      '<dl class="msum"><dt>Solution</dt><dd>'+esc(sol.name)+' &#183; '+esc(sol.dept)+'</dd><dt>Business</dt><dd>'+esc(state.business)+' &#183; '+esc(state.department)+'</dd><dt>Workflow</dt><dd>&#8220;'+esc(state.workflow)+'&#8221;</dd></dl>'+
+      '<p class="how-note">Prototype: nothing is sent or stored. A production version would share this request with a relevant, Masar-evaluated builder.</p>'+
+      '<div class="modal-foot"><button class="btn btn-primary btn-lg btn-caps" type="button" data-action="request">Request connection <span class="ar">&#8594;</span></button>'+
+      '<button class="btn btn-ghost" type="button" data-action="close-connect">Not now</button></div>'+
+    '</div>';
+  lastFocus = document.activeElement;
+  connect.hidden = false; document.body.style.overflow = 'hidden';
+  var f = connectBox.querySelector('[data-action="request"]'); if (f) f.focus();
+}
+function closeConnect(){
+  cTimers.forEach(clearTimeout); cTimers = [];
+  if (connect.hidden) return;
+  connect.hidden = true; document.body.style.overflow = '';
+  if (lastFocus && lastFocus.focus) lastFocus.focus({preventScroll:true});
+}
+function requestConnection(){
+  var sol = solById(state.result.id);
+  connectBox.innerHTML =
+    '<div class="modal-head"><div><span class="label">Connect with builder</span><h2 id="cTitle">Submitting your request</h2></div></div>'+
+    '<div class="modal-body"><div class="gen-status"><span class="sp"></span>Preparing your connection request&#8230;</div></div>';
+  var wait = REDUCED ? 0 : 900;
+  cTimers.push(setTimeout(function(){
+    state.requested = true; save();
+    connectBox.innerHTML =
+      '<div class="modal-head"><div><span class="ok-seal"><i>&#10003;</i>Connection request submitted</span><h2 id="cTitle" style="margin-top:14px">Masar will connect you with a builder.</h2></div>'+
+      '<button class="x" type="button" data-action="close-connect" aria-label="Close">&#10005;</button></div>'+
+      '<div class="modal-body">'+
+        '<p>This prototype demonstrates the connection flow. A production version would connect you with a relevant builder for <b>'+esc(sol.name)+'</b>.</p>'+
+        '<ul class="next" id="nextList">'+
+          ['A Masar-evaluated builder reviews your workflow','You agree the scope: what the AI handles, what stays with your team','The solution is set up, tested on your own data and reviewed','Adoption &#8212; and the next opportunity in the Masar pathway'].map(function(s){ return '<li><span class="ck">&#10003;</span>'+s+'</li>'; }).join('')+
+        '</ul>'+
+        '<p class="how-note">Learn &#8594; Build &#8594; <b style="color:var(--mint);font-weight:500">Connect &#8594; Adopt</b> &#8594; Scale. You have just walked the middle of the Masar pathway.</p>'+
+        '<div class="modal-foot"><button class="btn btn-primary" type="button" data-action="back-home">Back to Masar</button>'+
+        '<button class="btn btn-ghost" type="button" data-action="reset">Start again</button></div>'+
+      '</div>';
+    var items = connectBox.querySelectorAll('#nextList li');
+    items.forEach(function(li, i){ cTimers.push(setTimeout(function(){ li.classList.add('in'); }, REDUCED ? 0 : 200 + i*180)); });
+    var f = connectBox.querySelector('[data-action="back-home"]'); if (f) f.focus();
+  }, wait));
+}
+
+/* ============================================================
+   ROUTER — three screens, hash based so the browser back button
+   and refresh both behave.
+   ============================================================ */
+var SCREENS = ['discover','opportunity','solution'];
+var current = null;
+/* instant jump: the html smooth-scroll rule would otherwise turn every screen change into a long glide */
+function jumpTop(){ var d = document.documentElement, prev = d.style.scrollBehavior; d.style.scrollBehavior = 'auto'; scrollTo(0,0); d.style.scrollBehavior = prev; }
+var stepLinks = [].slice.call(document.querySelectorAll('#steps a'));
+var navReset = document.getElementById('navReset'), nav = document.getElementById('nav');
+
+function screenFromHash(){
+  var h = (location.hash || '').replace(/^#\/?/, '').split('?')[0];
+  return SCREENS.indexOf(h) > -1 ? h : (h === 'ecosystem' || h === 'saudi') ? 'discover' : 'discover';
+}
+function updateNav(name){
+  var ix = SCREENS.indexOf(name), reach = state.result ? 3 : 1;
+  stepLinks.forEach(function(a, i){
+    a.classList.toggle('on', i === ix);
+    a.classList.toggle('done', i < ix);
+    a.classList.toggle('locked', i >= reach);
+    a.setAttribute('aria-current', i === ix ? 'step' : 'false');
+    if (i >= reach) a.setAttribute('aria-disabled','true'); else a.removeAttribute('aria-disabled');
+  });
+  navReset.hidden = !(state.result || state.business || state.department || (state.workflow && state.workflow.length));
+  nav.classList.toggle('solid', name !== 'discover');
+}
+function showScreen(name){
+  if (name !== 'discover' && !state.result){ location.replace('#/discover'); name = 'discover'; }
+  if (name === 'opportunity') renderOpportunity();
+  if (name === 'solution') renderSolution();
+  SCREENS.forEach(function(s){ document.getElementById('s-'+s).hidden = s !== name; });
+  updateNav(name);
+  closeConnect();
+  if (current !== name){
+    var anchor = (location.hash || '').replace(/^#\/?/, '');
+    if (name === 'discover' && (anchor === 'ecosystem' || anchor === 'saudi')){
+      var el = document.getElementById(anchor); if (el) setTimeout(function(){ el.scrollIntoView({behavior: REDUCED ? 'auto' : 'smooth', block:'start'}); }, 30);
+    } else if (current !== null || name !== 'discover'){
+      jumpTop();
+    }
+    var h = document.getElementById('h-'+name); if (h && current !== null) setTimeout(function(){ h.focus({preventScroll:true}); }, 60);
+  }
+  current = name;
+  observeReveals(); observeLit(); onScroll();
+}
+addEventListener('hashchange', function(){ showScreen(screenFromHash()); });
+
+/* delegated actions */
+document.addEventListener('click', function(e){
+  var t = e.target.closest('[data-action],[data-anchor]');
+  if (!t) return;
+  if (t.dataset.anchor){ e.preventDefault(); if (current !== 'discover'){ location.hash = '#/discover'; } var el = document.getElementById(t.dataset.anchor);
+    setTimeout(function(){ if (el) el.scrollIntoView({behavior: REDUCED ? 'auto' : 'smooth', block:'start'}); }, current !== 'discover' ? 80 : 0); return; }
+  var a = t.dataset.action;
+  if (a === 'back-discover'){ location.hash = '#/discover'; }
+  else if (a === 'back-opportunity'){ location.hash = '#/opportunity'; }
+  else if (a === 'open-connect'){ openConnect(); }
+  else if (a === 'close-connect'){ closeConnect(); }
+  else if (a === 'request'){ requestConnection(); }
+  else if (a === 'back-home'){ closeConnect(); location.hash = '#/discover'; jumpTop(); }
+  else if (a === 'reset'){ startAgain(); }
+});
+navReset.addEventListener('click', startAgain);
+function startAgain(){
+  closeConnect(); aTimers.forEach(clearTimeout);
+  overlay.hidden = true; document.body.style.overflow = '';
+  resetState(); restoreForm();
+  ['gBiz','gDept','gWork'].forEach(function(id){ clearErr(document.getElementById(id)); });
+  if (screenFromHash() === 'discover') showScreen('discover'); else location.hash = '#/discover';
+  jumpTop();
+  setTimeout(function(){ var b = bizChips.querySelector('.chipbtn'); if (b) b.focus({preventScroll:true}); }, 80);
+}
+addEventListener('keydown', function(e){
+  if (e.key !== 'Escape') return;
+  if (!connect.hidden) closeConnect();
+});
+/* locked steps must not navigate */
+document.getElementById('steps').addEventListener('click', function(e){
+  var a = e.target.closest('a'); if (a && a.classList.contains('locked')) e.preventDefault();
+});
+
+/* ============================================================
+   MOTION — reveals, lit journeys, nav state
+   ============================================================ */
+var rObs = window.IntersectionObserver ? new IntersectionObserver(function(en){
+  en.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add('in'); rObs.unobserve(e.target); } });
+}, {threshold:0.08, rootMargin:'0px 0px -5% 0px'}) : null;
+function observeReveals(){
+  document.querySelectorAll('.screen:not([hidden]) .reveal:not(.in)').forEach(function(el){
+    if (rObs) rObs.observe(el); else el.classList.add('in');
+  });
+}
+var lObs = window.IntersectionObserver && !REDUCED ? new IntersectionObserver(function(en){
+  en.forEach(function(e){ if (e.isIntersecting){ var t = e.target; setTimeout(function(){ t.classList.add('lit'); }, 320); lObs.unobserve(t); } });
+}, {threshold:0.35}) : null;
+function observeLit(){
+  document.querySelectorAll('.screen:not([hidden]) .jcol.new:not(.lit)').forEach(function(el){
+    if (lObs) lObs.observe(el); else el.classList.add('lit');
+  });
+}
+var ticking = false;
+function onScroll(){ nav.classList.toggle('stuck', scrollY > 30); if (heroField && current === 'discover'){ heroField.progress = Math.min(1, scrollY / 600); } ticking = false; }
+addEventListener('scroll', function(){ if (!ticking){ ticking = true; requestAnimationFrame(onScroll); } }, {passive:true});
+
+/* ============================================================
+   HERO FIELD — the Masar pathway as a living network:
+   builders -> AI solutions -> businesses. Illustrative only.
+   Carried from the v2 engine, simplified.
+   ============================================================ */
+function seedRand(seed){ var s = seed; return function(){ s = (s*16807) % 2147483647; return (s-1)/2147483646; }; }
+function lerp(a,b,t){ return a+(b-a)*t; }
+function glowSprite(color, radius, intensity){
+  var s = Math.ceil(radius*7), c = document.createElement('canvas'); c.width = c.height = s;
+  var x = c.getContext('2d'), g = x.createRadialGradient(s/2,s/2,0,s/2,s/2,s/2);
+  g.addColorStop(0,'rgba('+color+','+(0.55*intensity)+')'); g.addColorStop(0.28,'rgba('+color+','+(0.18*intensity)+')'); g.addColorStop(1,'rgba('+color+',0)');
+  x.fillStyle = g; x.fillRect(0,0,s,s); return c;
+}
+var RGB = {mint:'102,246,210', violet:'124,140,255', white:'245,245,240'};
+function HeroField(canvas){
+  var self = this;
+  this.canvas = canvas; this.ctx = canvas.getContext('2d'); this.host = canvas.parentElement;
+  this.w = 0; this.h = 0; this.time = 0; this.raf = null; this.visible = true; this.progress = 0;
+  this.mouse = {x:-9999, y:-9999, on:false};
+  this.sprites = {b:glowSprite(RGB.white,5,.55), a:glowSprite(RGB.mint,8,1), e:glowSprite(RGB.violet,10,.9)};
+  this.build(); this.resize();
+  if (window.ResizeObserver) new ResizeObserver(function(){ self.resize(); }).observe(this.host);
+  if (window.IntersectionObserver) new IntersectionObserver(function(en){ self.visible = en[0].isIntersecting; if (self.visible) self.start(); else self.stop(); }, {threshold:0.01}).observe(this.host);
+  document.addEventListener('visibilitychange', function(){ if (document.hidden) self.stop(); else if (self.visible) self.start(); });
+  canvas.addEventListener('pointermove', function(ev){ var r = canvas.getBoundingClientRect(); self.mouse.x = ev.clientX - r.left; self.mouse.y = ev.clientY - r.top; self.mouse.on = true; });
+  canvas.addEventListener('pointerleave', function(){ self.mouse.on = false; });
+  this.start();
+}
+HeroField.prototype.build = function(){
+  var rnd = seedRand(8891), small = isSmall(), c = small ? {b:8,a:6,e:5} : {b:15,a:9,e:7};
+  var nodes = this.nodes = [], bias = small ? 0.5 : 0.56, spread = small ? 0.36 : 0.30;
+  function place(type, n, colX){
+    for (var i=0;i<n;i++) nodes.push({type:type, hx: colX + (rnd()-0.5)*0.26, hy: 0.10 + rnd()*0.80, ph: rnd()*6.283, amp: 0.006 + rnd()*0.010, spd: 0.10 + rnd()*0.16,
+      r: type==='b' ? 2.3 : type==='a' ? 4 : 5.4, x:0, y:0});
+  }
+  place('b', c.b, bias - spread); place('a', c.a, bias); place('e', c.e, bias + spread);
+  var B=[],A=[],E=[]; nodes.forEach(function(n,i){ (n.type==='b'?B:n.type==='a'?A:E).push(i); });
+  var edges = this.edges = [], js = this.journeys = [];
+  A.forEach(function(ai,k){
+    var b1 = B[(k*2)%B.length], b2 = B[(k*2+3)%B.length], e1 = E[k%E.length], e2 = E[(k+2)%E.length];
+    edges.push({a:b1,b:ai,w:.55}); if (k%2) edges.push({a:b2,b:ai,w:.55});
+    edges.push({a:ai,b:e1,w:.75}); if (!(k%2)) edges.push({a:ai,b:e2,w:.75});
+    js.push([b1,ai,e1]);
+  });
+  for (var i=0;i<Math.min(4,A.length-1);i++) edges.push({a:A[i],b:A[i+1],w:.2,peer:true});
+  this.particles = [];
+};
+HeroField.prototype.resize = function(){
+  var r = this.host.getBoundingClientRect(); if (!r.width || !r.height) return;
+  this.dpr = Math.min(devicePixelRatio||1, 2); this.w = r.width; this.h = r.height;
+  this.canvas.width = Math.round(r.width*this.dpr); this.canvas.height = Math.round(r.height*this.dpr);
+  this.ctx.setTransform(this.dpr,0,0,this.dpr,0,0); this.draw();
+};
+HeroField.prototype.pos = function(n,t){
+  var drift = 1 - this.progress*0.5;
+  var nx = n.hx + Math.cos(t*n.spd + n.ph)*n.amp*drift, ny = n.hy + Math.sin(t*n.spd*0.83 + n.ph*1.4)*n.amp*1.25*drift;
+  var x = nx*this.w, y = ny*this.h;
+  if (this.mouse.on){ var dx = this.mouse.x-x, dy = this.mouse.y-y, d = Math.hypot(dx,dy), R = 170; if (d < R && d > .5){ var f = (1-d/R); f = f*f*16; x += dx/d*f; y += dy/d*f; } }
+  return [x,y];
+};
+HeroField.prototype.draw = function(){
+  var ctx = this.ctx, t = this.time, i, n, p; if (!this.w) return;
+  ctx.clearRect(0,0,this.w,this.h);
+  for (i=0;i<this.nodes.length;i++){ n = this.nodes[i]; p = this.pos(n,t); n.x = p[0]; n.y = p[1]; }
+  ctx.lineWidth = 1;
+  for (i=0;i<this.edges.length;i++){
+    var ed = this.edges[i], A = this.nodes[ed.a], B = this.nodes[ed.b], a = ed.w*0.16*(ed.peer?.6:1);
+    var mx = (A.x+B.x)/2, my = (A.y+B.y)/2;
+    if (this.mouse.on){ var dx = this.mouse.x-mx, dy = this.mouse.y-my, d = Math.hypot(dx,dy); if (d < 200 && d > 1){ var f = (1-d/200); f = f*f*22; mx += dx/d*f; my += dy/d*f; } }
+    ctx.strokeStyle = B.type==='e' ? 'rgba(150,160,210,'+a+')' : 'rgba(220,235,235,'+a+')';
+    ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.quadraticCurveTo(mx,my,B.x,B.y); ctx.stroke();
+  }
+  for (i=0;i<this.particles.length;i++){
+    var pt = this.particles[i], F = this.nodes[pt.from], T = this.nodes[pt.to], u = pt.t, iu = 1-u, mx2 = (F.x+T.x)/2, my2 = (F.y+T.y)/2;
+    var px = iu*iu*F.x + 2*iu*u*mx2 + u*u*T.x, py = iu*iu*F.y + 2*iu*u*my2 + u*u*T.y;
+    ctx.fillStyle = 'rgba(102,246,210,.9)'; ctx.beginPath(); ctx.arc(px,py,1.7,0,6.2832); ctx.fill();
+    ctx.fillStyle = 'rgba(102,246,210,.25)'; ctx.beginPath(); ctx.arc(px,py,4.2,0,6.2832); ctx.fill();
+  }
+  for (i=0;i<this.nodes.length;i++){
+    n = this.nodes[i]; var sp = this.sprites[n.type];
+    ctx.drawImage(sp, n.x-sp.width/2, n.y-sp.width/2);
+    if (n.type==='e'){ ctx.strokeStyle = 'rgba(124,140,255,.8)'; ctx.lineWidth = 1.2; ctx.strokeRect(n.x-n.r,n.y-n.r,n.r*2,n.r*2); ctx.fillStyle = 'rgba(124,140,255,.12)'; ctx.fillRect(n.x-n.r,n.y-n.r,n.r*2,n.r*2); }
+    else { ctx.fillStyle = n.type==='a' ? 'rgba(140,255,225,.95)' : 'rgba(245,245,240,.82)'; ctx.beginPath(); ctx.arc(n.x,n.y,n.r,0,6.2832); ctx.fill();
+      if (n.type==='a'){ ctx.strokeStyle = 'rgba(102,246,210,.32)'; ctx.lineWidth = 1; ctx.beginPath(); ctx.arc(n.x,n.y,n.r+4,0,6.2832); ctx.stroke(); } }
+  }
+};
+HeroField.prototype.step = function(dt){
+  this.time += dt;
+  for (var i=this.particles.length-1;i>=0;i--){ var p = this.particles[i]; p.t += p.sp*dt*60;
+    if (p.t >= 1){ if (p.leg === 0){ p.leg = 1; p.t = 0; p.from = p.j[1]; p.to = p.j[2]; } else this.particles.splice(i,1); } }
+  if (this.particles.length < Math.round(this.nodes.length*0.22) && Math.random() < 0.06*dt*60 && this.journeys.length){
+    var j = this.journeys[(Math.random()*this.journeys.length)|0]; this.particles.push({from:j[0], to:j[1], t:0, sp:.006+Math.random()*.006, leg:0, j:j});
+  }
+};
+HeroField.prototype.start = function(){
+  if (this.raf) return; var self = this, last = performance.now();
+  if (REDUCED){ this.draw(); return; }
+  (function loop(now){ self.raf = requestAnimationFrame(loop); var dt = Math.min((now-last)/16.667, 3); last = now; self.step(dt); self.draw(); })(last);
+};
+HeroField.prototype.stop = function(){ if (this.raf){ cancelAnimationFrame(this.raf); this.raf = null; } };
+var heroField = null, heroCanvas = document.getElementById('heroCanvas');
+if (heroCanvas){ try { heroField = new HeroField(heroCanvas); } catch(e){ heroField = null; } }
+var wasSmall = isSmall();
+addEventListener('resize', function(){ if (heroField && isSmall() !== wasSmall){ wasSmall = isSmall(); heroField.build(); heroField.resize(); } }, {passive:true});
+
+/* debug / test hook: lets the engine be exercised from the console */
+window.Masar = { recommend: recommend, solutions: SOLUTIONS, state: function(){ return JSON.parse(JSON.stringify(state)); } };
+
+/* boot */
+showScreen(screenFromHash());
+})();
+</script>
+</body>
+</html>
