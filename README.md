@@ -9,57 +9,62 @@ It creates a pathway from learning and building to connecting, adopting solution
 
 ---
 
-## Working prototype
+## The Arabic-first Agentic AI Ecosystem — Start Smart prototype
 
-`index.html` is a self-contained, working prototype of Masar's core interaction:
-
-**Business problem → AI opportunity → AI solution → Builder**
-
-Open it in any modern browser. No build step, no server, no API keys.
+`index.html` is a self-contained, working prototype. Open it in any modern browser. No build step, no server, no API keys.
 
 - **Live:** https://masartechai.github.io/Masar/ (GitHub Pages, served from `main`)
 - **Local:** double-click `index.html`, or serve the folder with any static server.
 
-### The three-screen flow
+### Positioning
 
-| Screen | What happens |
-| --- | --- |
-| **01 · Discover** | The SME owner picks a business type and department and describes a repetitive workflow in their own words. Inputs are validated and kept in application state. |
-| **Analysis** | A four-step analysis state (reading → identifying repetitive tasks → mapping opportunities → finding a solution) ends with *AI opportunity found*. |
-| **02 · Opportunity** | A summary of the workflow, an explanation of which part could be assisted or automated by Agentic AI, the recommended solution, and a Before / With Masar comparison. |
-| **03 · Solution** | Problem it solves, how it works (Input → AI processing → Human review → Output), capabilities, limitations, Before / After, the Masar Verified label with its disclaimer, and **Connect with builder**. |
-| **Connect** | A confirmation modal (*Ready to connect?* → *Request connection* → *Connection request submitted*) with *Back to Masar* and *Start again*. |
+**Learn → Use → Build → Connect → Adopt → Scale.** One ecosystem with four entry points: learners/users, builders/creators, businesses, investors. Masar's differentiation is the **connection layer** between stages that already have good tools — it does not claim to have invented Arabic AI agents.
 
-The Discover screen also positions the wider ecosystem (Learn → Build → Connect → Adopt → Scale) and Masar's Saudi-first direction (Saudi Arabia → GCC → Global) aligned with Vision 2030 priorities.
+### What the homepage does
+
+| # | Section | Question it answers |
+| --- | --- | --- |
+| 1 | Hero + living ecosystem map | What is Masar? |
+| 2 | Why Masar exists (six stages light up on scroll) | Why does it exist? |
+| 3 | The connection layer + "Why not ChatGPT?" | Why is it different? |
+| 4 | From AI capability to economic value + one verified data point | Why does it matter in Saudi Arabia? |
+| 5 | Four entry points (hover shows which paths feed which) | Where do I enter? |
+| 6 | Learn: from user to creator | How does a learner become a creator? |
+| 7 | **Business AI discovery engine** (the live demo) + Before / With Masar | How does a business use it? Where is the AI? |
+| 8 | AI solutions marketplace (filterable, fictional examples) | What do solutions look like? |
+| 9 | Builders: turn AI skills into opportunities | Why would builders join? |
+| 10 | Invest: capital follows opportunity | Where does investment fit? |
+| 11 | The Masar flywheel | How does it compound? |
+| 12 | Why Saudi / Vision 2030 | Why here, why now? |
+| 13 | Start small: four phases + initial monetization hypothesis | Is it feasible? Who pays? |
+| 14 | Trust | Why is this responsible? |
+| 15 | Final CTA | Try it. |
+
+### The live demo (2–3 minutes)
+
+Homepage → **Find your path** → **I want AI for my business** → describe a workflow (or tap an example) → **Analyze my workflow** → five-step analysis → **Opportunity** screen with the step-by-step reasoning (workflow → repetitive task → bottleneck → AI opportunity → recommended solution → why) → **Explore solution** → problem, how it works, capabilities, limitations, human involvement, Masar Verified → **Connect with builder** → request → confirmation → **Back to the ecosystem** (flywheel).
+
+Routes: `#/opportunity`, `#/solution`, `#/solution/<id>` (marketplace browse mode), and `#<section>` anchors on the homepage. State survives refresh via `sessionStorage`.
 
 ### Recommendation engine
 
-The analysis is a local, rule-based engine (`recommend()` in `index.html`). No AI model is called and nothing is sent anywhere.
-
-- Keyword evidence in the workflow text is scored first (English and a few Arabic terms).
-- The chosen department breaks ties and decides when the text has no signals.
-- **WorkflowPilot AI** is the honest fallback for any other repetitive operational work.
+Local, rule-based, deterministic (`recommend()` in `index.html`). Keyword evidence outweighs department; department breaks ties; **WorkflowPilot AI** is the honest fallback. Exercise it from the console: `Masar.recommend("text", "Department", "Business type")`. The UI labels it as rule-based and explains that a production version would place a language model behind the same reasoning steps.
 
 | Signals in the text | Recommendation |
 | --- | --- |
-| invoice, receipt, spreadsheet, bookkeeping, accounting, expense, financial records… | **InvoiceFlow AI** |
-| customers, questions, WhatsApp, support, inquiries, complaints, messages… | **SupportFlow AI** |
-| CV, resumes, candidates, recruitment, hiring, interviews, applicants… | **RecruitMatch AI** |
-| anything else repetitive | **WorkflowPilot AI** |
-
-You can exercise the engine from the browser console: `Masar.recommend("text", "Department", "Business type")`.
+| invoice, receipt, spreadsheet, bookkeeping, accounting, expense… | InvoiceFlow AI |
+| customers, questions, WhatsApp, support, inquiries, complaints, messages… | SupportFlow AI |
+| CV, resumes, candidates, recruitment, hiring, interviews, applicants… | RecruitMatch AI |
+| anything else repetitive | WorkflowPilot AI |
 
 ### What is real and what is not
 
-- The four solutions are **fictional prototype examples**, not real customers, companies or deployed products. The interface labels them as such.
-- **Masar Verified** is a Masar-created evaluation label. It is not a government, SDAIA or Vision 2030 certification and implies no official endorsement.
-- Masar is aligned with Saudi Vision 2030 priorities but is an independent startup, not a government product.
-- State lives in the browser (`sessionStorage`) so a refresh keeps the user's input. Nothing is transmitted or stored server-side.
+- The four solutions are **fictional prototype examples**, labelled as such throughout. No customers, partners, revenue, funding, users, market sizes or testimonials are claimed.
+- The only statistic shown is verified: **45.2% of Saudi internet users use AI tools** (Saudi Internet Report 2025, CST) — labelled as AI-tool use, not agent adoption.
+- **Masar Verified** is an internal Masar evaluation label, not government, SDAIA or Vision 2030 certification.
+- Masar is aligned with Vision 2030 priorities but is an independent startup prototype, not a government product.
+- Only the Business path is functional. Learn, Build and Invest are positioning for later phases and say so.
 
 ### Design reference
 
-`reference/masarsite-v2.html` is the earlier Masarite v2 prototype. The working prototype carries its visual identity forward: the obsidian ground, mint and violet accents, Archivo display type with mono labels, hairline cards, the network canvas, the Before / With Masar journey component, and the amber prototype-disclosure flags.
-
-### Not built (by design)
-
-Login, payments, dashboards for learners, builders or investors, messaging, real AI deployment, real integrations. The prototype proves one excellent user flow.
+`reference/masarsite-v2.html` is the earlier Masarite v2 prototype whose visual identity this build carries forward.
