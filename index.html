@@ -1955,11 +1955,11 @@ function updateNav(name){
   navReset.hidden = !(state.result || state.business || state.department || (state.workflow && state.workflow.length));
   nav.classList.toggle('solid', name !== 'home');
 }
-function scrollToSection(id){
+function scrollToSection(id, instant){
   var el = document.getElementById(id); if (!el) return;
   if (id === 'top'){ jumpTop(); return; }
   var y = el.getBoundingClientRect().top + scrollY - 72;
-  scrollTo({top:y, behavior: REDUCED ? 'auto' : 'smooth'});
+  if (instant || REDUCED) scrollTo(0, y); else scrollTo({top:y, behavior:'smooth'});
 }
 function showScreen(route){
   var name = route.screen;
@@ -1970,7 +1970,7 @@ function showScreen(route){
   SCREENS.forEach(function(s){ document.getElementById('s-'+s).hidden = s !== name; });
   updateNav(name); closeModal(); closeMenu();
   var changed = current !== name;
-  if (name === 'home' && route.anchor){ setTimeout(function(){ scrollToSection(route.anchor); }, changed ? 40 : 0); }
+  if (name === 'home' && route.anchor){ var firstLoad = current === null; setTimeout(function(){ scrollToSection(route.anchor, firstLoad); }, firstLoad ? 60 : 0); if (firstLoad) addEventListener('load', function(){ scrollToSection(route.anchor, true); }); }
   else if (changed && current !== null){ jumpTop(); var h = document.getElementById('h-'+name); if (h) setTimeout(function(){ h.focus({preventScroll:true}); }, 60); }
   else if (changed && current === null && name !== 'home'){ jumpTop(); }
   current = name;
@@ -2076,8 +2076,12 @@ var ecomap = null;
 /* debug / test hook */
 window.Masar = { recommend: recommend, solutions: SOLUTIONS, state: function(){ return JSON.parse(JSON.stringify(state)); } };
 
-/* boot */
-showScreen(parseHash());
+/* boot: always start at the top unless a section or screen was requested */
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+function startAtTop(){ var h = (location.hash || '').replace(/^#\/?/, ''); if (h === '' || h === 'discover' || h === 'home') scrollTo(0,0); }
+startAtTop(); showScreen(parseHash()); startAtTop();
+addEventListener('load', function(){ startAtTop(); setTimeout(startAtTop, 120); });
+addEventListener('pageshow', function(e){ if (e.persisted) startAtTop(); });
 })();
 </script>
 <script>
