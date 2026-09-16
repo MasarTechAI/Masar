@@ -1818,8 +1818,9 @@ EcoMap.prototype.build = function(){
     '<text x="'+cx+'" y="'+(cy+2)+'" font-size="'+(this.small ? 17 : 15)+'">MASAR</text><text class="s" x="'+cx+'" y="'+(cy+20)+'" font-size="'+(this.small ? 9 : 7.5)+'">CONNECTS</text></g>'+
     '<g class="pulses">'+pts.map(function(){ return '<circle class="pulse" r="2.2" cx="-9" cy="-9"/>'; }).join('')+'</g>'+
     '<circle class="pg" r="9" cx="-9" cy="-9"/><circle class="p" r="3.6" cx="-9" cy="-9"/>'+
+    nodes+
     '<g class="verbg"><rect class="verb-bg" x="0" y="0" width="10" height="'+(this.small ? 24 : 20)+'"/><text class="verb" x="0" y="0" font-size="'+(this.small ? 11 : 9)+'"></text></g>'+
-    nodes+'</svg>';
+    '</svg>';
   var svg = this.host.querySelector('svg');
   this.arcs = [].slice.call(svg.querySelectorAll('.arc')); this.spokes = [].slice.call(svg.querySelectorAll('.spoke')); this.nodesEl = [].slice.call(svg.querySelectorAll('.node'));
   this.p = svg.querySelector('.p'); this.pg = svg.querySelector('.pg'); this.pulses = [].slice.call(svg.querySelectorAll('.pulse'));
