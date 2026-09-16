@@ -1813,7 +1813,9 @@ if (secObs) Object.keys({explore:1,ecosystem:1,value:1,paths:1,learn:1,business:
   var vis = false, loaded = false;
   function sync(){ if (!loaded || !fr.contentWindow) return; fr.contentWindow.postMessage({masar: vis && current === 'home' ? 'play' : 'pause'}, '*'); }
   fr.addEventListener('load', function(){ loaded = true; sync(); });
-  new IntersectionObserver(function(en){ vis = en[0].isIntersecting; sync(); }, {threshold:0.35}).observe(fr);
+  try { if (fr.contentDocument && fr.contentDocument.readyState === 'complete' && fr.contentWindow.MasarDiagram){ loaded = true; } } catch(e){}
+  setTimeout(function(){ loaded = true; sync(); }, 2500); /* belt and braces if the load event fired before we listened */
+  new IntersectionObserver(function(en){ vis = en[0].isIntersecting; sync(); }, {threshold:0.25}).observe(fr);
   window.__storySync = sync;
 })();
 var ticking = false;
