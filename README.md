@@ -9,7 +9,7 @@ It creates a pathway from learning and building to connecting, adopting solution
 
 ---
 
-## The Agentic AI Ecosystem — Start Smart prototype
+## The AI Agent Ecosystem — Start Smart prototype
 
 `index.html` is a self-contained, working prototype. Open it in any modern browser. No build step, no server, no API keys.
 
@@ -18,28 +18,25 @@ It creates a pathway from learning and building to connecting, adopting solution
 
 ### Positioning
 
-**Learn → Use → Build → Connect → Adopt → Scale.** One ecosystem with four entry points: learners/users, builders/creators, businesses, investors. Masar's differentiation is the **connection layer** between stages that already have good tools — it makes no "first" or "only" claims.
+**The AI Agent Ecosystem — the bridge between AI agent creation and the market demand that drives adoption.** Creators build agents, businesses bring demand, Masar checks quality (accuracy, precision, data privacy) and connects the two. Learn → Build → Verify → List → Adopt → Earn → Invest. No "first" or "only" claims.
 
 ### What the homepage does
 
 | # | Section | Question it answers |
 | --- | --- | --- |
-| 1 | Hero + the 40-second animated story (learn → build → check → list → subscribe → grow → invest) | What is Masar? |
-| 2 | Why Masar exists (six stages light up on scroll) | Why does it exist? |
-| 3 | The connection layer + "Why not ChatGPT?" | Why is it different? |
-| 4 | From AI capability to economic value + one verified data point | Why does it matter in Saudi Arabia? |
-| 5 | Four entry points (hover shows which paths feed which) | Where do I enter? |
-| 6 | Learn: from user to creator | How does a learner become a creator? |
-| 7 | **Business AI discovery engine** (the live demo) + Before / With Masar | How does a business use it? Where is the AI? |
-| 8 | AI solutions marketplace (filterable, fictional examples) | What do solutions look like? |
-| 9 | Builders: turn AI skills into opportunities | Why would builders join? |
-| 10 | Invest: capital follows opportunity | Where does investment fit? |
-| 11 | The Masar flywheel | How does it compound? |
-| 12 | Why Saudi / Vision 2030 | Why here, why now? |
-| 13 | Start small: four phases + initial monetization hypothesis | Is it feasible? Who pays? |
-| 14 | Trust | Why is this responsible? |
-| 14b | Five questions every judge asks, with links to the evidence | Does it hold up? |
-| 15 | Final CTA | Try it. |
+| 1 | Hero: headline, three direct doors (Explore agents / Build / Learn), bridge diagram over a moving network | What is Masar? |
+| 2 | Seven static frames: learn → build → check → list → subscribe → grow → invest | How does the whole loop work? |
+| 3 | Creators build, businesses need, Masar connects + "Why not ChatGPT?" | What does Masar actually do? |
+| 4 | Four doors (Learn, Build, Business, Invest) | Where do I start? |
+| 5 | Tabs: how each step works (Learn, Build, Discover, Adopt & earn, Invest) | How does each part work? |
+| 6 | **Business AI discovery engine** (the live demo) + Before / With Masar | How does a business use it? Where is the AI? |
+| 7 | Explore AI agents (marketplace, fictional examples) | What do agents look like? |
+| 8 | Creators: Masar brings demand | Why would creators join? |
+| 9 | Why Saudi / Vision 2030 | Why here, why now? |
+| 10 | Start small: four phases + business model | Is it feasible? Who pays? |
+| 11 | Trust | Why is this responsible? |
+| 12 | Five questions every judge asks | Does it hold up? |
+| 13 | Final CTA | Try it. |
 
 ### The live demo (2–3 minutes)
 

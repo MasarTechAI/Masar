@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Masar — The Agentic AI Ecosystem</title>
+<title>Masar — The AI Agent Ecosystem</title>
 <meta name="description" content="Masar connects the people learning and using Agentic AI with the creators building it, the businesses adopting it, and the investors backing what comes next. Saudi Arabia first.">
 <meta name="theme-color" content="#08090B">
-<meta property="og:title" content="Masar — The Agentic AI Ecosystem">
+<meta property="og:title" content="Masar — The AI Agent Ecosystem">
 <meta property="og:description" content="Learn AI. Use AI. Build what's next. Masar connects learners, builders, businesses and investors around Agentic AI.">
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2308090B'/%3E%3Ccircle cx='8' cy='16' r='2' fill='%23F5F5F0'/%3E%3Ccircle cx='16' cy='16' r='3.2' fill='%2366F6D2'/%3E%3Crect x='22' y='12.5' width='6.5' height='6.5' rx='1' fill='none' stroke='%237C8CFF' stroke-width='1.6'/%3E%3Cpath d='M10.4 16h2.6M19.4 16h2.2' stroke='%23F5F5F0' stroke-opacity='.4' stroke-width='1'/%3E%3C/svg%3E">
@@ -738,6 +738,124 @@ footer{border-top:1px solid var(--line);padding:40px 0 34px;background:var(--bg)
   .hlink::after{display:none}
 }
 </style>
+<style>
+/* ============================ HERO: moving background + bridge ============================ */
+.hero-canvas{position:absolute;inset:0;z-index:0}
+.hero-canvas canvas{width:100%;height:100%;display:block}
+.hero-scrim{position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(100deg,var(--bg) 0%,rgba(8,9,11,.88) 34%,rgba(8,9,11,.45) 62%,rgba(8,9,11,.55) 100%),linear-gradient(to top,var(--bg) 0,transparent 26%)}
+.hero .wrap{position:relative;z-index:2}
+.hero-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+@media(max-width:960px){.hero-canvas{opacity:.55}.hero-scrim{background:linear-gradient(to bottom,rgba(8,9,11,.6),rgba(8,9,11,.85) 70%,var(--bg))}}
+.bridge-wrap{display:flex;flex-direction:column;gap:10px}
+.bridge{position:relative;width:100%;max-width:640px;margin:0 auto}
+.bridge svg{width:100%;height:auto;display:block;overflow:visible}
+.bridge .lane{fill:none;stroke:rgba(245,245,240,.14);stroke-width:1.2}
+.bridge .lane.back{stroke:rgba(124,140,255,.22);stroke-dasharray:3 6}
+.bridge .who{fill:var(--dim);font-family:var(--mono);font-size:10.5px;letter-spacing:2.2px;text-transform:uppercase;text-anchor:middle}
+.bridge .who.hi{fill:var(--mint)}
+.bridge .who.v{fill:#B7C0FF}
+.bridge .av{fill:var(--bg-2);stroke:var(--line-2);stroke-width:1.2}
+.bridge .head,.bridge .body{fill:var(--fg)}
+.bridge .biz{fill:var(--bg-2);stroke:var(--violet);stroke-width:1.2}
+.bridge .bizi{fill:none;stroke:#B7C0FF;stroke-width:1.4}
+.bridge .core{fill:#0B1614;stroke:var(--mint);stroke-width:1.4}
+.bridge .core-glow{fill:none;stroke:rgba(102,246,210,.2);stroke-width:1;transform-origin:center;transform-box:fill-box;animation:corepulse 4s var(--ease) infinite}
+.bridge .core-t{fill:var(--fg);font-family:var(--display);font-weight:700;font-size:16px;letter-spacing:3px;text-anchor:middle}
+.bridge .core-s{fill:var(--mint);font-family:var(--mono);font-size:8.5px;letter-spacing:2px;text-transform:uppercase;text-anchor:middle}
+.bridge .gate{fill:rgba(102,246,210,.08);stroke:rgba(102,246,210,.45);rx:5}
+.bridge .gate-t{fill:var(--mint);font-family:var(--mono);font-size:8px;letter-spacing:1.6px;text-transform:uppercase;text-anchor:middle}
+.bridge .flow-t{fill:var(--muted);font-family:var(--mono);font-size:9.5px;letter-spacing:1.8px;text-transform:uppercase;text-anchor:middle}
+.bridge .p{fill:var(--mint)}.bridge .pg{fill:rgba(102,246,210,.25)}
+.bridge .d{fill:var(--violet)}.bridge .dg{fill:rgba(124,140,255,.25)}
+.bridge .c{fill:var(--gold)}.bridge .cg{fill:rgba(232,177,92,.25)}
+.bridge .chipbg{fill:var(--bg-2);stroke:rgba(102,246,210,.5);rx:4}
+.bridge .chipt{fill:var(--fg);font-family:var(--mono);font-size:8px;letter-spacing:1px;text-anchor:middle}
+.map-legend i.v{background:var(--violet);box-shadow:0 0 8px rgba(124,140,255,.6)}
+@keyframes corepulse{0%,100%{transform:scale(1);opacity:.8}50%{transform:scale(1.07);opacity:.3}}
+
+/* bridge on phones: bigger type, no gate line */
+@media(max-width:700px){
+  .bridge .who{font-size:19px}.bridge .core-t{font-size:27px}.bridge .core-s{font-size:14px}.bridge .flow-t{font-size:15px}
+  .bridge .gate,.bridge .gate-t{display:none}
+}
+
+/* ============================ STORYBOARD ============================ */
+.board{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:1100px){.board{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:760px){.board{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.board{grid-template-columns:1fr}}
+.frame{border:1px solid var(--line);border-radius:14px;background:var(--bg-2);overflow:hidden;display:flex;flex-direction:column;transition:border-color .3s}
+.frame:hover{border-color:rgba(102,246,210,.35)}
+.frame svg{width:100%;height:auto;display:block;background:var(--bg)}
+.frame .ft{padding:14px 16px 16px;display:flex;flex-direction:column;gap:6px}
+.frame .ft b{font:500 .625rem/1 var(--mono);letter-spacing:.14em;color:var(--mint)}
+.frame .ft span{font-size:.906rem;color:var(--fg);line-height:1.45;font-weight:500}
+.frame .ft small{font-size:.781rem;color:var(--muted);line-height:1.45}
+.frame.last{grid-column:span 1}
+/* svg primitives */
+.fr-av{fill:var(--bg-2);stroke:var(--line-2);stroke-width:1.2}
+.fr-av.m{stroke:var(--mint)}.fr-av.g{stroke:var(--gold)}.fr-av.v{stroke:var(--violet)}
+.fr-head,.fr-body{fill:var(--fg)}
+.fr-name{fill:var(--fg);font-family:var(--body);font-weight:600;font-size:12px;text-anchor:middle}
+.fr-role{fill:var(--dim);font-family:var(--mono);font-size:8.5px;letter-spacing:1.4px;text-transform:uppercase;text-anchor:middle}
+.fr-role.m{fill:var(--mint)}.fr-role.g{fill:var(--gold)}.fr-role.v{fill:#B7C0FF}
+.fr-card{fill:var(--bg-2);stroke:rgba(102,246,210,.45);stroke-width:1.2;rx:9}
+.fr-card.dash{stroke:var(--line-2);stroke-dasharray:4 4}
+.fr-ct{fill:var(--fg);font-family:var(--display);font-weight:700;font-size:11.5px;text-anchor:middle}
+.fr-cs{fill:var(--mint);font-family:var(--mono);font-size:7.5px;letter-spacing:1.3px;text-transform:uppercase;text-anchor:middle}
+.fr-cs.dim{fill:var(--dim)}
+.fr-bot{fill:none;stroke:var(--mint);stroke-width:1.5}
+.fr-eye{fill:var(--mint)}
+.fr-arrow{fill:none;stroke:var(--line-2);stroke-width:1.2}
+.fr-arrow.m{stroke:var(--mint)}.fr-arrow.g{stroke:var(--gold)}.fr-arrow.v{stroke:var(--violet)}
+.fr-arrow.dash{stroke-dasharray:3 4}
+.fr-tag{fill:rgba(102,246,210,.1);stroke:rgba(102,246,210,.45);rx:4}
+.fr-tag.g{fill:rgba(232,177,92,.1);stroke:rgba(232,177,92,.5)}
+.fr-tag.v{fill:rgba(124,140,255,.1);stroke:rgba(124,140,255,.5)}
+.fr-tagt{fill:var(--mint);font-family:var(--mono);font-size:7.5px;letter-spacing:1.3px;text-transform:uppercase;text-anchor:middle}
+.fr-tagt.g{fill:var(--gold)}.fr-tagt.v{fill:#B7C0FF}
+.fr-chk{fill:rgba(102,246,210,.1);stroke:var(--mint);rx:5}
+.fr-chkt{fill:var(--fg);font-family:var(--body);font-weight:600;font-size:8.5px;text-anchor:middle}
+.fr-chki{fill:var(--mint);font-family:var(--mono);font-size:9px;text-anchor:middle}
+.fr-gate{fill:none;stroke:rgba(102,246,210,.5);stroke-width:1.2;stroke-dasharray:5 5;rx:12}
+.fr-gt{fill:var(--mint);font-family:var(--mono);font-size:7.5px;letter-spacing:1.8px;text-transform:uppercase;text-anchor:middle}
+.fr-money{fill:var(--bg-2);stroke:rgba(232,177,92,.5);rx:8}
+.fr-mk{fill:var(--gold);font-family:var(--mono);font-size:7px;letter-spacing:1.4px;text-transform:uppercase;text-anchor:middle}
+.fr-mv{fill:var(--fg);font-family:var(--mono);font-size:17px;font-weight:500;text-anchor:middle}
+.fr-coin{fill:var(--gold)}
+.fr-dot{fill:var(--violet)}
+.fr-shelf{fill:none;stroke:var(--line-2);stroke-width:1.2}
+.fr-lesson{fill:rgba(102,246,210,.1);stroke:var(--mint);rx:4}
+.fr-lt{fill:var(--fg);font-family:var(--body);font-size:8.5px;font-weight:600}
+.fr-biz{fill:var(--bg-2);stroke:var(--violet);stroke-width:1.1}
+.fr-bizi{fill:none;stroke:#B7C0FF;stroke-width:1.3}
+
+/* ============================ TABS ============================ */
+.tabs{border:1px solid var(--line);border-radius:18px;background:var(--bg-2);overflow:hidden}
+.tablist{display:flex;border-bottom:1px solid var(--line);overflow-x:auto;scrollbar-width:none}
+.tablist::-webkit-scrollbar{display:none}
+.tablist button{flex:1;min-width:150px;background:none;border:0;border-bottom:2px solid transparent;color:var(--dim);font-family:var(--body);font-size:.875rem;font-weight:500;
+  padding:16px 14px;cursor:pointer;transition:.3s var(--ease);white-space:nowrap;display:inline-flex;align-items:center;justify-content:center;gap:10px;margin-bottom:-1px}
+.tablist button b{font:500 .625rem/1 var(--mono);letter-spacing:.12em;color:var(--dim)}
+.tablist button:hover{color:var(--fg);background:var(--glass)}
+.tablist button.on{color:var(--fg);border-bottom-color:var(--mint);background:linear-gradient(to top,rgba(102,246,210,.07),transparent)}
+.tablist button.on b{color:var(--mint)}
+.tabpanel{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);gap:clamp(20px,3vw,44px);padding:clamp(22px,3vw,36px);animation:screenIn .45s var(--ease)}
+@media(max-width:900px){.tabpanel{grid-template-columns:1fr}}
+.tp-main{display:flex;flex-direction:column;gap:16px;align-items:flex-start}
+.tp-main h3{font-size:clamp(1.4rem,2.4vw,1.9rem)}
+.tsteps{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-direction:column;width:100%}
+.tsteps li{display:grid;grid-template-columns:34px 1fr;gap:14px;padding:13px 0;border-top:1px solid var(--line);align-items:start}
+.tsteps li:last-child{border-bottom:1px solid var(--line)}
+.tsteps li b{font:500 .688rem/1.9 var(--mono);letter-spacing:.12em;color:var(--mint)}
+.tsteps li div{font-size:1rem;font-weight:600;color:var(--fg);line-height:1.35}
+.tsteps li div span{display:block;font-size:.844rem;font-weight:400;color:var(--muted);margin-top:3px;line-height:1.5}
+.tp-side{border:1px solid var(--line);border-radius:14px;padding:20px;background:var(--bg);display:flex;flex-direction:column;gap:14px;align-self:start}
+.tp-side .btn{justify-content:center}
+.tp-side .list li{font-size:.875rem}
+.tp-side .list.plain li i{border-color:rgba(102,246,210,.5);color:var(--mint)}
+</style>
 </head>
 <body>
 
@@ -747,8 +865,7 @@ footer{border-top:1px solid var(--line);padding:40px 0 34px;background:var(--bg)
   <div class="nav-in">
     <a class="brand" href="#/" aria-label="Masar — home"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>MASAR</a>
     <nav class="nav-links" id="navLinks" aria-label="Main">
-      <a href="#explore" data-sec="explore">Explore</a>
-      <a href="#solutions" data-sec="solutions">AI Solutions</a>
+      <a href="#solutions" data-sec="solutions">Explore agents</a>
       <a href="#learn" data-sec="learn">Learn</a>
       <a href="#build" data-sec="build">Build</a>
       <a href="#business" data-sec="business">Businesses</a>
@@ -762,14 +879,14 @@ footer{border-top:1px solid var(--line);padding:40px 0 34px;background:var(--bg)
     <a class="nav-back" id="navBack" href="#solutions"><span class="ar back">&#8592;</span> AI Solutions marketplace</a>
     <div class="nav-right">
       <button class="btn btn-sm btn-ghost" type="button" id="navReset" aria-label="Start again" hidden><span class="ic" aria-hidden="true">&#8635;</span><span class="tx">Start again</span></button>
-      <button class="btn btn-sm btn-primary" type="button" id="navPath" data-action="open-path"><span class="tx">Find your path</span><span class="ar">&#8594;</span></button>
+      <a class="btn btn-sm btn-primary" id="navPath" href="#business"><span class="tx">Try the demo</span><span class="ar">&#8594;</span></a>
       <button class="burger" type="button" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="mnav"><i></i></button>
     </div>
   </div>
 </header>
 <nav class="mnav" id="mnav" aria-label="Mobile" hidden>
-  <a href="#explore">Explore</a><a href="#solutions">AI Solutions</a><a href="#learn">Learn</a><a href="#build">Build</a><a href="#business">Businesses</a><a href="#invest">Invest</a>
-  <button class="btn btn-primary" type="button" data-action="open-path">Find your path <span class="ar">&#8594;</span></button>
+  <a href="#solutions">Explore agents</a><a href="#learn">Learn</a><a href="#build">Build</a><a href="#business">Businesses</a><a href="#invest">Invest</a>
+  <a class="btn btn-primary" href="#business">Try the demo <span class="ar">&#8594;</span></a>
 </nav>
 
 <main id="app">
@@ -779,199 +896,185 @@ footer{border-top:1px solid var(--line);padding:40px 0 34px;background:var(--bg)
 
   <!-- 1 · HERO -->
   <div class="hero" id="top">
-    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-canvas" id="heroStage"><canvas id="heroCanvas" aria-hidden="true"></canvas></div>
+    <div class="hero-scrim" aria-hidden="true"></div>
     <div class="wrap">
       <div class="hero-grid">
         <div class="hero-copy">
           <div class="eyebrow"><i></i><span class="label">Masar &nbsp;/&nbsp; Saudi Arabia &#8594; GCC &#8594; Global</span></div>
-          <h1 class="display" id="h-home" tabindex="-1">The Agentic AI<br><span class="l3">Ecosystem.</span></h1>
-          <p class="lede">Learn AI. Use AI. Build AI. Masar connects the people learning and using Agentic AI with the creators building it, the businesses adopting it, and the investors backing what comes next.</p>
+          <h1 class="display" id="h-home" tabindex="-1">The AI Agent<br><span class="l3">Ecosystem.</span></h1>
+          <p class="lede">The bridge between AI agent creation and the market demand that drives adoption.</p>
           <div class="hero-cta">
-            <button class="btn btn-primary btn-lg btn-caps" type="button" data-action="open-path">Find your path <span class="ar">&#8594;</span></button>
-            <a class="btn btn-lg" href="#business">Try the live demo <span class="ar">&#8595;</span></a>
+            <a class="btn btn-primary btn-lg btn-caps" href="#solutions">Explore AI agents <span class="ar">&#8594;</span></a>
+            <a class="btn btn-lg" href="#build">Build</a>
+            <a class="btn btn-lg" href="#learn">Learn</a>
           </div>
-          <div class="pipeline" aria-label="Learn, use, build, connect, adopt, scale"><b>Learn</b><i>&#8594;</i><b>Use</b><i>&#8594;</i><b>Build</b><i>&#8594;</i>Connect<i>&#8594;</i>Adopt<i>&#8594;</i>Scale</div>
+          <div class="pipeline" aria-label="Creators, Masar, businesses"><b>Creators</b><i>&#8594;</i><b>Masar</b><i>&#8594;</i><b>Businesses</b><i>&#183;</i>Learn<i>&#8594;</i>Build<i>&#8594;</i>Verify<i>&#8594;</i>Adopt<i>&#8594;</i>Earn</div>
         </div>
-        <div class="hero-story">
-          <div class="story-frame" id="storyFrame">
-            <iframe id="storyIframe" src="diagrams/agent-economy.html?embed=1" title="How the Masar agent economy works — animated story in seven steps" allow="autoplay"></iframe>
-          </div>
-          <ol class="story-steps" aria-label="The seven steps of the story">
-            <li><b>01</b>Sara learns through Masar</li><li><b>02</b>She builds an agent</li><li><b>03</b>Masar checks accuracy, precision, privacy</li><li><b>04</b>Listed on the marketplace</li><li><b>05</b>Businesses subscribe &#183; Sara stays owner</li><li><b>06</b>Her monthly revenue grows</li><li><b>07</b>Investors back her next agent</li>
-          </ol>
-          <div class="story-foot"><span class="label">How the ecosystem works &#183; 40-second story &#183; illustrative</span><a class="btn btn-sm btn-ghost" href="diagrams/agent-economy.html" target="_blank" rel="noopener">Full screen <span class="ar">&#8599;</span></a></div>
+        <div class="bridge-wrap">
+          <div class="bridge" id="bridge" role="img" aria-label="Masar connects creators who build AI agents with the businesses that use them. Agents flow from creators through Masar to businesses; demand and revenue flow back."></div>
+          <div class="map-legend" aria-hidden="true"><span><i></i>AI agents, verified by Masar</span><span><i class="v"></i>Demand and monthly revenue</span></div>
         </div>
       </div>
       <div class="hero-foot">
-        <span class="tick">Saudi Arabia &#8594; GCC &#8594; Global</span>
-        <span class="demo-flag">Prototype &#183; fictional example solutions</span>
+        <span class="tick">Illustrative network &#183; not live data</span>
+        <span class="demo-flag">Prototype &#183; fictional example agents</span>
       </div>
     </div>
   </div>
 
-  <!-- 2 · WHY MASAR EXISTS -->
-  <section class="sec" id="explore">
+  <!-- 2 · THE STORY (static storyboard) -->
+  <section class="sec" id="story">
     <div class="wrap">
-      <div class="sec-mark reveal"><span class="label role">Why Masar exists</span><span class="label of">The pathway</span></div>
+      <div class="sec-mark reveal"><span class="label role">How it works</span><span class="label of">One creator &#183; one agent &#183; seven steps</span></div>
       <div class="sec-head">
-        <h2 class="display reveal">AI capability is growing.<br><span class="l2">The pathway is fragmented.</span></h2>
-        <p class="lede reveal" data-d="1">People learn AI in one place. Build agents somewhere else. Find customers somewhere else. Businesses search for solutions somewhere else. Investors discover opportunities through separate networks. <b>Masar connects these stages into one ecosystem.</b></p>
+        <h2 class="display reveal">From learning to earning.<br><span class="l2">The whole loop, in seven frames.</span></h2>
+        <p class="lede reveal" data-d="1">Sara learns through Masar, builds an agent, Masar checks it, businesses subscribe and pay her monthly, and investors back what works. She keeps ownership the whole way.</p>
       </div>
-      <ol class="stages after-head reveal" data-d="1" data-lit aria-label="The six stages">
-        <li><span class="n">01 <i></i></span><h3>Learn</h3><p>Understand how Agentic AI works and what it can do for real work.</p><span class="who">Learners</span></li>
-        <li><span class="n">02 <i></i></span><h3>Use</h3><p>Apply AI to everyday problems and become a capable user.</p><span class="who">Users</span></li>
-        <li><span class="n">03 <i></i></span><h3>Build</h3><p>Create agents and solutions for problems that businesses actually have.</p><span class="who">Builders</span></li>
-        <li class="now"><span class="n">04 <i></i></span><h3>Connect</h3><p>Businesses describe workflows; Masar maps the opportunity and the creator.</p><span class="who">Businesses &#183; this prototype</span></li>
-        <li class="now"><span class="n">05 <i></i></span><h3>Adopt</h3><p>A relevant solution is evaluated, implemented with human oversight, and kept working.</p><span class="who">AI solutions &#183; this prototype</span></li>
-        <li><span class="n">06 <i></i></span><h3>Scale</h3><p>Working solutions create growth, new builders and investment opportunities.</p><span class="who">Investors</span></li>
-      </ol>
-      <p class="note">One pathway, four entry points. A person can enter at any stage and move to the next. Stages 04 and 05 are what this prototype demonstrates end to end.</p>
+      <div class="board after-head reveal" data-d="1" id="storyboard"></div>
+      <p class="note"><a class="btn btn-sm btn-ghost" href="diagrams/agent-economy.html" target="_blank" rel="noopener">Watch the animated version <span class="ar">&#8599;</span></a> &nbsp; Names and amounts are illustrative.</p>
     </div>
   </section>
 
-  <!-- 3 · THE CONNECTION LAYER -->
-  <section class="sec tight" id="ecosystem">
+  <!-- 3 · HOW WE CONNECT THE JOURNEY -->
+  <section class="sec tight" id="connect">
     <div class="wrap">
-      <div class="sec-mark reveal"><span class="label role">The connection layer</span><span class="label of">Why Masar is different</span></div>
+      <div class="sec-mark reveal"><span class="label role">What Masar does</span><span class="label of">Straightforward</span></div>
       <div class="sec-head">
-        <h2 class="display reveal">The ecosystem already has great tools.<br><span class="l2">The journey is still fragmented.</span></h2>
-        <p class="lede reveal" data-d="1">Masar does not compete with AI models, courses or agent builders. It is designed to connect the stages around Agentic AI, so a learner can find a builder&#8217;s path, a builder can find business demand, and a business can find a solution it can trust.</p>
+        <h2 class="display reveal">Creators build. Businesses need.<br><span class="l2">Masar connects the two.</span></h2>
+        <p class="lede reveal" data-d="1">Good AI models, courses and agent-building tools already exist. What is missing is the connection between them: a place where a creator&#8217;s agent meets a business that actually needs it, with a quality check in between.</p>
       </div>
-      <div class="after-head reveal" data-d="1">
-        <div class="frag" aria-label="Today's fragmented landscape">
-          <div>AI models</div><div>AI learning</div><div>Agent builders</div><div>AI solutions</div><div>Consultants</div><div>Businesses</div><div>Investors</div>
-        </div>
-        <div class="connector" aria-hidden="true"><i></i><span>Masar connects the journey</span></div>
-        <div class="connected">
-          <div class="m">MASAR<span>The connection layer</span></div>
-          <p>Each tool solves one stage well. Masar&#8217;s job is the movement between stages: from learning to building, from a business problem to a solution, from a working solution to the next opportunity.</p>
-        </div>
+      <div class="grid3 after-head">
+        <article class="card reveal"><span class="label">Creators</span><h3 class="display">Bring agents</h3><ul class="list plain"><li><i>01</i>Learn on Masar or arrive with skills</li><li><i>02</i>Build for a real business brief</li><li><i>03</i>Keep ownership, earn monthly</li></ul></article>
+        <article class="card tint reveal" data-d="1"><span class="label">Masar</span><h3 class="display">Checks and connects</h3><ul class="list plain"><li><i>01</i>Turns a described workflow into an AI opportunity</li><li><i>02</i>Checks every agent: accuracy, precision, data privacy</li><li><i>03</i>Matches agents to businesses and creators to demand</li></ul></article>
+        <article class="card violet reveal" data-d="2"><span class="label">Businesses</span><h3 class="display">Bring demand</h3><ul class="list plain"><li><i>01</i>Describe repetitive work in plain language</li><li><i>02</i>Get a matched agent with stated limitations</li><li><i>03</i>Subscribe, with people staying in control</li></ul></article>
       </div>
       <div class="qa">
         <div class="card reveal"><span class="label">A fair question</span><p class="q">&#8220;Why can&#8217;t I just ask ChatGPT?&#8221;</p></div>
-        <div class="card tint reveal" data-d="1"><span class="label">The answer</span>
-          <p class="a"><b>ChatGPT can help you brainstorm what AI might do.</b> Masar takes the next step: it turns a described workflow into a mapped opportunity, a solution with stated capabilities and limitations, and a creator who can implement it &#8212; then keeps it inside an ecosystem where the next opportunity appears.</p>
-          <div class="steps-inline"><span>Workflow</span><i>&#8594;</i><span>Opportunity</span><i>&#8594;</i><span>Solution</span><i>&#8594;</i><span>Creator</span><i>&#8594;</i><span>Adoption</span></div>
+        <div class="card reveal" data-d="1"><span class="label">The answer</span>
+          <p class="a"><b>ChatGPT can help you brainstorm what AI might do.</b> Masar takes the next steps: it turns your workflow into a specific opportunity, shows a checked agent with its limitations, and connects you with the creator who runs it.</p>
+          <div class="steps-inline"><span>Workflow</span><i>&#8594;</i><span>Opportunity</span><i>&#8594;</i><span>Agent</span><i>&#8594;</i><span>Creator</span><i>&#8594;</i><span>Adoption</span></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 4 · AI ADOPTION -> ECONOMIC VALUE -->
-  <section class="sec" id="value">
+  <!-- 4 · FOUR DOORS -->
+  <section class="sec" id="paths">
     <div class="wrap">
-      <div class="sec-mark reveal"><span class="label role">Why it matters</span><span class="label of">From capability to value</span></div>
+      <div class="sec-mark reveal"><span class="label role">Start where you are</span><span class="label of">Four doors &#183; one ecosystem</span></div>
       <div class="sec-head">
-        <h2 class="display reveal">From AI capability<br><span class="l2">to economic value.</span></h2>
-        <p class="lede reveal" data-d="1">Saudi Arabia has invested heavily in digital infrastructure, AI capability and talent. The next challenge is turning capability into widespread practical adoption &#8212; and adoption into value.</p>
-      </div>
-      <div class="chain after-head reveal" data-d="1" aria-label="AI capability to economic value">
-        <div class="link"><span class="lk">01</span><h4>AI capability</h4><p>Models, tools and talent exist.</p></div>
-        <div class="link"><span class="lk">02</span><h4>AI adoption</h4><p>People and businesses put it to work.</p></div>
-        <div class="link"><span class="lk">03</span><h4>Productivity</h4><p>Repetitive work shrinks; judgment gets more time.</p></div>
-        <div class="link"><span class="lk">04</span><h4>Business growth</h4><p>Faster, more consistent operations.</p></div>
-        <div class="link"><span class="lk">05</span><h4>New businesses, jobs, products</h4><p>Builders become companies.</p></div>
-        <div class="link"><span class="lk">06</span><h4>Economic value</h4><p>A more diversified, knowledge-driven economy.</p></div>
-      </div>
-      <div class="stat-grid">
-        <div class="card stat reveal">
-          <span class="label">Verified data point</span>
-          <div class="big">45.2<small>%</small></div>
-          <p class="k">of Saudi internet users use AI tools</p>
-          <p class="d">More than double the rate recorded the previous year. AI-tool use is not the same as AI-agent adoption &#8212; but it shows a large and fast-growing base of AI users.</p>
-          <span class="src">Source: Saudi Internet Report 2025 &#183; Communications, Space &amp; Technology Commission (CST) &#183; <a href="https://www.cst.gov.sa/en/media-center/news/N2026071901" target="_blank" rel="noopener">cst.gov.sa</a></span>
-        </div>
-        <div class="card reveal" data-d="1">
-          <span class="label">The opportunity is the movement between steps</span>
-          <ol class="ladder">
-            <li><span class="n">01</span><div><div class="t">Using AI</div><div class="d">Already happening at scale. Most people meet AI first as users.</div></div></li>
-            <li class="hi"><span class="n">02</span><div><div class="t">Using AI productively</div><div class="d">Applying it to real workflows, not just questions. Masar&#8217;s learning path.</div></div></li>
-            <li class="hi"><span class="n">03</span><div><div class="t">Building AI</div><div class="d">Turning skills into agents, and agents into a business. Masar&#8217;s builder path.</div></div></li>
-            <li class="hi"><span class="n">04</span><div><div class="t">Adopting AI in businesses</div><div class="d">A workflow becomes an opportunity, a solution, and a working deployment. Masar&#8217;s business path &#8212; live in this prototype.</div></div></li>
-          </ol>
-          <p class="note">Greater AI adoption can contribute to productivity, business growth and new products and services. Masar is designed to help move AI capability toward practical adoption. No causal percentages are claimed.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 5 · FOUR PATHS -->
-  <section class="sec tight" id="paths">
-    <div class="wrap">
-      <div class="sec-mark reveal"><span class="label role">Four entry points</span><span class="label of">One ecosystem</span></div>
-      <div class="sec-head">
-        <h2 class="display reveal">Where do you enter<br><span class="l2">the ecosystem?</span></h2>
-        <p class="lede reveal" data-d="1">Four doors into the same building. Hover a path to see which other paths it feeds.</p>
+        <h2 class="display reveal">Pick your door.<br><span class="l2">Every one leads into the same ecosystem.</span></h2>
       </div>
       <div class="paths after-head reveal" data-d="1" id="paths4">
         <article class="path" data-path="learn" data-links="build" tabindex="0">
           <span class="pn" aria-hidden="true">01</span><h3>Learn</h3>
-          <p class="q">&#8220;I want to understand and use Agentic AI.&#8221;</p>
-          <ul><li>AI fundamentals</li><li>How agents work</li><li>How to use AI effectively</li><li>Workflow thinking</li><li>Build foundations</li></ul>
-          <div class="pf"><span class="linkto">Feeds &#8594; Build</span><span class="phase">Phase 2 &#183; positioning</span><a class="btn btn-caps" href="#learn">Start learning <span class="ar">&#8594;</span></a></div>
+          <p class="q">&#8220;I want to understand and build AI agents.&#8221;</p>
+          <ul><li>How agents work</li><li>Workflow thinking</li><li>Tools and testing</li><li>Your first agent, on a real brief</li></ul>
+          <div class="pf"><span class="linkto">Leads to &#8594; Build</span><span class="phase">Phase 2 &#183; planned</span><a class="btn btn-caps" href="#learn">How learning works <span class="ar">&#8594;</span></a></div>
         </article>
         <article class="path" data-path="build" data-links="business" tabindex="0">
           <span class="pn" aria-hidden="true">02</span><h3>Build</h3>
-          <p class="q">&#8220;I want to create AI agents and solutions.&#8221;</p>
-          <ul><li>Agent building</li><li>Tools and templates</li><li>Testing</li><li>Showcase</li><li>Business opportunities</li></ul>
-          <div class="pf"><span class="linkto">Feeds &#8594; Business</span><span class="phase">Phase 1 &#183; with businesses</span><a class="btn btn-caps" href="#build">Start building <span class="ar">&#8594;</span></a></div>
+          <p class="q">&#8220;I build AI agents and want customers.&#8221;</p>
+          <ul><li>Real business briefs</li><li>Masar quality check</li><li>Marketplace listing</li><li>Monthly revenue, you keep ownership</li></ul>
+          <div class="pf"><span class="linkto">Leads to &#8594; Businesses</span><span class="phase">Phase 1</span><a class="btn btn-caps" href="#build">How building works <span class="ar">&#8594;</span></a></div>
         </article>
         <article class="path" data-path="business" data-links="build" tabindex="0">
           <span class="pn" aria-hidden="true">03</span><h3>Business</h3>
-          <p class="q">&#8220;I want to find where AI can help my business.&#8221;</p>
-          <ul><li>Workflow discovery</li><li>AI opportunity identification</li><li>Solution discovery</li><li>Builder connection</li><li>Adoption</li></ul>
-          <div class="pf"><span class="linkto">Feeds &#8594; Build</span><span class="verified">Live in this prototype</span><a class="btn btn-primary btn-caps" href="#business">Find a solution <span class="ar">&#8594;</span></a></div>
+          <p class="q">&#8220;I want AI to take over repetitive work.&#8221;</p>
+          <ul><li>Describe the workflow</li><li>See the AI opportunity</li><li>Explore the matched agent</li><li>Connect with its creator</li></ul>
+          <div class="pf"><span class="linkto">Feeds &#8594; Build</span><span class="verified">Live in this prototype</span><a class="btn btn-primary btn-caps" href="#business">Try it now <span class="ar">&#8594;</span></a></div>
         </article>
         <article class="path" data-path="invest" data-links="build,business" tabindex="0">
           <span class="pn" aria-hidden="true">04</span><h3>Invest</h3>
-          <p class="q">&#8220;I want to discover the next AI opportunity.&#8221;</p>
-          <ul><li>Emerging builders</li><li>AI solutions</li><li>Startups</li><li>Opportunities</li></ul>
-          <div class="pf"><span class="linkto">Watches &#8594; Build + Business</span><span class="phase">Phase 3 &#183; positioning</span><a class="btn btn-caps" href="#invest">Explore opportunities <span class="ar">&#8594;</span></a></div>
+          <p class="q">&#8220;I want to back the next AI creators.&#8221;</p>
+          <ul><li>Creators with adopted agents</li><li>Real usage, real revenue</li><li>Evidence before pitch decks</li></ul>
+          <div class="pf"><span class="linkto">Watches &#8594; Build + Business</span><span class="phase">Phase 3 &#183; planned</span><a class="btn btn-caps" href="#invest">How investing works <span class="ar">&#8594;</span></a></div>
         </article>
       </div>
-      <div class="paths-note"><span><i class="m"></i>Hovered path</span><span><i></i>Paths it feeds</span><span>Only the Business path is functional tonight. The others are positioning for later phases.</span></div>
     </div>
   </section>
 
-  <!-- 6 · LEARN: USER -> CREATOR -->
-  <section class="sec" id="learn">
+  <!-- 5 · HOW EACH STEP WORKS (tabs) -->
+  <section class="sec tight" id="how">
     <div class="wrap">
-      <div class="sec-mark reveal"><span class="label role">Learn &#183; from user to creator</span><span class="label of">Phase 2</span></div>
+      <div class="sec-mark reveal"><span class="label role">Step by step</span><span class="label of">How each part works</span></div>
       <div class="sec-head">
-        <h2 class="display reveal">Don&#8217;t just learn AI.<br><span class="l2">Learn to use it &#8212; then create with it.</span></h2>
-        <p class="lede reveal" data-d="1">Most people will first meet AI as users. Masar is designed to help them understand it, use it productively, then build with it &#8212; a pipeline of future AI creators. <b>Masar doesn&#8217;t just educate future AI users; it creates pathways for future AI builders and entrepreneurs.</b></p>
+        <h2 class="display reveal">How each step works.</h2>
       </div>
-      <div class="rungs after-head reveal" data-d="1" data-lit aria-label="User to creator ladder">
-        <div class="rung u"><b>User</b><span>Meets AI</span></div>
-        <div class="rung u"><b>Learn</b><span>Understands it</span></div>
-        <div class="rung u"><b>Use</b><span>Applies it to work</span></div>
-        <div class="rung c"><b>Build</b><span>Creates an agent</span></div>
-        <div class="rung c"><b>Creator</b><span>Ships a solution</span></div>
-        <div class="rung c"><b>Business</b><span>Finds demand on Masar</span></div>
-        <div class="rung c"><b>Revenue</b><span>Adopted and paid</span></div>
-        <div class="rung c"><b>Scale</b><span>Grows, gets backed</span></div>
-      </div>
-      <div class="tracks">
-        <div class="card reveal"><span class="label">The adoption journey &#183; individuals</span>
-          <p class="lede" style="font-size:.906rem">Learning is not the destination. The gap is between knowing about AI and using it well, and between using it and building with it.</p>
-          <div class="track"><span>Foundations</span><i>&#8594;</i><span>Use</span><i>&#8594;</i><span>Apply</span><i>&#8594;</i><em>Build</em><i>&#8594;</i><em>Showcase</em><i>&#8594;</i><em>Business</em><i>&#8594;</i><em>Opportunity</em></div>
+      <div class="tabs after-head reveal" data-d="1">
+        <div class="tablist" role="tablist" aria-label="Steps" id="howTabs">
+          <button role="tab" type="button" class="on" aria-selected="true" data-tab="learn" id="tab-learn" aria-controls="panel-learn"><b>01</b>Learn</button>
+          <button role="tab" type="button" aria-selected="false" data-tab="build" id="tab-build" aria-controls="panel-build"><b>02</b>Build</button>
+          <button role="tab" type="button" aria-selected="false" data-tab="discover" id="tab-discover" aria-controls="panel-discover"><b>03</b>Discover solutions</button>
+          <button role="tab" type="button" aria-selected="false" data-tab="adopt" id="tab-adopt" aria-controls="panel-adopt"><b>04</b>Adopt &amp; earn</button>
+          <button role="tab" type="button" aria-selected="false" data-tab="invest" id="tab-invest" aria-controls="panel-invest"><b>05</b>Invest</button>
         </div>
-        <div class="card reveal" data-d="1"><span class="label">The adoption journey &#183; businesses</span>
-          <p class="lede" style="font-size:.906rem">The AI adoption gap is not just about technology. A business needs to discover, understand and evaluate before it can adopt.</p>
-          <div class="track"><span>Identify workflow</span><i>&#8594;</i><em>Discover opportunity</em><i>&#8594;</i><em>Evaluate solution</em><i>&#8594;</i><em>Connect with builder</em><i>&#8594;</i><span>Adopt</span><i>&#8594;</i><span>Scale</span></div>
+
+        <div class="tabpanel" role="tabpanel" id="panel-learn" aria-labelledby="tab-learn">
+          <div class="tp-main"><span class="phase">Phase 2 &#183; planned</span><h3 class="display">Learn to build AI agents</h3>
+            <ol class="tsteps">
+              <li><b>01</b><div>Start with the foundations<span>What an AI agent is, what it can and cannot do for real work.</span></div></li>
+              <li><b>02</b><div>Use agents before building them<span>Apply existing agents to your own tasks. You learn what good looks like.</span></div></li>
+              <li><b>03</b><div>Learn to build<span>Workflows, tools, testing, and how to keep a human in control.</span></div></li>
+              <li><b>04</b><div>Build your first agent on a real brief<span>Not an exercise: a problem a business on Masar actually has.</span></div></li>
+            </ol></div>
+          <aside class="tp-side"><span class="label">What Masar provides</span><ul class="list plain"><li><i>&#10003;</i>A structured learning path</li><li><i>&#10003;</i>Real business briefs to practise on</li><li><i>&#10003;</i>A place to showcase what you built</li><li><i>&#10003;</i>A direct route into Build</li></ul><a class="btn btn-caps" href="#build">Next: Build <span class="ar">&#8594;</span></a></aside>
+        </div>
+
+        <div class="tabpanel" role="tabpanel" id="panel-build" aria-labelledby="tab-build" hidden>
+          <div class="tp-main"><span class="phase">Phase 1 &#183; with businesses</span><h3 class="display">Build an agent and get customers</h3>
+            <ol class="tsteps">
+              <li><b>01</b><div>Pick a real brief<span>Workflows described by businesses in the discovery engine become briefs.</span></div></li>
+              <li><b>02</b><div>Build or adapt your agent<span>Any stack. Masar cares about the result, not the tools.</span></div></li>
+              <li><b>03</b><div>Pass the Masar check<span>Accuracy, precision and data privacy, with a human review step designed in.</span></div></li>
+              <li><b>04</b><div>Get listed, matched and paid monthly<span>Businesses subscribe. You keep ownership of the agent.</span></div></li>
+            </ol></div>
+          <aside class="tp-side"><span class="label">What Masar provides</span><ul class="list plain"><li><i>&#10003;</i>Demand, not guesses</li><li><i>&#10003;</i>A quality check businesses trust</li><li><i>&#10003;</i>Listing and matching</li><li><i>&#10003;</i>Recurring revenue and visibility to investors</li></ul><a class="btn btn-caps" href="#creators">How builders join <span class="ar">&#8594;</span></a></aside>
+        </div>
+
+        <div class="tabpanel" role="tabpanel" id="panel-discover" aria-labelledby="tab-discover" hidden>
+          <div class="tp-main"><span class="verified">Live in this prototype</span><h3 class="display">Discover the right solution</h3>
+            <ol class="tsteps">
+              <li><b>01</b><div>Describe how work gets done<span>Business type, department and the repetitive task, in plain language.</span></div></li>
+              <li><b>02</b><div>Masar identifies the opportunity<span>The repetitive task, the bottleneck, and what AI can take over.</span></div></li>
+              <li><b>03</b><div>See the matched agent<span>What it does, what it cannot do, and where people stay involved.</span></div></li>
+              <li><b>04</b><div>Connect with the creator<span>The person who built it and will run it with you.</span></div></li>
+            </ol></div>
+          <aside class="tp-side"><span class="label">Try it</span><p class="note" style="margin:0 0 14px">Takes about a minute. Nothing you type is sent or stored.</p><a class="btn btn-primary btn-caps" href="#business">Run the discovery engine <span class="ar">&#8594;</span></a><a class="btn btn-caps" href="#solutions" style="margin-top:8px">Explore AI agents</a></aside>
+        </div>
+
+        <div class="tabpanel" role="tabpanel" id="panel-adopt" aria-labelledby="tab-adopt" hidden>
+          <div class="tp-main"><span class="phase">Phase 1</span><h3 class="display">Adopt the agent, earn from it</h3>
+            <ol class="tsteps">
+              <li><b>01</b><div>The business subscribes<span>Monthly, cancel any time. Humans review and approve throughout.</span></div></li>
+              <li><b>02</b><div>The creator earns monthly<span>And still owns the agent. More subscribers, more revenue.</span></div></li>
+              <li><b>03</b><div>Masar earns a connection fee<span>Only when an agent is adopted. One revenue engine first.</span></div></li>
+              <li><b>04</b><div>Results feed the next brief<span>Adoption data shows creators what to build next.</span></div></li>
+            </ol></div>
+          <aside class="tp-side"><span class="label">Business model</span><ul class="list plain"><li><i>&#10003;</i>Business pays a monthly subscription</li><li><i>&#10003;</i>Creator keeps ownership and most of the revenue</li><li><i>&#10003;</i>Masar takes a connection / transaction share</li></ul><a class="btn btn-caps" href="#plan">How Masar starts <span class="ar">&#8594;</span></a></aside>
+        </div>
+
+        <div class="tabpanel" role="tabpanel" id="panel-invest" aria-labelledby="tab-invest" hidden>
+          <div class="tp-main"><span class="phase">Phase 3 &#183; planned</span><h3 class="display">Back the creators that work</h3>
+            <ol class="tsteps">
+              <li><b>01</b><div>Creators with adopted agents become visible<span>Not a pitch deck: agents that businesses already pay for.</span></div></li>
+              <li><b>02</b><div>Evidence, not projections<span>Real usage, real monthly revenue, real retention.</span></div></li>
+              <li><b>03</b><div>Investors back the next agents<span>Capital goes to creators with proof, so they build more.</span></div></li>
+            </ol></div>
+          <aside class="tp-side"><span class="label">Honest scope</span><p class="note" style="margin:0">No investor tooling, funding numbers or investor relationships exist yet. This is where investment fits once Phase 1 produces evidence.</p></aside>
         </div>
       </div>
-      <p class="note"><b>Honest scope:</b> the learning path is positioning for Phase 2. No courses exist yet, and Masar does not promise to create entrepreneurs &#8212; it is designed to create the pathway. Learning will be tied to real business briefs from Phase 1, which is what makes it different from a standalone course.</p>
     </div>
   </section>
 
-  <!-- 7 · BUSINESS AI DISCOVERY (the live demo) -->
+  <!-- 6 · BUSINESS AI DISCOVERY (the live demo) -->
   <section class="sec" id="business">
     <div class="wrap">
       <div class="sec-mark reveal"><span class="label role">Business &#183; AI discovery engine</span><span class="label of">Live in this prototype</span></div>
       <div class="sec-head">
         <h2 class="display reveal">What could AI do<br><span class="l2">for your business?</span></h2>
-        <p class="lede reveal" data-d="1">Tell Masar how work gets done. It identifies the repetitive part, maps the AI opportunity, matches a solution with stated limitations, and connects you with the creator who can implement it.</p>
+        <p class="lede reveal" data-d="1">Tell Masar how work gets done. It identifies the repetitive part, maps the AI opportunity, matches an agent with stated limitations, and connects you with the creator.</p>
       </div>
       <ol class="bsteps after-head reveal" data-d="1" aria-label="Business journey">
         <li class="on"><span class="i">01</span><span class="t">Tell us how work gets done</span></li>
@@ -985,10 +1088,10 @@ footer{border-top:1px solid var(--line);padding:40px 0 34px;background:var(--bg)
           <div class="ai-where reveal">
             <span class="label">Where is the AI?</span>
             <div class="row"><i>&#10003;</i><div>AI interprets the workflow<span>Reads the description, finds the repetitive task and the bottleneck.</span></div></div>
-            <div class="row"><i>&#10003;</i><div>AI identifies the opportunity<span>Maps which part could be assisted or automated &#8212; and which should not.</span></div></div>
-            <div class="row"><i>&#10003;</i><div>AI matches needs to solutions<span>Recommends a solution and explains why.</span></div></div>
-            <div class="row h"><i>&#9679;</i><div>Humans remain in control<span>Review, permissions, limitations and escalation are part of every solution.</span></div></div>
-            <p class="how-note">In this prototype the analysis is a transparent, rule-based engine running in your browser. It is labelled as such. A production version would use a language model behind the same reasoning steps.</p>
+            <div class="row"><i>&#10003;</i><div>AI identifies the opportunity<span>Maps which part could be assisted or automated, and which should not.</span></div></div>
+            <div class="row"><i>&#10003;</i><div>AI matches needs to agents<span>Recommends an agent and explains why.</span></div></div>
+            <div class="row h"><i>&#9679;</i><div>Humans remain in control<span>Review, permissions, limitations and escalation are part of every agent.</span></div></div>
+            <p class="how-note">In this prototype the analysis is a transparent, rule-based engine running in your browser, and it says so. A production version places a language model behind the same reasoning steps.</p>
           </div>
         </div>
         <form class="form-card reveal" data-d="1" id="discoverForm" novalidate>
@@ -1011,23 +1114,22 @@ footer{border-top:1px solid var(--line);padding:40px 0 34px;background:var(--bg)
           </div>
           <div class="form-foot">
             <button class="btn btn-primary btn-lg btn-caps" type="submit" id="analyzeBtn">Analyze my workflow <span class="ar">&#8594;</span></button>
-            <p class="how-note">Prototype analysis runs locally in your browser &#8212; rule-based, no AI model is called. Nothing you type is sent or stored.</p>
+            <p class="how-note">Prototype analysis runs locally in your browser: rule-based, no AI model is called. Nothing you type is sent or stored.</p>
           </div>
         </form>
       </div>
-
       <div class="sec-mark reveal" style="margin:clamp(40px,7vh,64px) 0 0;padding-bottom:0;border:0"><span class="label role">Before &#8594; with Masar</span><span class="label of">What changes for a business</span></div>
       <div class="reveal" id="bizJourneys"></div>
     </div>
   </section>
 
-  <!-- 8 · AI SOLUTIONS MARKETPLACE -->
+  <!-- 7 · AI AGENTS MARKETPLACE -->
   <section class="sec tight" id="solutions">
     <div class="wrap">
-      <div class="sec-mark reveal"><span class="label role">AI solutions marketplace</span><span class="label of">One component of the ecosystem &#8212; not the whole company</span></div>
+      <div class="sec-mark reveal"><span class="label role">Explore AI agents</span><span class="label of">The marketplace</span></div>
       <div class="sec-head">
-        <h2 class="display reveal">Discover solutions built<br><span class="l2">for real business workflows.</span></h2>
-        <p class="lede reveal" data-d="1">Every solution states the problem it solves, what it does, where it fits, its limitations, and where humans stay involved. The examples below are fictional prototype solutions that show how a listing works.</p>
+        <h2 class="display reveal">Agents built<br><span class="l2">for real business workflows.</span></h2>
+        <p class="lede reveal" data-d="1">Every agent states the problem it solves, what it does, where it fits, its limitations, and where humans stay involved. The examples below are fictional prototype agents that show how a listing works.</p>
       </div>
       <div class="after-head reveal" data-d="1">
         <div class="mk-bar">
@@ -1036,120 +1138,52 @@ footer{border-top:1px solid var(--line);padding:40px 0 34px;background:var(--bg)
         </div>
         <div class="mk-grid" id="mkGrid"></div>
       </div>
-      <p class="note"><span class="demo-flag">Fictional prototype examples</span> &nbsp; Not real customers, companies or deployed products. In the live product, a workflow with no matching solution becomes a brief that builders can build for.</p>
+      <p class="note"><span class="demo-flag">Fictional prototype examples</span> &nbsp; Not real customers, companies or deployed products. In the live product, a workflow with no matching agent becomes a brief that creators can build for.</p>
     </div>
   </section>
 
-  <!-- 9 · BUILDERS -->
-  <section class="sec" id="build">
+  <!-- 8 · CREATORS -->
+  <section class="sec" id="creators">
     <div class="wrap">
-      <div class="sec-mark reveal"><span class="label role">Build &#183; creators</span><span class="label of">Phase 1, together with businesses</span></div>
+      <div class="sec-mark reveal"><span class="label role">Creators</span><span class="label of">Phase 1, together with businesses</span></div>
       <div class="sec-head">
-        <h2 class="display reveal">Turn AI skills<br><span class="l2">into AI opportunities.</span></h2>
-        <p class="lede reveal" data-d="1">A builder should not join Masar to create another profile. They join because Masar is designed to bring them what is hardest to find alone: <b>validated business demand</b>, visibility, customer connections and, over time, investor attention. <b>Masar brings demand to creators.</b></p>
+        <h2 class="display reveal">Masar brings demand<br><span class="l2">to creators.</span></h2>
+        <p class="lede reveal" data-d="1">A creator does not join Masar to make another profile. They join for the thing that is hardest to find alone: <b>businesses that already need what they can build</b>, a quality check those businesses trust, and monthly revenue while keeping ownership.</p>
       </div>
-      <ol class="bj after-head reveal" data-d="1" aria-label="Builder journey">
-        <li><span class="i">01</span><span class="t">Learn</span></li>
-        <li><span class="i">02</span><span class="t">Build</span></li>
-        <li><span class="i">03</span><span class="t">Test</span></li>
-        <li><span class="i">04</span><span class="t">Showcase</span></li>
-        <li><span class="i">05</span><span class="t">Connect</span></li>
-        <li class="earn"><span class="i">06</span><span class="t">Earn</span></li>
-        <li><span class="i">07</span><span class="t">Scale</span></li>
-      </ol>
-      <div class="demand reveal" data-d="2" aria-label="How demand reaches a builder">
+      <div class="demand after-head reveal" data-d="1" aria-label="How demand reaches a creator">
         <div class="dm"><span class="k">Business</span><p><em>&#8220;We spend 20 hours a week screening CVs.&#8221;</em></p></div>
         <div class="dm m"><span class="k">Masar</span><p>Validated AI opportunity: candidate screening against defined criteria.</p></div>
-        <div class="dm b"><span class="k">Builder</span><p>Builds or adapts a recruitment agent for that workflow.</p></div>
-        <div class="dm"><span class="k">Business</span><p>Evaluates, connects with the builder, adopts &#8212; with human review built in.</p></div>
+        <div class="dm b"><span class="k">Creator</span><p>Builds or adapts a recruitment agent for that workflow.</p></div>
+        <div class="dm"><span class="k">Business</span><p>Subscribes, with human review built in. The creator earns monthly.</p></div>
       </div>
       <div class="grid2" style="margin-top:14px">
-        <div class="card reveal"><span class="label">What Masar is designed to give builders</span>
-          <ul class="list plain">
-            <li><i>01</i>Learning and tools to build well</li>
-            <li><i>02</i>Visibility for what they build</li>
-            <li><i>03</i>Real business problems to build for, not guesses</li>
-            <li><i>04</i>Discovery by businesses looking for exactly that workflow</li>
-            <li><i>05</i>Customer connections and monetization</li>
-            <li><i>06</i>Investor visibility as the ecosystem develops</li>
-          </ul>
+        <div class="card reveal"><span class="label">What creators get</span>
+          <ul class="list plain"><li><i>01</i>Real business problems to build for</li><li><i>02</i>A quality check that opens doors</li><li><i>03</i>Discovery by businesses looking for exactly that workflow</li><li><i>04</i>Monthly revenue, ownership kept</li><li><i>05</i>Investor visibility as adoption grows</li></ul>
         </div>
-        <div class="card violet reveal" data-d="1"><span class="label">Where the first builders come from</span>
-          <p class="lede" style="font-size:.906rem">Phase 1 sources builders around real business problems: Saudi and regional developers, AI students and freelancers who already build agents but lack a channel to businesses. The first briefs come from the business discovery engine you can try above.</p>
-          <p class="note" style="margin-top:12px">No builder has been onboarded yet. This is the launch plan, not traction.</p>
+        <div class="card violet reveal" data-d="1"><span class="label">Where the first creators come from</span>
+          <p class="lede" style="font-size:.906rem">Saudi and regional developers, AI students and freelancers who already build agents but have no channel to businesses. The first briefs come from the discovery engine above.</p>
+          <p class="note" style="margin-top:12px">No creator has been onboarded yet. This is the launch plan, not traction.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 10 · INVEST -->
-  <section class="sec tight" id="invest">
-    <div class="wrap">
-      <div class="sec-mark reveal"><span class="label role">Invest</span><span class="label of">Phase 3 &#183; positioning</span></div>
-      <div class="sec-head">
-        <h2 class="display reveal">Capital follows<br><span class="l2">opportunity.</span></h2>
-        <p class="lede reveal" data-d="1">As the ecosystem develops, Masar can create visibility into the builders and AI solutions shaping the next wave of the market &#8212; grounded in evidence of adoption, not pitch decks.</p>
-      </div>
-      <div class="card after-head reveal" data-d="1">
-        <div class="evid" aria-label="Builders plus solutions plus business adoption plus evidence lead to emerging opportunities"><span>Builders</span><i>+</i><span>Solutions</span><i>+</i><span>Business adoption</span><i>+</i><span>Evidence</span><i>&#8594;</i><span class="hi">Emerging opportunities</span></div>
-        <p class="note">No investor dashboard, funding numbers, valuations or investor relationships are shown because none exist yet. This is where investment fits in the architecture.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- 11 · FLYWHEEL -->
-  <section class="sec" id="flywheel">
-    <div class="wrap">
-      <div class="sec-mark reveal"><span class="label role">The Masar flywheel</span><span class="label of">One ecosystem &#183; a self-reinforcing loop</span></div>
-      <div class="sec-head">
-        <h2 class="display reveal">From AI adoption<br><span class="l2">to AI creation.</span></h2>
-        <p class="lede reveal" data-d="1">The next stage of Saudi Arabia&#8217;s AI economy is not only using AI. It is creating the people, businesses and solutions that power it. Each turn of the loop makes the next one easier.</p>
-      </div>
-      <div class="wheel after-head">
-        <div class="reveal" id="flywheelSvg"></div>
-        <div class="sec-head reveal" data-d="1">
-          <span class="label">How the loop compounds</span>
-          <ul class="compounds">
-            <li><span><b>More learners</b> &#8594; more capable users and future builders</span></li>
-            <li><span><b>More users</b> &#8594; more demand for solutions that work</span></li>
-            <li><span><b>More builders</b> &#8594; more solutions for real workflows</span></li>
-            <li><span><b>More solutions</b> &#8594; more business choice and adoption</span></li>
-            <li><span><b>More adoption</b> &#8594; more successful builders</span></li>
-            <li><span><b>Successful builders</b> &#8594; investment opportunities</span></li>
-            <li><span><b>Investment</b> &#8594; more creation, and the loop turns again</span></li>
-          </ul>
-          <div class="loopline" aria-label="Four pillars"><span>People</span><i>&#183;</i><span class="hi">Creators</span><i>&#183;</i><span class="hi">Businesses</span><i>&#183;</i><span>Capital</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 12 · WHY SAUDI / VISION 2030 -->
+  <!-- 9 · WHY SAUDI / VISION 2030 -->
   <section class="sec tight" id="saudi">
     <div class="wrap">
       <div class="sec-mark reveal"><span class="label role">Saudi Arabia &#183; Vision 2030</span><span class="label of">Why here, why now</span></div>
       <div class="sec-head">
         <h2 class="display reveal">Built for the next generation<br><span class="l2">of Saudi businesses.</span></h2>
-        <p class="lede reveal" data-d="1">Vision 2030&#8217;s AI opportunity is not only developing technology. It is building the talent, businesses and adoption needed to turn AI capability into practical economic value. Masar contributes to that pathway by connecting people, creators, businesses and capital.</p>
+        <p class="lede reveal" data-d="1">Vision 2030&#8217;s AI opportunity is not only developing technology. It is building the talent, businesses and adoption that turn AI capability into practical value. Masar contributes by connecting creators, businesses and capital.</p>
       </div>
-      <div class="chain c7 after-head reveal" data-d="1" aria-label="Talent to economic value">
-        <div class="link"><span class="lk">01</span><h4>Talent</h4><p>People who want to work with AI.</p></div>
-        <div class="link"><span class="lk">02</span><h4>Learning</h4><p>Understanding and using AI well.</p></div>
-        <div class="link"><span class="lk">03</span><h4>Creation</h4><p>Agents built for local workflows.</p></div>
-        <div class="link"><span class="lk">04</span><h4>Entrepreneurship</h4><p>Builders become businesses.</p></div>
-        <div class="link"><span class="lk">05</span><h4>Business adoption</h4><p>SMEs put AI to work.</p></div>
-        <div class="link"><span class="lk">06</span><h4>Productivity</h4><p>Less repetition, more judgment.</p></div>
-        <div class="link"><span class="lk">07</span><h4>Economic value</h4><p>Diversified, knowledge-driven growth.</p></div>
-      </div>
-      <div class="grid2" style="margin-top:14px">
+      <div class="grid2 after-head">
         <div class="card reveal"><span class="label">Where Masar grows</span>
           <div class="geo-line" aria-label="Saudi Arabia, then GCC, then global"><span class="g1">Saudi Arabia</span><i>&#8594;</i><span class="g2">GCC</span><i>&#8594;</i><span class="g3">Global</span></div>
           <ul class="list plain" style="margin-top:14px">
-            <li><i>01</i>Arabic-ready: the engine reads Arabic and English workflow descriptions today; an Arabic interface is planned</li>
-            <li><i>02</i>Saudi business workflows: invoices, WhatsApp support, recruitment, operations</li>
-            <li><i>03</i>A local creator ecosystem, sourced around real demand</li>
-            <li><i>04</i>Business adoption with human oversight</li>
-            <li><i>05</i>Aligned with Vision 2030 priorities</li>
+            <li><i>01</i>Saudi business workflows first: invoices, WhatsApp support, recruitment, operations</li>
+            <li><i>02</i>Arabic-ready: the engine reads Arabic and English descriptions today; an Arabic interface is planned</li>
+            <li><i>03</i>A local creator bench, sourced around real demand</li>
+            <li><i>04</i>Adoption with human oversight</li>
           </ul>
         </div>
         <div class="prios reveal" data-d="1" aria-label="Vision 2030 priorities Masar aligns with">
@@ -1160,48 +1194,48 @@ footer{border-top:1px solid var(--line);padding:40px 0 34px;background:var(--bg)
     </div>
   </section>
 
-  <!-- 13 · START SMALL: FEASIBILITY + BUSINESS MODEL -->
+  <!-- 10 · START SMALL: FEASIBILITY + BUSINESS MODEL -->
   <section class="sec" id="plan">
     <div class="wrap">
       <div class="sec-mark reveal"><span class="label role">Feasibility</span><span class="label of">How Masar actually starts</span></div>
       <div class="sec-head">
         <h2 class="display reveal">Start small.<br><span class="l2">Connect the ecosystem.</span></h2>
-        <p class="lede reveal" data-d="1">The ecosystem is the long-term architecture. The first commercial loop is narrow on purpose: <b>business demand &#8596; builders &#8596; solutions</b>. Everything else is sequenced behind it.</p>
+        <p class="lede reveal" data-d="1">The ecosystem is the long-term architecture. The first commercial loop is narrow on purpose: <b>business demand &#8596; creators &#8596; agents</b>. Everything else is sequenced behind it.</p>
       </div>
       <div class="phases after-head reveal" data-d="1">
-        <div class="ph now"><div class="k"><span>Phase 1</span><span>Now &#183; this prototype</span></div><h3>Businesses + Builders</h3><ul><li>Validate real business demand with the discovery engine</li><li>Source builders around real problems</li><li>Facilitate the first solutions, with human oversight</li></ul>
-          <div class="k" style="margin-top:6px;color:var(--muted)"><span>What Phase 1 must prove</span></div><ul><li>Businesses finish the discovery flow and request connections</li><li>Builders accept briefs and ship to spec</li><li>At least one adopted solution a business keeps using</li></ul></div>
-        <div class="ph"><div class="k"><span>Phase 2</span></div><h3>Learning &#8594; Building</h3><ul><li>Turn learners into future builders</li><li>Learning tied to real briefs, not abstract courses</li></ul></div>
-        <div class="ph"><div class="k"><span>Phase 3</span></div><h3>Investment</h3><ul><li>Visibility into promising builders and solutions</li><li>Evidence from adoption, not projections</li></ul></div>
-        <div class="ph"><div class="k"><span>Phase 4</span></div><h3>GCC expansion</h3><ul><li>Saudi Arabia &#8594; GCC &#8594; broader markets</li><li>Same loop, new workflows and builders</li></ul></div>
+        <div class="ph now"><div class="k"><span>Phase 1</span><span>Now &#183; this prototype</span></div><h3>Businesses + Creators</h3><ul><li>Validate real business demand with the discovery engine</li><li>Source creators around real problems</li><li>First agents adopted, with human oversight</li></ul>
+          <div class="k" style="margin-top:6px;color:var(--muted)"><span>What Phase 1 must prove</span></div><ul><li>Businesses finish the discovery flow and request connections</li><li>Creators accept briefs and ship to spec</li><li>At least one adopted agent a business keeps paying for</li></ul></div>
+        <div class="ph"><div class="k"><span>Phase 2</span></div><h3>Learning &#8594; Building</h3><ul><li>Turn learners into creators</li><li>Learning tied to real briefs, not abstract courses</li></ul></div>
+        <div class="ph"><div class="k"><span>Phase 3</span></div><h3>Investment</h3><ul><li>Visibility into creators with adopted agents</li><li>Evidence from adoption, not projections</li></ul></div>
+        <div class="ph"><div class="k"><span>Phase 4</span></div><h3>GCC expansion</h3><ul><li>Saudi Arabia &#8594; GCC &#8594; broader markets</li><li>Same loop, new workflows and creators</li></ul></div>
       </div>
       <div class="model">
-        <div class="card tint reveal"><span class="label">How Masar can become a business &#183; initial monetization hypothesis</span>
-          <div class="rev" aria-label="Revenue engine"><span>Business discovers solution</span><i>&#8594;</i><span>Connects with creator</span><i>&#8594;</i><span>Solution adopted</span><i>&#8594;</i><span class="hi">Masar earns connection / transaction revenue</span></div>
-          <p class="note" style="margin-top:14px"><b>Start with one revenue engine.</b> Pricing is not finalised and no pricing calculator is shown on purpose.</p>
+        <div class="card tint reveal"><span class="label">How Masar makes money &#183; initial hypothesis</span>
+          <div class="rev" aria-label="Revenue engine"><span>Business subscribes to an agent</span><i>&#8594;</i><span>Creator earns monthly</span><i>&#8594;</i><span class="hi">Masar takes a connection / transaction share</span></div>
+          <p class="note" style="margin-top:14px"><b>One revenue engine first.</b> Pricing is not finalised, so no pricing calculator is shown.</p>
         </div>
         <div class="card reveal" data-d="1"><span class="label">Potential later layers</span>
-          <ul class="list plain"><li><i>02</i>Business subscriptions</li><li><i>03</i>Builder premium services</li><li><i>04</i>Education</li><li><i>05</i>Enterprise services</li></ul>
+          <ul class="list plain"><li><i>02</i>Business subscriptions to Masar</li><li><i>03</i>Creator premium services</li><li><i>04</i>Education</li><li><i>05</i>Enterprise services</li></ul>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 14 · TRUST -->
+  <!-- 11 · TRUST -->
   <section class="sec tight" id="trust">
     <div class="wrap">
-      <div class="sec-mark reveal"><span class="label role">Trust</span><span class="label of">Agents act on workflows &#8212; so this matters</span></div>
+      <div class="sec-mark reveal"><span class="label role">Trust</span><span class="label of">Agents act on workflows, so this matters</span></div>
       <div class="trust reveal">
-        <div class="tr"><span class="ic">&#9679;</span><h4>Human oversight</h4><p>Every solution keeps review and approval with people.</p></div>
-        <div class="tr"><span class="ic">&#9679;</span><h4>Workflow evaluation</h4><p>Solutions are matched to a described workflow, not sold generically.</p></div>
-        <div class="tr"><span class="ic">&#9679;</span><h4>Clear limitations</h4><p>What a solution cannot do is stated as plainly as what it can.</p></div>
-        <div class="tr"><span class="ic">&#9679;</span><h4>Responsible adoption</h4><p>Permissions and escalation points are part of the design.</p></div>
-        <div class="tr"><span class="ic">&#10003;</span><h4>Masar Verified</h4><p>An internal Masar evaluation label &#8212; not government approval or SDAIA certification.</p></div>
+        <div class="tr"><span class="ic">&#9679;</span><h4>Human oversight</h4><p>Every agent keeps review and approval with people.</p></div>
+        <div class="tr"><span class="ic">&#9679;</span><h4>Accuracy</h4><p>Checked against the workflow it claims to handle.</p></div>
+        <div class="tr"><span class="ic">&#9679;</span><h4>Precision</h4><p>Consistent results on repeated inputs.</p></div>
+        <div class="tr"><span class="ic">&#9679;</span><h4>Data privacy</h4><p>Permissions and data access disclosed and checked.</p></div>
+        <div class="tr"><span class="ic">&#10003;</span><h4>Masar Verified</h4><p>An internal Masar evaluation label, not government approval or SDAIA certification.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- 14b · FIVE QUESTIONS, FIVE ANSWERS -->
+  <!-- 12 · FIVE QUESTIONS, FIVE ANSWERS -->
   <section class="sec" id="judges">
     <div class="wrap">
       <div class="sec-mark reveal"><span class="label role">For the skeptical reader</span><span class="label of">Five questions &#183; five answers</span></div>
@@ -1211,45 +1245,45 @@ footer{border-top:1px solid var(--line);padding:40px 0 34px;background:var(--bg)
       <div class="qa5 after-head">
         <article class="card reveal"><span class="label">01 &#183; Problem &amp; solution clarity</span>
           <p class="qa5-q">Is the problem real, specific and validated? Does the solution address it?</p>
-          <p class="qa5-a">Saudi SMEs have repetitive work and no clear path from &#8220;we waste hours on this&#8221; to a working AI solution. AI capability exists; the pathway between learning, building, adopting and investing is fragmented. Masar is the connection layer, and the business discovery engine turns a described workflow into an opportunity, a solution and a creator. The verified data point: 45.2% of Saudi internet users already use AI tools.</p>
-          <div class="qa5-l"><a href="#explore">The problem</a><a href="#business">The live solution</a><a href="#value">The data</a></div></article>
+          <p class="qa5-a">Businesses have repetitive work and no clear path from &#8220;we waste hours on this&#8221; to a working AI agent. Creators can build agents but cannot find the businesses that need them. Masar is the bridge: the discovery engine turns a described workflow into an opportunity, a checked agent and a creator.</p>
+          <div class="qa5-l"><a href="#connect">What Masar does</a><a href="#business">The live demo</a></div></article>
         <article class="card reveal" data-d="1"><span class="label">02 &#183; Feasibility &amp; applicability</span>
           <p class="qa5-q">Can this team build and run it in the Saudi market?</p>
-          <p class="qa5-a">Phase 1 is deliberately narrow: businesses and builders around real workflows, with a working prototype as the instrument. No infrastructure is needed to start beyond the discovery engine, briefs and a builder bench. Later phases are sequenced, not promised. One revenue engine first: connection and transaction revenue when a solution is adopted.</p>
-          <div class="qa5-l"><a href="#plan">Four phases</a><a href="#plan">Monetization hypothesis</a><a href="#build">Where builders come from</a></div></article>
+          <p class="qa5-a">Phase 1 is deliberately narrow: businesses and creators around real workflows, with this prototype as the instrument. Nothing more than the discovery engine, briefs and a creator bench is needed to start. Later phases are sequenced, not promised. One revenue engine first.</p>
+          <div class="qa5-l"><a href="#plan">Four phases</a><a href="#creators">Where creators come from</a></div></article>
         <article class="card reveal" data-d="2"><span class="label">03 &#183; Value proposition &amp; originality</span>
           <p class="qa5-q">What makes this better than what users have today?</p>
-          <p class="qa5-a">Today a business googles, asks a chatbot, compares tools and talks to developers, then often stops. Masar replaces six searches with one pathway that ends in a specific solution and a specific creator. It does not compete with models, courses or agent builders. It connects them, and it creates AI creators, not only AI users.</p>
-          <div class="qa5-l"><a href="#ecosystem">The connection layer</a><a href="#business">Before / with Masar</a><a href="#learn">User to creator</a></div></article>
+          <p class="qa5-a">Today a business googles, asks a chatbot, compares tools and talks to developers, then often stops. Masar replaces six searches with one pathway that ends in a specific agent and a specific creator. It does not compete with models, courses or agent builders. It connects them.</p>
+          <div class="qa5-l"><a href="#business">Before / with Masar</a><a href="#connect">Why not ChatGPT</a></div></article>
         <article class="card reveal" data-d="3"><span class="label">04 &#183; Innovation &amp; AI adoption</span>
           <p class="qa5-q">Is AI core to the solution, not decoration?</p>
-          <p class="qa5-a">AI does three jobs in the product: it interprets a described workflow, identifies the repetitive task and the bottleneck, and matches a solution with stated limitations. Every solution keeps humans in control. In this prototype the engine is transparent and rule-based, and it says so. Production places a language model behind the same reasoning steps.</p>
-          <div class="qa5-l"><a href="#business">Where is the AI</a><a href="#solutions">Solutions with limitations</a><a href="#trust">Trust</a></div></article>
+          <p class="qa5-a">AI does three jobs in the product: it interprets a described workflow, identifies the repetitive task and the bottleneck, and matches an agent with stated limitations. Every agent keeps humans in control. In this prototype the engine is transparent and rule-based, and it says so.</p>
+          <div class="qa5-l"><a href="#business">Where is the AI</a><a href="#solutions">Agents with limitations</a><a href="#trust">Trust</a></div></article>
         <article class="card tint reveal" data-d="3"><span class="label">05 &#183; Quality of the pitch</span>
           <p class="qa5-q">A clear story in four minutes, a working demo, solid answers in Q&amp;A.</p>
-          <p class="qa5-a">The 40-second story at the top explains the whole ecosystem without a slide. The live demo runs in about a minute: describe a workflow, watch the analysis, see the opportunity, explore the solution, connect with the creator. Every claim on this page is labelled real, illustrative or planned, so Q&amp;A has nothing to unpick.</p>
-          <div class="qa5-l"><a href="#top">The story</a><a href="#business">Run the demo</a><button class="linkish" type="button" data-action="open-path">Find your path</button></div></article>
+          <p class="qa5-a">Seven frames at the top explain the whole loop without a slide. The live demo runs in about a minute: describe a workflow, watch the analysis, see the opportunity, explore the agent, connect with the creator. Every claim on this page is labelled real, illustrative or planned.</p>
+          <div class="qa5-l"><a href="#story">The story</a><a href="#business">Run the demo</a></div></article>
       </div>
     </div>
   </section>
 
-  <!-- 15 · FINAL CTA -->
+  <!-- 13 · FINAL CTA -->
   <section class="sec" id="start">
     <div class="wrap">
       <div class="fin-mark reveal">MASAR</div>
-      <div class="fin-sub reveal" aria-label="Learn AI, use AI, build AI, connect, adopt, scale"><span>Learn AI</span><i>&#183;</i><span>Use AI</span><i>&#183;</i><span>Build AI</span><i>&#183;</i><span>Connect</span><i>&#183;</i><span>Adopt</span><i>&#183;</i><span>Scale</span></div>
+      <div class="fin-sub reveal" aria-label="Learn, build, verify, adopt, earn"><span>Learn</span><i>&#183;</i><span>Build</span><i>&#183;</i><span>Verify</span><i>&#183;</i><span>Adopt</span><i>&#183;</i><span>Earn</span><i>&#183;</i><span>Invest</span></div>
       <div class="cta-duo">
         <div class="cta-card biz reveal">
           <span class="label" style="color:var(--mint)">Live prototype</span>
           <h3>Have a workflow that takes too much time?</h3>
-          <p>Describe it. See the opportunity, the solution and the creator behind it &#8212; in about a minute.</p>
+          <p>Describe it. See the opportunity, the agent and the creator behind it, in about a minute.</p>
           <div class="row"><a class="btn btn-primary btn-caps" href="#business">Try the discovery engine <span class="ar">&#8594;</span></a><button class="btn btn-ghost" type="button" data-action="open-path">Find your path</button></div>
         </div>
         <div class="cta-card reveal" data-d="1">
-          <span class="label">The ecosystem</span>
-          <h3>From Saudi Arabia &#8594; GCC &#8594; Global.</h3>
-          <p>One pathway from learning and using AI to building, adopting and scaling it.</p>
-          <div class="row"><a class="btn" href="#flywheel">See the flywheel</a><a class="btn btn-ghost" href="#plan">How it starts</a></div>
+          <span class="label">Creators</span>
+          <h3>Build AI agents? Businesses are waiting.</h3>
+          <p>Real briefs, a quality check that opens doors, monthly revenue while you keep ownership.</p>
+          <div class="row"><a class="btn" href="#build">How building works</a><a class="btn btn-ghost" href="#solutions">See the marketplace</a></div>
         </div>
       </div>
     </div>
@@ -1276,7 +1310,7 @@ footer{border-top:1px solid var(--line);padding:40px 0 34px;background:var(--bg)
         <span class="label">The Agentic AI ecosystem</span>
       </div>
       <div class="foot-links">
-        <a href="#explore">Explore</a><a href="#solutions">AI Solutions</a><a href="#learn">Learn</a><a href="#build">Build</a><a href="#business">Businesses</a><a href="#invest">Invest</a><a href="#plan">Feasibility</a>
+        <a href="#story">How it works</a><a href="#solutions">AI Solutions</a><a href="#learn">Learn</a><a href="#build">Build</a><a href="#business">Businesses</a><a href="#invest">Invest</a><a href="#plan">Feasibility</a>
         <button type="button" data-action="reset">Start again</button>
       </div>
     </div>
@@ -1727,7 +1761,7 @@ function requestConnection(){
    solution/<id> (marketplace browse)
    ============================================================ */
 var SCREENS = ['home','opportunity','solution'];
-var HOME_SECTIONS = ['top','judges','explore','ecosystem','value','paths','learn','business','solutions','build','invest','flywheel','saudi','plan','trust','start'];
+var HOME_SECTIONS = ['top','story','connect','paths','how','business','solutions','creators','saudi','plan','trust','judges','start'];
 var current = null, pendingAnchor = null;
 var stepLinks = [].slice.call(document.querySelectorAll('#steps a')), navLinks = [].slice.call(document.querySelectorAll('#navLinks a'));
 var navReset = document.getElementById('navReset'), nav = document.getElementById('nav'), mnav = document.getElementById('mnav'), burger = document.getElementById('burger');
@@ -1773,7 +1807,6 @@ function showScreen(route){
   current = name;
   observeReveals(); observeLit(); onScroll();
   if (name === 'home' && ecomap) ecomap.start(); else if (ecomap) ecomap.stop();
-  if (window.__storySync) window.__storySync();
 }
 addEventListener('hashchange', function(){ showScreen(parseHash()); });
 /* same-hash clicks (e.g. #business while already at #business) still scroll */
@@ -1835,21 +1868,10 @@ function observeReveals(){ document.querySelectorAll('.screen:not([hidden]) .rev
 var lObs = window.IntersectionObserver && !REDUCED ? new IntersectionObserver(function(en){ en.forEach(function(e){ if (e.isIntersecting){ var t = e.target; setTimeout(function(){ t.classList.add('lit'); }, 260); lObs.unobserve(t); } }); }, {threshold:0.3}) : null;
 function observeLit(){ document.querySelectorAll('.screen:not([hidden]) [data-lit]:not(.lit)').forEach(function(el){ if (lObs) lObs.observe(el); else el.classList.add('lit'); }); }
 var secObs = window.IntersectionObserver ? new IntersectionObserver(function(en){
-  en.forEach(function(e){ if (!e.isIntersecting) return; var id = e.target.id, map = {explore:'explore',ecosystem:'explore',value:'explore',paths:'explore',learn:'learn',business:'business',solutions:'solutions',build:'build',invest:'invest'};
+  en.forEach(function(e){ if (!e.isIntersecting) return; var id = e.target.id, map = {how:'learn',business:'business',solutions:'solutions',creators:'build'};
     navLinks.forEach(function(a){ a.classList.toggle('on', a.dataset.sec === map[id]); }); });
 }, {rootMargin:'-40% 0px -55% 0px'}) : null;
-if (secObs) Object.keys({explore:1,ecosystem:1,value:1,paths:1,learn:1,business:1,solutions:1,build:1,invest:1}).forEach(function(id){ var el = document.getElementById(id); if (el) secObs.observe(el); });
-/* embedded story: play only while on screen */
-(function(){
-  var fr = document.getElementById('storyIframe'); if (!fr || !window.IntersectionObserver) return;
-  var vis = false, loaded = false;
-  function sync(){ if (!loaded || !fr.contentWindow) return; fr.contentWindow.postMessage({masar: vis && current === 'home' ? 'play' : 'pause'}, '*'); }
-  fr.addEventListener('load', function(){ loaded = true; sync(); });
-  try { if (fr.contentDocument && fr.contentDocument.readyState === 'complete' && fr.contentWindow.MasarDiagram){ loaded = true; } } catch(e){}
-  setTimeout(function(){ loaded = true; sync(); }, 2500); /* belt and braces if the load event fired before we listened */
-  new IntersectionObserver(function(en){ vis = en[0].isIntersecting; sync(); }, {threshold:0.25}).observe(fr);
-  window.__storySync = sync;
-})();
+if (secObs) Object.keys({how:1,business:1,solutions:1,creators:1}).forEach(function(id){ var el = document.getElementById(id); if (el) secObs.observe(el); });
 var ticking = false;
 function onScroll(){ nav.classList.toggle('stuck', scrollY > 30); ticking = false; }
 addEventListener('scroll', function(){ if (!ticking){ ticking = true; requestAnimationFrame(onScroll); } }, {passive:true});
@@ -1887,6 +1909,182 @@ window.Masar = { recommend: recommend, solutions: SOLUTIONS, state: function(){ 
 
 /* boot */
 showScreen(parseHash());
+})();
+</script>
+<script>
+(function(){
+"use strict";
+var REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
+var isSmall = function(){ return innerWidth < 900; };
+var $ = function(id){ return document.getElementById(id); };
+
+/* ============================================================
+   HERO BACKGROUND — the moving network (creators, agents, businesses)
+   ============================================================ */
+function seedRand(seed){ var s = seed; return function(){ s = (s*16807) % 2147483647; return (s-1)/2147483646; }; }
+function glowSprite(color, radius, intensity){
+  var s = Math.ceil(radius*7), c = document.createElement('canvas'); c.width = c.height = s;
+  var x = c.getContext('2d'), g = x.createRadialGradient(s/2,s/2,0,s/2,s/2,s/2);
+  g.addColorStop(0,'rgba('+color+','+(0.55*intensity)+')'); g.addColorStop(0.28,'rgba('+color+','+(0.18*intensity)+')'); g.addColorStop(1,'rgba('+color+',0)');
+  x.fillStyle = g; x.fillRect(0,0,s,s); return c;
+}
+var RGB = {mint:'102,246,210', violet:'124,140,255', white:'245,245,240'};
+function HeroField(canvas){
+  var self = this; this.canvas = canvas; this.ctx = canvas.getContext('2d'); this.host = canvas.parentElement;
+  this.w = 0; this.h = 0; this.time = 0; this.raf = null; this.visible = true; this.mouse = {x:-9999,y:-9999,on:false};
+  this.sprites = {b:glowSprite(RGB.white,5,.55), a:glowSprite(RGB.mint,8,1), e:glowSprite(RGB.violet,10,.9)};
+  this.build(); this.resize();
+  if (window.ResizeObserver) new ResizeObserver(function(){ self.resize(); }).observe(this.host);
+  if (window.IntersectionObserver) new IntersectionObserver(function(en){ self.visible = en[0].isIntersecting; if (self.visible) self.start(); else self.stop(); }, {threshold:0.01}).observe(this.host);
+  document.addEventListener('visibilitychange', function(){ if (document.hidden) self.stop(); else if (self.visible) self.start(); });
+  var hero = this.host.parentElement;
+  hero.addEventListener('pointermove', function(ev){ var r = canvas.getBoundingClientRect(); self.mouse.x = ev.clientX - r.left; self.mouse.y = ev.clientY - r.top; self.mouse.on = true; });
+  hero.addEventListener('pointerleave', function(){ self.mouse.on = false; });
+  this.start();
+}
+HeroField.prototype.build = function(){
+  var rnd = seedRand(8891), small = isSmall(), c = small ? {b:8,a:6,e:5} : {b:16,a:9,e:8};
+  var nodes = this.nodes = [], bias = small ? 0.5 : 0.5, spread = small ? 0.36 : 0.36;
+  function place(type, n, colX){ for (var i=0;i<n;i++) nodes.push({type:type, hx: colX + (rnd()-0.5)*0.26, hy: 0.08 + rnd()*0.84, ph: rnd()*6.283, amp: 0.006 + rnd()*0.010, spd: 0.10 + rnd()*0.16, r: type==='b' ? 2.3 : type==='a' ? 4 : 5.4, x:0, y:0}); }
+  place('b', c.b, bias - spread); place('a', c.a, bias); place('e', c.e, bias + spread);
+  var B=[],A=[],E=[]; nodes.forEach(function(n,i){ (n.type==='b'?B:n.type==='a'?A:E).push(i); });
+  var edges = this.edges = [], js = this.journeys = [];
+  A.forEach(function(ai,k){ var b1 = B[(k*2)%B.length], b2 = B[(k*2+3)%B.length], e1 = E[k%E.length], e2 = E[(k+2)%E.length];
+    edges.push({a:b1,b:ai,w:.55}); if (k%2) edges.push({a:b2,b:ai,w:.55}); edges.push({a:ai,b:e1,w:.75}); if (!(k%2)) edges.push({a:ai,b:e2,w:.75}); js.push([b1,ai,e1]); });
+  for (var i=0;i<Math.min(4,A.length-1);i++) edges.push({a:A[i],b:A[i+1],w:.2,peer:true});
+  this.particles = [];
+};
+HeroField.prototype.resize = function(){ var r = this.host.getBoundingClientRect(); if (!r.width || !r.height) return; this.dpr = Math.min(devicePixelRatio||1,2); this.w = r.width; this.h = r.height; this.canvas.width = Math.round(r.width*this.dpr); this.canvas.height = Math.round(r.height*this.dpr); this.ctx.setTransform(this.dpr,0,0,this.dpr,0,0); this.draw(); };
+HeroField.prototype.pos = function(n,t){ var nx = n.hx + Math.cos(t*n.spd + n.ph)*n.amp, ny = n.hy + Math.sin(t*n.spd*0.83 + n.ph*1.4)*n.amp*1.25, x = nx*this.w, y = ny*this.h;
+  if (this.mouse.on){ var dx = this.mouse.x-x, dy = this.mouse.y-y, d = Math.hypot(dx,dy), R = 170; if (d < R && d > .5){ var f = (1-d/R); f = f*f*16; x += dx/d*f; y += dy/d*f; } } return [x,y]; };
+HeroField.prototype.draw = function(){
+  var ctx = this.ctx, t = this.time, i, n, p; if (!this.w) return; ctx.clearRect(0,0,this.w,this.h);
+  for (i=0;i<this.nodes.length;i++){ n = this.nodes[i]; p = this.pos(n,t); n.x = p[0]; n.y = p[1]; }
+  ctx.lineWidth = 1;
+  for (i=0;i<this.edges.length;i++){ var ed = this.edges[i], A = this.nodes[ed.a], B = this.nodes[ed.b], a = ed.w*0.16*(ed.peer?.6:1), mx = (A.x+B.x)/2, my = (A.y+B.y)/2;
+    if (this.mouse.on){ var dx = this.mouse.x-mx, dy = this.mouse.y-my, d = Math.hypot(dx,dy); if (d < 200 && d > 1){ var f = (1-d/200); f = f*f*22; mx += dx/d*f; my += dy/d*f; } }
+    ctx.strokeStyle = B.type==='e' ? 'rgba(150,160,210,'+a+')' : 'rgba(220,235,235,'+a+')'; ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.quadraticCurveTo(mx,my,B.x,B.y); ctx.stroke(); }
+  for (i=0;i<this.particles.length;i++){ var pt = this.particles[i], F = this.nodes[pt.from], T = this.nodes[pt.to], u = pt.t, iu = 1-u, mx2 = (F.x+T.x)/2, my2 = (F.y+T.y)/2;
+    var px = iu*iu*F.x + 2*iu*u*mx2 + u*u*T.x, py = iu*iu*F.y + 2*iu*u*my2 + u*u*T.y;
+    ctx.fillStyle = 'rgba(102,246,210,.9)'; ctx.beginPath(); ctx.arc(px,py,1.7,0,6.2832); ctx.fill(); ctx.fillStyle = 'rgba(102,246,210,.25)'; ctx.beginPath(); ctx.arc(px,py,4.2,0,6.2832); ctx.fill(); }
+  for (i=0;i<this.nodes.length;i++){ n = this.nodes[i]; var sp = this.sprites[n.type]; ctx.drawImage(sp, n.x-sp.width/2, n.y-sp.width/2);
+    if (n.type==='e'){ ctx.strokeStyle = 'rgba(124,140,255,.8)'; ctx.lineWidth = 1.2; ctx.strokeRect(n.x-n.r,n.y-n.r,n.r*2,n.r*2); ctx.fillStyle = 'rgba(124,140,255,.12)'; ctx.fillRect(n.x-n.r,n.y-n.r,n.r*2,n.r*2); }
+    else { ctx.fillStyle = n.type==='a' ? 'rgba(140,255,225,.95)' : 'rgba(245,245,240,.82)'; ctx.beginPath(); ctx.arc(n.x,n.y,n.r,0,6.2832); ctx.fill();
+      if (n.type==='a'){ ctx.strokeStyle = 'rgba(102,246,210,.32)'; ctx.lineWidth = 1; ctx.beginPath(); ctx.arc(n.x,n.y,n.r+4,0,6.2832); ctx.stroke(); } } }
+};
+HeroField.prototype.step = function(dt){ this.time += dt;
+  for (var i=this.particles.length-1;i>=0;i--){ var p = this.particles[i]; p.t += p.sp*dt*60; if (p.t >= 1){ if (p.leg === 0){ p.leg = 1; p.t = 0; p.from = p.j[1]; p.to = p.j[2]; } else this.particles.splice(i,1); } }
+  if (this.particles.length < Math.round(this.nodes.length*0.22) && Math.random() < 0.06*dt*60 && this.journeys.length){ var j = this.journeys[(Math.random()*this.journeys.length)|0]; this.particles.push({from:j[0], to:j[1], t:0, sp:.006+Math.random()*.006, leg:0, j:j}); } };
+HeroField.prototype.start = function(){ if (this.raf) return; var self = this, last = performance.now(); if (REDUCED){ this.draw(); return; } (function loop(now){ self.raf = requestAnimationFrame(loop); var dt = Math.min((now-last)/16.667, 3); last = now; self.step(dt); self.draw(); })(last); };
+HeroField.prototype.stop = function(){ if (this.raf){ cancelAnimationFrame(this.raf); this.raf = null; } };
+var heroField = null, heroCanvas = $('heroCanvas');
+if (heroCanvas){ try { heroField = new HeroField(heroCanvas); } catch(e){ heroField = null; } }
+var wasSmall = isSmall();
+addEventListener('resize', function(){ if (heroField && isSmall() !== wasSmall){ wasSmall = isSmall(); heroField.build(); heroField.resize(); } }, {passive:true});
+
+/* ============================================================
+   BRIDGE — creators -> Masar -> businesses, demand flowing back
+   ============================================================ */
+(function(){
+  var host = $('bridge'); if (!host) return;
+  var W = 640, H = 430, cx = 320, cy = 215;
+  var L = [{y:105},{y:215},{y:325}], R = [{y:105},{y:215},{y:325}], lx = 92, rx = 548;
+  function avatar(x,y){ return '<g><circle class="av" cx="'+x+'" cy="'+y+'" r="30"/><circle class="head" cx="'+x+'" cy="'+(y-8)+'" r="8"/><path class="body" d="M'+(x-16)+' '+(y+18)+' C '+(x-16)+' '+(y+4)+', '+(x+16)+' '+(y+4)+', '+(x+16)+' '+(y+18)+' Z"/></g>'; }
+  function biz(x,y){ return '<g><circle class="biz" cx="'+x+'" cy="'+y+'" r="30"/><g class="bizi" transform="translate('+(x-12)+' '+(y-12)+')"><rect x="0" y="4" width="24" height="20" rx="2"/><path d="M5 9h4M15 9h4M5 14h4M15 14h4M9 24v-5h6v5"/></g></g>'; }
+  var lanesF = L.map(function(l){ return 'M'+(lx+34)+' '+l.y+' C 200 '+l.y+', 220 '+cy+', '+(cx-82)+' '+cy; }).concat(R.map(function(r){ return 'M'+(cx+82)+' '+cy+' C 420 '+cy+', 440 '+r.y+', '+(rx-34)+' '+r.y; }));
+  var lanesB = R.map(function(r){ return 'M'+(rx-34)+' '+(r.y+14)+' C 440 '+(r.y+14)+', 420 '+(cy+26)+', '+(cx+82)+' '+(cy+26); }).concat(L.map(function(l){ return 'M'+(cx-82)+' '+(cy+26)+' C 220 '+(cy+26)+', 200 '+(l.y+14)+', '+(lx+34)+' '+(l.y+14); }));
+  host.innerHTML = '<svg viewBox="0 0 '+W+' '+H+'" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">'+
+    '<text class="who" x="'+lx+'" y="46">Creators</text><text class="who hi" x="'+cx+'" y="46">Masar</text><text class="who v" x="'+rx+'" y="46">Businesses</text>'+
+    lanesF.map(function(d,i){ return '<path class="lane" id="bf'+i+'" d="'+d+'"/>'; }).join('')+
+    lanesB.map(function(d,i){ return '<path class="lane back" id="bb'+i+'" d="'+d+'"/>'; }).join('')+
+    L.map(function(l){ return avatar(lx,l.y); }).join('')+R.map(function(r){ return biz(rx,r.y); }).join('')+
+    '<rect class="core-glow" x="'+(cx-92)+'" y="'+(cy-44)+'" width="184" height="88" rx="18"/>'+
+    '<rect class="core" x="'+(cx-82)+'" y="'+(cy-36)+'" width="164" height="72" rx="14"/>'+
+    '<text class="core-t" x="'+cx+'" y="'+(cy-6)+'">MASAR</text><text class="core-s" x="'+cx+'" y="'+(cy+12)+'">checks &#183; connects</text>'+
+    '<rect class="gate" x="'+(cx-62)+'" y="'+(cy+20)+'" width="124" height="14"/><text class="gate-t" x="'+cx+'" y="'+(cy+30.5)+'">accuracy &#183; precision &#183; privacy</text>'+
+    '<text class="flow-t" x="'+cx+'" y="392">AI agents &#8594; &nbsp;&nbsp; &#8592; demand &#183; revenue</text>'+
+    '<g id="bparts"></g></svg>';
+  var svg = host.querySelector('svg'), parts = svg.querySelector('#bparts');
+  var F = lanesF.map(function(_,i){ var el = svg.querySelector('#bf'+i); return {el:el, len:el.getTotalLength()}; });
+  var Bk = lanesB.map(function(_,i){ var el = svg.querySelector('#bb'+i); return {el:el, len:el.getTotalLength()}; });
+  var ps = [], acc = {f:0, b:0};
+  function spawn(kind){
+    var g = document.createElementNS('http://www.w3.org/2000/svg','g');
+    if (kind === 'f'){ /* an agent chip: two legs, creator -> Masar -> business */
+      var i = (Math.random()*3)|0, j = 3 + ((Math.random()*3)|0);
+      g.innerHTML = '<circle class="pg" r="8"/><circle class="p" r="3.2"/>'; ps.push({el:g, legs:[F[i], F[j]], leg:0, t:0, sp:.55, kind:'f'});
+    } else { var k = (Math.random()*3)|0, m = 3 + ((Math.random()*3)|0), coin = Math.random() < .5;
+      g.innerHTML = coin ? '<circle class="cg" r="7"/><circle class="c" r="2.8"/>' : '<circle class="dg" r="7"/><circle class="d" r="2.8"/>'; ps.push({el:g, legs:[Bk[k], Bk[m]], leg:0, t:0, sp:.5, kind:'b'}); }
+    parts.appendChild(g);
+  }
+  var last = performance.now(), raf = null, on = true;
+  function frame(now){
+    raf = requestAnimationFrame(frame); var dt = Math.min((now-last)/1000, .05); last = now;
+    acc.f += dt*1.1; acc.b += dt*.9; while (acc.f >= 1){ acc.f -= 1; spawn('f'); } while (acc.b >= 1){ acc.b -= 1; spawn('b'); }
+    for (var i=ps.length-1;i>=0;i--){ var p = ps[i]; p.t += dt*p.sp; if (p.t >= 1){ if (p.leg === 0){ p.leg = 1; p.t = 0; } else { p.el.remove(); ps.splice(i,1); continue; } }
+      var lg = p.legs[p.leg], pt = lg.el.getPointAtLength(p.t*lg.len); p.el.setAttribute('transform','translate('+pt.x.toFixed(1)+' '+pt.y.toFixed(1)+')');
+      p.el.setAttribute('opacity', (p.leg===0 && p.t < .12) ? p.t/.12 : (p.leg===1 && p.t > .88) ? (1-p.t)/.12 : 1); }
+  }
+  if (!REDUCED){ raf = requestAnimationFrame(frame); if (window.IntersectionObserver) new IntersectionObserver(function(en){ var v = en[0].isIntersecting; if (v && !raf){ last = performance.now(); raf = requestAnimationFrame(frame); } if (!v && raf){ cancelAnimationFrame(raf); raf = null; } }, {threshold:0.05}).observe(host); }
+})();
+
+/* ============================================================
+   STORYBOARD — seven static frames drawn from primitives
+   ============================================================ */
+(function(){
+  var host = $('storyboard'); if (!host) return;
+  var W = 360, H = 200;
+  function av(x,y,r,name,role,cls){ return '<circle class="fr-av '+(cls||'')+'" cx="'+x+'" cy="'+y+'" r="'+r+'"/><circle class="fr-head" cx="'+x+'" cy="'+(y-r*.28)+'" r="'+(r*.27)+'"/><path class="fr-body" d="M'+(x-r*.55)+' '+(y+r*.6)+' C '+(x-r*.55)+' '+(y+r*.15)+', '+(x+r*.55)+' '+(y+r*.15)+', '+(x+r*.55)+' '+(y+r*.6)+' Z"/>'+(name ? '<text class="fr-name" x="'+x+'" y="'+(y+r+16)+'">'+name+'</text>' : '')+(role ? '<text class="fr-role '+(cls||'')+'" x="'+x+'" y="'+(y+r+29)+'">'+role+'</text>' : ''); }
+  function bz(x,y,label){ return '<circle class="fr-biz" cx="'+x+'" cy="'+y+'" r="18"/><g class="fr-bizi" transform="translate('+(x-8)+' '+(y-8)+')"><rect x="0" y="3" width="16" height="13" rx="1.5"/><path d="M3.5 6.5h2.5M10 6.5h2.5M3.5 10h2.5M10 10h2.5M6 16v-3.5h4V16"/></g>'+(label ? '<text class="fr-role v" x="'+x+'" y="'+(y+31)+'">'+label+'</text>' : ''); }
+  function card(x,y,w,h,title,sub,dash){ return '<rect class="fr-card'+(dash?' dash':'')+'" x="'+(x-w/2)+'" y="'+(y-h/2)+'" width="'+w+'" height="'+h+'"/><g class="fr-bot" transform="translate('+(x-10)+' '+(y-h/2+8)+')"><rect x="0" y="4" width="20" height="15" rx="5"/><circle class="fr-eye" cx="6.5" cy="11.5" r="2"/><circle class="fr-eye" cx="13.5" cy="11.5" r="2"/><path d="M10 4V0"/></g><text class="fr-ct" x="'+x+'" y="'+(y+h/2-20)+'">'+title+'</text><text class="fr-cs'+(dash?' dim':'')+'" x="'+x+'" y="'+(y+h/2-8)+'">'+sub+'</text>'; }
+  function arrow(x1,y1,x2,y2,cls){ var mx=(x1+x2)/2; return '<path class="fr-arrow '+(cls||'')+'" d="M'+x1+' '+y1+' C '+mx+' '+y1+', '+mx+' '+y2+', '+x2+' '+y2+'" marker-end="url(#fr-m'+((cls||'').indexOf('g')>-1?'g':(cls||'').indexOf('v')>-1?'v':'m')+')"/>'; }
+  function tag(x,y,w,text,cls){ return '<rect class="fr-tag '+(cls||'')+'" x="'+(x-w/2)+'" y="'+(y-9)+'" width="'+w+'" height="18"/><text class="fr-tagt '+(cls||'')+'" x="'+x+'" y="'+(y+3.5)+'">'+text+'</text>'; }
+  function money(x,y,v,k){ return '<rect class="fr-money" x="'+(x-58)+'" y="'+(y-24)+'" width="116" height="48"/><text class="fr-mk" x="'+x+'" y="'+(y-9)+'">'+k+'</text><text class="fr-mv" x="'+x+'" y="'+(y+13)+'">'+v+'</text>'; }
+  function coins(pts){ return pts.map(function(p){ return '<circle class="fr-coin" cx="'+p[0]+'" cy="'+p[1]+'" r="3"/>'; }).join(''); }
+  function dots(pts){ return pts.map(function(p){ return '<circle class="fr-dot" cx="'+p[0]+'" cy="'+p[1]+'" r="2.6"/>'; }).join(''); }
+  var defs = '<defs><marker id="fr-mm" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0 0L6 3L0 6Z" fill="#66F6D2"/></marker><marker id="fr-mg" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0 0L6 3L0 6Z" fill="#E8B15C"/></marker><marker id="fr-mv" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0 0L6 3L0 6Z" fill="#7C8CFF"/></marker></defs>';
+  var FR = [
+    {t:'Sara learns through Masar', s:'A structured path: how agents work, workflows, tools, then a first agent on a real brief.',
+     g: av(80,92,34,'Sara','Learner','m') + '<rect class="fr-card" x="170" y="40" width="160" height="112"/><text class="fr-cs" x="250" y="58">Masar learning path</text>'+[['How agents work',72],['Workflows and tools',96],['Build your first agent',120]].map(function(l){ return '<rect class="fr-lesson" x="182" y="'+(l[1]-6)+'" width="136" height="18"/><text class="fr-chki" x="192" y="'+(l[1]+7)+'">&#10003;</text><text class="fr-lt" x="201" y="'+(l[1]+7)+'">'+l[0]+'</text>'; }).join('') + arrow(170,150,118,120,'m') },
+    {t:'She builds her first agent', s:'For a problem a business on Masar actually has: screening CVs against defined criteria.',
+     g: av(80,100,34,'Sara','Creator','m') + card(240,96,150,86,'CV Screening','AI agent') + arrow(118,92,165,92,'m') },
+    {t:'Masar checks it', s:'Accuracy, precision and data privacy, with a human review step designed in. Then it is Verified.',
+     g: '<rect class="fr-gate" x="60" y="22" width="240" height="160"/><text class="fr-gt" x="180" y="42">Masar quality check</text>' + card(180,88,150,74,'CV Screening','&#10003; Verified') + [['Accuracy',110],['Precision',180],['Privacy',250]].map(function(c){ return '<rect class="fr-chk" x="'+(c[1]-30)+'" y="138" width="60" height="30"/><text class="fr-chki" x="'+c[1]+'" y="151">&#10003;</text><text class="fr-chkt" x="'+c[1]+'" y="163">'+c[0]+'</text>'; }).join('') },
+    {t:'It goes live on the marketplace', s:'Listed where businesses are already searching. Owned by Sara.',
+     g: card(180,86,150,80,'CV Screening','&#10003; Verified') + '<line class="fr-shelf" x1="80" y1="136" x2="280" y2="136"/><text class="fr-role" x="180" y="152">Masar marketplace</text>' + tag(180,172,110,'Owned by Sara','') + card(300,86,70,80,'Other','agents',true).replace('class="fr-ct"','class="fr-ct" style="fill:#858A93"') },
+    {t:'Khalid subscribes and uses it', s:'In his own business, with people staying in control. A monthly fee goes to Sara. She stays the owner.',
+     g: av(58,84,26,'Sara','Owner','m') + card(180,70,120,64,'CV Screening','&#10003; Verified') + av(300,84,26,'Khalid','Subscriber','g') + arrow(273,74,242,70,'v') + dots([[262,72]]) + arrow(120,92,88,100,'g') + coins([[140,96],[128,99]]) + money(112,168,'SAR 1,500','Sara &#183; monthly') + tag(272,150,100,'Uses it daily','v') },
+    {t:'More businesses subscribe', s:'Sara’s monthly revenue grows. One agent, many businesses, ownership unchanged.',
+     g: av(58,92,26,'Sara','Owner','m') + card(180,78,120,64,'CV Screening','&#10003; Verified') + bz(300,44,'') + bz(320,100,'') + bz(300,156,'') + arrow(280,52,242,72,'v') + arrow(300,100,242,82,'v') + arrow(280,150,242,90,'v') + arrow(120,90,88,98,'g') + coins([[142,92],[131,95],[153,90]]) + money(112,168,'SAR 4,500','Sara &#183; monthly') },
+    {t:'Investors back Sara', s:'They see real usage and real revenue, and back her next agent. The loop starts again.',
+     g: av(70,90,30,'Sara','Creator','m') + card(196,66,120,58,'CV Screening','3 subscribers') + av(300,140,26,'Investor','Backs Sara','g') + arrow(272,140,108,112,'g') + coins([[230,132],[200,126],[170,122]]) + tag(196,118,128,'Real usage &#183; real revenue','v') + tag(70,168,120,'Builds agent no. 2','') }
+  ];
+  host.innerHTML = FR.map(function(f,i){ return '<article class="frame"><svg viewBox="0 0 '+W+' '+H+'" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="'+f.t+'">'+defs+f.g+'</svg><div class="ft"><b>0'+(i+1)+' / 07</b><span>'+f.t+'</span><small>'+f.s+'</small></div></article>'; }).join('') +
+    '<article class="frame" style="justify-content:center;align-items:center;text-align:center;padding:24px;gap:10px"><span class="label" style="color:var(--mint)">The loop</span><p class="lede" style="font-size:.906rem;max-width:26ch;text-align:center">Learn &#8594; Build &#8594; Verify &#8594; List &#8594; Adopt &#8594; Earn &#8594; Invest &#8594; Build again.</p><a class="btn btn-sm btn-caps" href="#connect">How we connect it <span class="ar">&#8595;</span></a></article>';
+})();
+
+/* ============================================================
+   TABS — how each step works; #learn / #build / #invest / #discover open the tab
+   ============================================================ */
+(function(){
+  var list = $('howTabs'); if (!list) return;
+  var btns = [].slice.call(list.querySelectorAll('[role=tab]'));
+  function select(name, focus){
+    btns.forEach(function(b){ var on = b.dataset.tab === name; b.classList.toggle('on', on); b.setAttribute('aria-selected', String(on)); var p = $('panel-'+b.dataset.tab); if (p) p.hidden = !on; if (on && focus) b.focus({preventScroll:true}); });
+  }
+  list.addEventListener('click', function(e){ var b = e.target.closest('[role=tab]'); if (b) select(b.dataset.tab); });
+  list.addEventListener('keydown', function(e){ var i = btns.indexOf(document.activeElement); if (i < 0) return; if (e.key === 'ArrowRight' || e.key === 'ArrowLeft'){ e.preventDefault(); var n = (i + (e.key === 'ArrowRight' ? 1 : -1) + btns.length) % btns.length; select(btns[n].dataset.tab, true); } });
+  var MAP = {learn:'learn', build:'build', invest:'invest', discover:'discover', adopt:'adopt'};
+  function fromHash(){
+    var h = (location.hash || '').replace(/^#/, '');
+    if (!MAP[h]) return;
+    select(MAP[h]);
+    var sec = $('how'); if (sec){ var y = sec.getBoundingClientRect().top + scrollY - 72; setTimeout(function(){ scrollTo({top:y, behavior: REDUCED ? 'auto' : 'smooth'}); }, 40); }
+  }
+  addEventListener('hashchange', fromHash);
+  document.addEventListener('click', function(e){ var a = e.target.closest('a[href^="#"]'); if (!a) return; var h = a.getAttribute('href').slice(1); if (MAP[h] && ('#'+h) === location.hash){ fromHash(); } });
+  fromHash();
+})();
 })();
 </script>
 </body>
