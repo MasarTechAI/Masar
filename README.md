@@ -24,13 +24,13 @@ It creates a pathway from learning and building to connecting, adopting solution
 
 | # | Section | Question it answers |
 | --- | --- | --- |
-| 1 | Hero: headline, three direct doors (Explore agents / Build / Learn), bridge diagram over a moving network | What is Masar? |
+| 1 | Hero: headline, three direct doors (Explore AI agents / Build / Learn), bridge diagram over a moving network | What is Masar? |
 | 2 | Seven static frames: learn → build → check → list → subscribe → grow → invest | How does the whole loop work? |
 | 3 | Creators build, businesses need, Masar connects + "Why not ChatGPT?" | What does Masar actually do? |
 | 4 | Four doors (Learn, Build, Business, Invest) | Where do I start? |
 | 5 | Tabs: how each step works (Learn, Build, Discover, Adopt & earn, Invest) | How does each part work? |
 | 6 | **Business AI discovery engine** (the live demo) + Before / With Masar | How does a business use it? Where is the AI? |
-| 7 | Explore AI agents (marketplace, fictional examples) | What do agents look like? |
+| 7 | Marketplace (nav tab): problem-first entry, six curated agents, View all, "Works with", and a marketplace record per agent — creator revenue earned, businesses deployed, rating — labelled demo data | What do agents look like? |
 | 8 | Creators: Masar brings demand | Why would creators join? |
 | 9 | Why Saudi / Vision 2030 | Why here, why now? |
 | 10 | Start small: four phases + business model | Is it feasible? Who pays? |
@@ -67,7 +67,7 @@ Agents work together (each listing shows "Works with"), and a creator chooses wh
 
 ### What is real and what is not
 
-- The ten agents are **fictional prototype examples**, labelled as such throughout. No customers, partners, revenue, funding, users, market sizes or testimonials are claimed.
+- The ten agents are **fictional prototype examples**, labelled as such throughout. The revenue, deployment and rating figures on each listing are **illustrative demo data** (labelled "Demo data") that show what a live listing would display; no real customers, partners, revenue, funding or traction are claimed.
 - **Masar Verified** is an internal Masar evaluation label, not government, SDAIA or Vision 2030 certification.
 - Masar is aligned with Vision 2030 priorities but is an independent startup prototype, not a government product.
 - Only the Business path is functional. Learn, Build and Invest are positioning for later phases and say so.

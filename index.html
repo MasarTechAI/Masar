@@ -782,6 +782,22 @@ footer{border-top:1px solid var(--line);padding:40px 0 34px;background:var(--bg)
   .bridge .gate,.bridge .gate-t{display:none}
 }
 
+/* marketplace record: revenue, deployments, rating */
+.tstats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;position:relative;margin:2px 0 4px}
+.tstats > div{background:var(--bg);padding:10px 10px 9px;display:flex;flex-direction:column;gap:3px;min-width:0}
+.tstats b{font:500 .938rem/1.2 var(--mono);color:var(--fg);letter-spacing:-.02em;white-space:nowrap;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.tstats span{font:500 .5rem/1.4 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+.tstats .stars{color:var(--gold);font-size:.75rem;letter-spacing:1px}
+.tstats .demo-flag{position:absolute;top:-9px;right:10px;font-size:.5rem;padding:2px 6px}
+.tstats.compact b{font-size:.875rem}
+.srec{margin-bottom:14px}
+.srec .tstats{margin-top:0}
+.srec .tstats > div{padding:16px 18px}
+.srec .tstats b{font-size:1.4rem}
+.srec .tstats span{font-size:.563rem}
+.srec .tstats .demo-flag{display:none}
+@media(max-width:520px){.tstats{grid-template-columns:1fr}.tstats .demo-flag{top:-9px}}
+
 /* problem-first marketplace */
 .probs-h{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:10px}
 .probs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:22px}
@@ -881,7 +897,7 @@ footer{border-top:1px solid var(--line);padding:40px 0 34px;background:var(--bg)
   <div class="nav-in">
     <a class="brand" href="#/" aria-label="Masar — home"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>MASAR</a>
     <nav class="nav-links" id="navLinks" aria-label="Main">
-      <a href="#solutions" data-sec="solutions">Explore agents</a>
+      <a href="#solutions" data-sec="solutions">Marketplace</a>
       <a href="#learn" data-sec="learn">Learn</a>
       <a href="#build" data-sec="build">Build</a>
       <a href="#business" data-sec="business">Businesses</a>
@@ -892,7 +908,7 @@ footer{border-top:1px solid var(--line);padding:40px 0 34px;background:var(--bg)
       <li><a href="#/opportunity" data-step="opportunity"><b>02</b><span>Opportunity</span></a></li>
       <li><a href="#/solution" data-step="solution"><b>03</b><span>Solution</span></a></li>
     </ol>
-    <a class="nav-back" id="navBack" href="#solutions"><span class="ar back">&#8592;</span> AI Solutions marketplace</a>
+    <a class="nav-back" id="navBack" href="#solutions"><span class="ar back">&#8592;</span> Marketplace</a>
     <div class="nav-right">
       <button class="btn btn-sm btn-ghost" type="button" id="navReset" aria-label="Start again" hidden><span class="ic" aria-hidden="true">&#8635;</span><span class="tx">Start again</span></button>
       <a class="btn btn-sm btn-primary" id="navPath" href="#business"><span class="tx">Try the demo</span><span class="ar">&#8594;</span></a>
@@ -901,7 +917,7 @@ footer{border-top:1px solid var(--line);padding:40px 0 34px;background:var(--bg)
   </div>
 </header>
 <nav class="mnav" id="mnav" aria-label="Mobile" hidden>
-  <a href="#solutions">Explore agents</a><a href="#learn">Learn</a><a href="#build">Build</a><a href="#business">Businesses</a><a href="#invest">Invest</a>
+  <a href="#solutions">Marketplace</a><a href="#learn">Learn</a><a href="#build">Build</a><a href="#business">Businesses</a><a href="#invest">Invest</a>
   <a class="btn btn-primary" href="#business">Try the demo <span class="ar">&#8594;</span></a>
 </nav>
 
@@ -1142,7 +1158,7 @@ footer{border-top:1px solid var(--line);padding:40px 0 34px;background:var(--bg)
   <!-- 7 · AI AGENTS MARKETPLACE -->
   <section class="sec tight" id="solutions">
     <div class="wrap">
-      <div class="sec-mark reveal"><span class="label role">Explore AI agents</span><span class="label of">The marketplace</span></div>
+      <div class="sec-mark reveal"><span class="label role">Marketplace</span><span class="label of">Explore AI agents</span></div>
       <div class="sec-head">
         <h2 class="display reveal">Agents built<br><span class="l2">for real business workflows.</span></h2>
         <p class="lede reveal" data-d="1">Every agent states the problem it solves, what it does, where it fits, its limitations, and where humans stay involved. <b>Agents work together:</b> a business can run several, and they hand information to each other. The examples are fictional prototype agents that show how a listing works.</p>
@@ -1157,7 +1173,7 @@ footer{border-top:1px solid var(--line);padding:40px 0 34px;background:var(--bg)
         <div class="mk-grid" id="mkGrid"></div>
         <div class="mk-more"><button class="btn btn-caps" type="button" id="mkMore"></button></div>
       </div>
-      <p class="note"><span class="demo-flag">Fictional prototype examples</span> &nbsp; Not real customers, companies or deployed products. In the live product, a workflow with no matching agent becomes a brief that creators can build for.</p>
+      <p class="note"><span class="demo-flag">Fictional prototype examples</span> &nbsp; Not real customers, companies or deployed products. Revenue, deployment counts and ratings are illustrative demo data showing what a live listing would display. In the live product, a workflow with no matching agent becomes a brief that creators can build for.</p>
     </div>
   </section>
 
@@ -1389,7 +1405,7 @@ var PROBLEMS = [
 var CURATED = ['invoice','recruitment','operations','leads','marketing','procurement'];
 
 var SOLUTIONS = [
-{ id:'invoice', name:'Invoice Processing Agent', dept:'Finance', kind:'Document workflow', workflow:'Finance & accounting', worksWith:['insights','procurement'],
+{ id:'invoice', name:'Invoice Processing Agent', dept:'Finance', kind:'Document workflow', workflow:'Finance & accounting', worksWith:['insights','procurement'], stats:{revenue:48600, deployments:18, rating:4.8, reviews:31},
   desc:'Extracts information from invoices and receipts, structures it for your accounting system, and flags anything missing or inconsistent.',
   short:'Upload an invoice, get structured data with the gaps flagged, ready for a person to approve.',
   bestFor:'Businesses and accounting teams entering invoices and receipts by hand',
@@ -1408,7 +1424,7 @@ var SOLUTIONS = [
   before:['Open each invoice','Type the fields','Check for errors','Update the spreadsheet'], after:['Invoice uploaded','Agent extracts and structures','Gaps flagged','Person approves'],
   before3:['Manual work','Data entry','Checking','Updating systems'], after3:['Information received','Agent processes it','Human reviews','Structured output'] },
 
-{ id:'recruitment', name:'Recruitment Screening Agent', dept:'HR', kind:'Screening workflow', workflow:'Recruitment', worksWith:['operations'],
+{ id:'recruitment', name:'Recruitment Screening Agent', dept:'HR', kind:'Screening workflow', workflow:'Recruitment', worksWith:['operations'], stats:{revenue:36000, deployments:12, rating:4.7, reviews:19},
   desc:'Reads CVs against a job description, extracts the relevant details, compares them to your requirements and produces a shortlist with reasons.',
   short:'Upload CVs and a job description, get a reasoned shortlist. You make every decision.',
   bestFor:'Recruitment agencies and hiring teams with high application volume',
@@ -1427,7 +1443,7 @@ var SOLUTIONS = [
   before:['CVs arrive by email','Read each one','Compare by hand','Build a spreadsheet shortlist'], after:['CVs and job description uploaded','Agent extracts and compares','Shortlist with reasons','Recruiter decides'],
   before3:['Manual work','Reading every CV','Checking criteria','Updating the tracker'], after3:['Information received','Agent processes it','Human reviews','Structured output'] },
 
-{ id:'operations', name:'Operations Workflow Agent', dept:'Operations', kind:'Coordination workflow', workflow:'Operations', worksWith:['support','insights'], fallback:true,
+{ id:'operations', name:'Operations Workflow Agent', dept:'Operations', kind:'Coordination workflow', workflow:'Operations', worksWith:['support','insights'], stats:{revenue:27500, deployments:11, rating:4.6, reviews:14}, fallback:true,
   desc:'Receives a workflow request, organizes and assigns the tasks, tracks their status, spots delays and sends the follow-ups your team sends by hand today.',
   short:'Turn a repetitive multi-step routine into tracked tasks with automatic follow-ups. People approve what matters.',
   bestFor:'Operations teams coordinating repetitive tasks across people and systems',
@@ -1446,7 +1462,7 @@ var SOLUTIONS = [
   before:['Request arrives','Assign by hand','Check statuses','Chase for updates'], after:['Request received','Agent organizes and tracks','Delays flagged, follow-ups sent','Team approves'],
   before3:['Manual work','Coordinating','Checking','Chasing updates'], after3:['Request received','Agent processes it','Human reviews','Structured output'] },
 
-{ id:'leads', name:'Lead Qualification Agent', dept:'Sales', kind:'Sales workflow', workflow:'Sales', worksWith:['marketing','insights'],
+{ id:'leads', name:'Lead Qualification Agent', dept:'Sales', kind:'Sales workflow', workflow:'Sales', worksWith:['marketing','insights'], stats:{revenue:31200, deployments:13, rating:4.7, reviews:17},
   desc:'Analyzes each new lead, qualifies and prioritizes it, and prepares a recommended next action so no lead is lost or followed up inconsistently.',
   short:'Every new lead qualified, prioritized and handed to sales with a recommended next step.',
   bestFor:'Sales teams that receive more leads than they can review consistently',
@@ -1465,7 +1481,7 @@ var SOLUTIONS = [
   before:['Lead arrives','Someone judges it by hand','Follow-up if remembered','Some leads never contacted'], after:['Lead received','Agent qualifies and prioritizes','Next action recommended','Sales follows up'],
   before3:['Manual work','Judging leads','Inconsistent follow-up','Lost leads'], after3:['Lead received','Agent processes it','Human reviews','Structured output'] },
 
-{ id:'marketing', name:'Marketing Content Agent', dept:'Marketing', kind:'Content workflow', workflow:'Marketing', worksWith:['leads'],
+{ id:'marketing', name:'Marketing Content Agent', dept:'Marketing', kind:'Content workflow', workflow:'Marketing', worksWith:['leads'], stats:{revenue:22400, deployments:16, rating:4.5, reviews:22},
   desc:'Takes your business information and a campaign objective, generates content variations, adapts the message for each channel and organizes the campaign assets.',
   short:'One objective in, a set of channel-ready content variations out, organized and ready for your approval.',
   bestFor:'Small businesses that need constant marketing content without a marketing team',
@@ -1484,7 +1500,7 @@ var SOLUTIONS = [
   before:['Decide what to post','Write it','Rewrite per channel','Organize files'], after:['Objective given','Agent drafts variations','Adapted per channel','You approve and publish'],
   before3:['Manual work','Writing content','Adapting per channel','Organizing assets'], after3:['Brief received','Agent processes it','Human reviews','Structured output'] },
 
-{ id:'support', name:'Customer Support Agent', dept:'Customer Service', kind:'Customer inquiry workflow', workflow:'Customer support', worksWith:['operations','insights'],
+{ id:'support', name:'Customer Support Agent', dept:'Customer Service', kind:'Customer inquiry workflow', workflow:'Customer support', worksWith:['operations','insights'], stats:{revenue:54000, deployments:24, rating:4.8, reviews:40},
   desc:'Identifies what a customer is asking, retrieves the relevant company information, responds, and escalates unusual cases to your staff.',
   short:'Routine questions answered consistently from your own information. Unusual cases go to your team.',
   bestFor:'Stores, clinics and service businesses with high message volume',
@@ -1503,7 +1519,7 @@ var SOLUTIONS = [
   before:['Message arrives','Staff read and search','Type the reply','Repeat for the next message'], after:['Question received','Agent identifies and retrieves','Routine answered, unusual escalated','Staff handle exceptions'],
   before3:['Manual work','Reading and searching','Typing replies','Updating records'], after3:['Question received','Agent processes it','Human reviews','Structured output'] },
 
-{ id:'procurement', name:'Procurement Comparison Agent', dept:'Procurement', kind:'Document comparison', workflow:'Procurement', worksWith:['invoice','compliance'],
+{ id:'procurement', name:'Procurement Comparison Agent', dept:'Procurement', kind:'Document comparison', workflow:'Procurement', worksWith:['invoice','compliance'], stats:{revenue:19500, deployments:7, rating:4.6, reviews:9},
   desc:'Extracts prices, terms and specifications from supplier quotations, compares them side by side and produces a comparison report.',
   short:'Upload quotations, get a side-by-side comparison with the price and term differences highlighted.',
   bestFor:'Businesses comparing several supplier quotations for every purchase',
@@ -1522,7 +1538,7 @@ var SOLUTIONS = [
   before:['Collect quotations','Read each one','Retype into a sheet','Compare by hand'], after:['Quotations uploaded','Agent extracts and compares','Differences highlighted','You choose the supplier'],
   before3:['Manual work','Reading quotations','Retyping','Comparing'], after3:['Documents received','Agent processes it','Human reviews','Structured output'] },
 
-{ id:'compliance', name:'Document Compliance Agent', dept:'Legal & Compliance', kind:'Document checking', workflow:'Legal & compliance', worksWith:['procurement','invoice'],
+{ id:'compliance', name:'Document Compliance Agent', dept:'Legal & Compliance', kind:'Document checking', workflow:'Legal & compliance', worksWith:['procurement','invoice'], stats:{revenue:14000, deployments:5, rating:4.5, reviews:6},
   desc:'Checks documents against your predefined requirements, identifies missing information and produces an exception report. Document checking, not legal advice.',
   short:'Upload a document and a checklist, get the missing or non-conforming items listed for a person to review.',
   bestFor:'Businesses that check contracts, forms and submissions for required information',
@@ -1541,7 +1557,7 @@ var SOLUTIONS = [
   before:['Document arrives','Read it fully','Check against the list','Note what is missing'], after:['Document uploaded','Agent checks requirements','Exceptions listed','Person reviews and signs off'],
   before3:['Manual work','Reading documents','Checking lists','Noting gaps'], after3:['Document received','Agent processes it','Human reviews','Structured output'] },
 
-{ id:'itsupport', name:'IT Support Agent', dept:'IT', kind:'Internal support workflow', workflow:'IT support', worksWith:['operations'],
+{ id:'itsupport', name:'IT Support Agent', dept:'IT', kind:'Internal support workflow', workflow:'IT support', worksWith:['operations'], stats:{revenue:12600, deployments:9, rating:4.4, reviews:11},
   desc:'Identifies an employee&#8217;s IT issue, searches your company knowledge base, provides the solution and escalates to IT when necessary.',
   short:'Common internal IT requests answered from your knowledge base. The rest goes to IT.',
   bestFor:'Companies whose IT team answers the same internal questions every week',
@@ -1560,7 +1576,7 @@ var SOLUTIONS = [
   before:['Employee messages IT','IT reads the request','Finds the known answer','Replies by hand'], after:['Request received','Agent identifies and searches','Solution provided','IT handles escalations'],
   before3:['Manual work','Reading requests','Finding answers','Replying'], after3:['Request received','Agent processes it','Human reviews','Structured output'] },
 
-{ id:'insights', name:'Business Insights Agent', dept:'Management', kind:'Data summarization', workflow:'Management', worksWith:['invoice','leads','support'],
+{ id:'insights', name:'Business Insights Agent', dept:'Management', kind:'Data summarization', workflow:'Management', worksWith:['invoice','leads','support'], stats:{revenue:16800, deployments:6, rating:4.6, reviews:8},
   desc:'Brings together data from spreadsheets, reports and operations, summarizes KPIs, identifies trends, flags anomalies and produces management insights.',
   short:'Connect your business data, get a clear summary of what changed, what is trending and what needs attention.',
   bestFor:'Managers with information scattered across spreadsheets, reports and systems',
@@ -1767,7 +1783,7 @@ function renderOpportunity(){
       '<div class="mini hu"><span class="k">Stays with your team</span><ul>'+sol.human.map(function(x){ return '<li>'+x+'</li>'; }).join('')+'</ul></div></div>'+
     '</article>'+
     '<article class="card sol-card"><span class="label">Recommended solution</span>'+
-      '<div><h2 class="sol-name">'+esc(sol.name)+'</h2><div class="sol-dept">'+esc(sol.dept)+' &#183; '+esc(sol.kind)+'</div><p class="sol-desc">'+sol.short+'</p></div>'+
+      '<div><h2 class="sol-name">'+esc(sol.name)+'</h2><div class="sol-dept">'+esc(sol.dept)+' &#183; '+esc(sol.kind)+'</div><p class="sol-desc">'+sol.short+'</p>'+statsHTML(sol, true)+'</div>'+
       '<div class="sol-match"><div class="sol-badges"><span class="verified">&#10003; Masar Verified</span><span class="demo-flag">Fictional example</span></div><span class="conf">'+esc(r.confidence)+'</span></div>'+
     '</article>'+
     journeysHTML(sol, sol.before, sol.after, 'Before', 'With Masar', false, 'The repetition moves to the AI workflow. Review and decisions stay with your team.')+
@@ -1792,10 +1808,11 @@ function renderSolution(sol, browse){
     : '<article class="card violet reveal" data-d="1"><span class="label">Browsing from the marketplace</span><p class="prob" style="font-size:.938rem">You are viewing this solution directly. To see whether it fits a workflow of yours &#8212; and why &#8212; describe the workflow in the discovery engine.</p>'+
       '<div style="margin-top:16px"><a class="btn btn-caps" href="#business">Describe my workflow <span class="ar">&#8594;</span></a></div></article>';
   solRoot.innerHTML =
-    '<div class="sec-mark"><span class="label role">'+(browse ? 'AI solutions marketplace &#183; solution detail' : 'Step 03 &#183; Discover the solution')+'</span><span class="label of">Opportunity &#8594; solution &#8594; creator</span></div>'+
+    '<div class="sec-mark"><span class="label role">'+(browse ? 'Marketplace &#183; agent detail' : 'Step 03 &#183; Discover the solution')+'</span><span class="label of">Opportunity &#8594; solution &#8594; creator</span></div>'+
     '<div class="sol-head"><div><div class="sol-dept" style="margin:0 0 12px">'+esc(sol.dept)+' &#183; '+esc(sol.kind)+'</div>'+
       '<h1 class="display" id="h-solution" tabindex="-1">'+esc(sol.name)+'</h1><p class="lede">'+sol.desc+'</p></div>'+
       '<div class="badges"><span class="verified">&#10003; Masar Verified</span><span class="demo-flag">Fictional prototype example</span></div></div>'+
+    '<article class="card srec reveal"><span class="label">Marketplace record &#183; illustrative demo data</span>'+statsHTML(sol, false)+'</article>'+
     '<div class="sgrid">'+
       '<article class="card reveal"><span class="label">Problem it solves</span><p class="prob">'+sol.problem+'</p>'+
         '<div class="quote-meta" style="margin-top:18px"><span><b>Best fit</b>'+esc(sol.bestFor)+'</span><span><b>Works with</b>'+worksWithHTML(sol)+'</span>'+(r ? '<span><b>Your case</b>'+esc(r.business)+' &#183; '+esc(r.department)+(r.frequency ? ' &#183; '+esc(r.frequency) : '')+'</span>' : '')+'</div></article>'+
@@ -1824,10 +1841,16 @@ function renderSolution(sol, browse){
 var mkCat = 'all', mkAll = false, mkGrid = document.getElementById('mkGrid'), mkCount = document.getElementById('mkCount'), mkCats = document.getElementById('mkCats'), mkProblems = document.getElementById('mkProblems'), mkMore = document.getElementById('mkMore');
 mkCats.innerHTML = ['all'].concat(DEPTS).map(function(d){ return '<button class="chipbtn'+(d === 'all' ? ' on' : '')+'" type="button" data-cat="'+esc(d)+'">'+(d === 'all' ? 'All' : esc(d))+'</button>'; }).join('');
 mkProblems.innerHTML = PROBLEMS.map(function(p){ var s = solById(p[1]); return '<a class="pcard" href="#/solution/'+s.id+'"><span class="pq">'+esc(p[0])+'</span><span class="pa">&#8594; '+esc(s.name)+'</span></a>'; }).join('');
+function stars(r){ var f = Math.round(r); var out = ''; for (var i=1;i<=5;i++) out += i <= f ? '&#9733;' : '&#9734;'; return '<span class="stars" aria-hidden="true">'+out+'</span>'; }
+function statsHTML(s, compact){ var t = s.stats; if (!t) return ''; return '<div class="tstats'+(compact ? ' compact' : '')+'">'+
+    '<div><b>SAR '+t.revenue.toLocaleString('en-US')+'</b><span>Creator revenue earned</span></div>'+
+    '<div><b>'+t.deployments+'</b><span>Businesses deployed it</span></div>'+
+    '<div><b>'+t.rating.toFixed(1)+' '+stars(t.rating)+'</b><span>'+t.reviews+' ratings</span></div>'+
+    '<em class="demo-flag">Demo data</em></div>'; }
 function worksWithHTML(s){ return (s.worksWith || []).map(function(id){ var w = solById(id); return w ? '<a class="chip" href="#/solution/'+w.id+'">'+esc(w.name.replace(' Agent',''))+'</a>' : ''; }).join(''); }
 function tileHTML(s){
   return '<article class="tile"><div class="tile-top"><span class="label">'+esc(s.dept)+'</span><span class="demo-flag">Fictional example</span></div>'+
-    '<h3>'+esc(s.name)+'</h3><p class="prob">'+esc(s.task)+'.</p>'+
+    '<h3>'+esc(s.name)+'</h3><p class="prob">'+esc(s.task)+'.</p>'+statsHTML(s, true)+
     '<dl class="meta"><dt>What it does</dt><dd>'+s.short+'</dd><dt>Best fit</dt><dd>'+esc(s.bestFor)+'</dd><dt>Humans</dt><dd>'+esc(s.human[0])+'</dd><dt>Works with</dt><dd class="ww">'+worksWithHTML(s)+'</dd></dl>'+
     '<div class="tile-foot"><span class="verified">&#10003; Masar Verified</span><a class="btn btn-sm" href="#/solution/'+s.id+'">View agent <span class="ar">&#8594;</span></a></div></article>';
 }
