@@ -68,3 +68,7 @@ Local, rule-based, deterministic (`recommend()` in `index.html`). Keyword eviden
 ### Design reference
 
 `reference/masarsite-v2.html` is the earlier Masarite v2 prototype whose visual identity this build carries forward.
+
+### Animated diagram
+
+`diagrams/agent-economy.html` — a standalone six-step animated story (learn → build → Masar quality check → marketplace → a business subscribes, Sara keeps ownership and earns monthly revenue → more businesses subscribe and she builds the next agent). Not linked from the prototype.
