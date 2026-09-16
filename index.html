@@ -2172,10 +2172,10 @@ addEventListener('resize', function(){ if (heroField && isSmall() !== wasSmall){
     lanesB.map(function(d,i){ return '<path class="lane back" id="bb'+i+'" d="'+d+'"/>'; }).join('')+
     L.map(function(l){ return avatar(lx,l.y); }).join('')+R.map(function(r){ return biz(rx,r.y); }).join('')+
     '<g id="bparts"></g>'+
-    '<rect class="core-glow" x="'+(cx-92)+'" y="'+(cy-44)+'" width="184" height="88" rx="18"/>'+
-    '<rect class="core" x="'+(cx-82)+'" y="'+(cy-36)+'" width="164" height="72" rx="14"/>'+
+    '<rect class="core-glow" x="'+(cx-124)+'" y="'+(cy-44)+'" width="248" height="88" rx="18"/>'+
+    '<rect class="core" x="'+(cx-114)+'" y="'+(cy-36)+'" width="228" height="72" rx="14"/>'+
     '<text class="core-t" x="'+cx+'" y="'+(cy-6)+'">MASAR</text><text class="core-s" x="'+cx+'" y="'+(cy+12)+'">checks &#183; connects</text>'+
-    '<rect class="gate" x="'+(cx-62)+'" y="'+(cy+20)+'" width="124" height="14"/><text class="gate-t" x="'+cx+'" y="'+(cy+30.5)+'">accuracy &#183; precision &#183; privacy</text>'+
+    '<rect class="gate" x="'+(cx-102)+'" y="'+(cy+19)+'" width="204" height="15"/><text class="gate-t" x="'+cx+'" y="'+(cy+30)+'">accuracy &#183; precision &#183; privacy</text>'+
     '<text class="flow-t" x="'+cx+'" y="392">AI agents &#8594; &nbsp;&nbsp; &#8592; demand &#183; revenue</text>'+
     '</svg>';
   var svg = host.querySelector('svg'), parts = svg.querySelector('#bparts');
