@@ -236,6 +236,14 @@ main{position:relative;z-index:1}
 .map-legend i{width:6px;height:6px;border-radius:50%;background:var(--mint);box-shadow:0 0 8px var(--mint)}
 .map-legend i.w{background:var(--fg);box-shadow:none}
 
+/* animated story (embedded diagram) */
+.story-frame{position:relative;border:1px solid var(--line-2);border-radius:18px;overflow:hidden;background:var(--bg-2);aspect-ratio:1200/790;box-shadow:0 40px 100px -50px rgba(0,0,0,.9)}
+.story-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:var(--bg)}
+.story-steps{list-style:none;margin:14px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.story-steps li{display:inline-flex;align-items:center;gap:9px;font-size:.813rem;color:var(--muted);border:1px solid var(--line);border-radius:8px;padding:8px 12px;background:var(--bg-2)}
+.story-steps li b{font:500 .625rem/1 var(--mono);letter-spacing:.12em;color:var(--mint)}
+@media(max-width:760px){.story-frame{display:none}.story-steps{flex-direction:column}.story-steps li{width:100%}}
+
 /* stage rail */
 .stages{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:16px;overflow:hidden}
 .stages li{background:var(--bg-2);padding:clamp(16px,2vw,24px);display:flex;flex-direction:column;gap:9px;min-height:170px;position:relative;opacity:.38;transition:opacity .5s var(--ease),background .5s}
@@ -767,7 +775,7 @@ footer{border-top:1px solid var(--line);padding:40px 0 34px;background:var(--bg)
           <p class="lede">Masar connects the people learning and using Agentic AI with the creators building it, the businesses adopting it, and the investors backing what comes next.</p>
           <div class="hero-cta">
             <button class="btn btn-primary btn-lg btn-caps" type="button" data-action="open-path">Find your path <span class="ar">&#8594;</span></button>
-            <a class="btn btn-lg" href="#explore">Explore the ecosystem <span class="ar">&#8595;</span></a>
+            <a class="btn btn-lg" href="#story">Watch how it works <span class="ar">&#8595;</span></a>
           </div>
           <div class="pipeline" aria-label="Learn, use, build, connect, adopt, scale"><b>Learn</b><i>&#8594;</i><b>Use</b><i>&#8594;</i><b>Build</b><i>&#8594;</i>Connect<i>&#8594;</i>Adopt<i>&#8594;</i>Scale</div>
         </div>
@@ -783,8 +791,26 @@ footer{border-top:1px solid var(--line);padding:40px 0 34px;background:var(--bg)
     </div>
   </div>
 
+  <!-- 1b · THE STORY (animated) -->
+  <section class="sec" id="story">
+    <div class="wrap">
+      <div class="sec-mark reveal"><span class="label role">How it works &#183; one story</span><span class="label of">About 40 seconds &#183; illustrative</span></div>
+      <div class="sec-head">
+        <h2 class="display reveal">One person. One agent.<br><span class="l2">The whole ecosystem.</span></h2>
+        <p class="lede reveal" data-d="1">Sara learns through Masar, builds an agent, Masar checks it, businesses subscribe and pay her monthly, and investors back what works &#8212; so she builds the next one. Every stage of Masar in a single loop.</p>
+      </div>
+      <div class="story-frame after-head reveal" data-d="1" id="storyFrame">
+        <iframe id="storyIframe" src="diagrams/agent-economy.html?embed=1" title="How the Masar agent economy works — animated story" loading="lazy" allow="autoplay"></iframe>
+      </div>
+      <ol class="story-steps reveal" data-d="2" aria-label="The seven steps">
+        <li><b>01</b>Sara learns through Masar</li><li><b>02</b>She builds an agent</li><li><b>03</b>Masar checks accuracy, precision, privacy</li><li><b>04</b>Listed on the marketplace</li><li><b>05</b>Businesses subscribe &#183; Sara stays owner</li><li><b>06</b>Her monthly revenue grows</li><li><b>07</b>Investors back her next agent</li>
+      </ol>
+      <p class="note"><a class="btn btn-sm" href="diagrams/agent-economy.html" target="_blank" rel="noopener">Open the story full screen <span class="ar">&#8599;</span></a></p>
+    </div>
+  </section>
+
   <!-- 2 · WHY MASAR EXISTS -->
-  <section class="sec" id="explore">
+  <section class="sec tight" id="explore">
     <div class="wrap">
       <div class="sec-mark reveal"><span class="label role">Why Masar exists</span><span class="label of">The pathway</span></div>
       <div class="sec-head">
@@ -1669,7 +1695,7 @@ function requestConnection(){
    solution/<id> (marketplace browse)
    ============================================================ */
 var SCREENS = ['home','opportunity','solution'];
-var HOME_SECTIONS = ['top','explore','ecosystem','value','paths','learn','business','solutions','build','invest','flywheel','saudi','plan','trust','start'];
+var HOME_SECTIONS = ['top','story','explore','ecosystem','value','paths','learn','business','solutions','build','invest','flywheel','saudi','plan','trust','start'];
 var current = null, pendingAnchor = null;
 var stepLinks = [].slice.call(document.querySelectorAll('#steps a')), navLinks = [].slice.call(document.querySelectorAll('#navLinks a'));
 var navReset = document.getElementById('navReset'), nav = document.getElementById('nav'), mnav = document.getElementById('mnav'), burger = document.getElementById('burger');
@@ -1715,6 +1741,7 @@ function showScreen(route){
   current = name;
   observeReveals(); observeLit(); onScroll();
   if (name === 'home' && ecomap) ecomap.start(); else if (ecomap) ecomap.stop();
+  if (window.__storySync) window.__storySync();
 }
 addEventListener('hashchange', function(){ showScreen(parseHash()); });
 /* same-hash clicks (e.g. #business while already at #business) still scroll */
@@ -1780,6 +1807,15 @@ var secObs = window.IntersectionObserver ? new IntersectionObserver(function(en)
     navLinks.forEach(function(a){ a.classList.toggle('on', a.dataset.sec === map[id]); }); });
 }, {rootMargin:'-40% 0px -55% 0px'}) : null;
 if (secObs) Object.keys({explore:1,ecosystem:1,value:1,paths:1,learn:1,business:1,solutions:1,build:1,invest:1}).forEach(function(id){ var el = document.getElementById(id); if (el) secObs.observe(el); });
+/* embedded story: play only while on screen */
+(function(){
+  var fr = document.getElementById('storyIframe'); if (!fr || !window.IntersectionObserver) return;
+  var vis = false, loaded = false;
+  function sync(){ if (!loaded || !fr.contentWindow) return; fr.contentWindow.postMessage({masar: vis && current === 'home' ? 'play' : 'pause'}, '*'); }
+  fr.addEventListener('load', function(){ loaded = true; sync(); });
+  new IntersectionObserver(function(en){ vis = en[0].isIntersecting; sync(); }, {threshold:0.35}).observe(fr);
+  window.__storySync = sync;
+})();
 var ticking = false;
 function onScroll(){ nav.classList.toggle('stuck', scrollY > 30); ticking = false; }
 addEventListener('scroll', function(){ if (!ticking){ ticking = true; requestAnimationFrame(onScroll); } }, {passive:true});

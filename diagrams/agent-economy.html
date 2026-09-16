@@ -99,6 +99,11 @@ footer{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-betw
 .small{font-size:.75rem;color:var(--dim)}
 :focus-visible{outline:2px solid var(--mint);outline-offset:3px;border-radius:4px}
 @media(max-width:720px){footer{flex-direction:column;align-items:stretch}.ctrl{justify-content:space-between}.caption{min-height:0}}
+/* embed mode (inside the prototype site): no header, compact chrome */
+body.embed header,body.embed .small{display:none}
+body.embed .caption{padding-top:16px;min-height:96px}
+body.embed main{padding:0 clamp(10px,2vw,20px)}
+body.embed footer{padding:10px 4px 12px}
 @media(prefers-reduced-motion:reduce){*{transition-duration:.01ms!important;animation-duration:.01ms!important}}
 </style>
 </head>
@@ -110,7 +115,7 @@ footer{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-betw
 <main>
   <div class="caption"><div class="k" id="capK">Step 1 of 6</div><h1 id="capT">Sara learns to build AI agents on Masar.</h1></div>
   <div class="stage">
-    <svg id="svg" viewBox="0 0 1200 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="svgTitle">
+    <svg id="svg" viewBox="0 0 1200 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="svgTitle">
       <title id="svgTitle">Animated story of the Masar agent economy</title>
 
       <!-- column titles -->
@@ -119,6 +124,8 @@ footer{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-betw
       <text class="col-t" id="ctR" x="980" y="60">Businesses</text>
 
       <!-- flow paths -->
+      <path id="pLearn" class="path" d="M470 250 C 420 250, 380 250, 300 250"/>
+      <path id="pInv" class="path" d="M1030 500 C 820 590, 520 590, 290 330"/>
       <path id="pList" class="path" d="M300 250 C 380 250, 420 250, 470 250"/>
       <path id="pUse1" class="path" d="M952 250 C 880 250, 800 250, 732 250"/>
       <path id="pUse2" class="path" d="M868 128 C 820 150, 780 210, 732 240"/>
@@ -154,6 +161,28 @@ footer{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-betw
         <g id="gVer" class="g hide"><rect class="ver" x="-42" y="52" width="84" height="20"/><text class="ver-t" x="0" y="66">&#10003; Verified</text></g>
       </g>
       <g id="gOwn" class="g hide" transform="translate(600 366)"><rect class="own" x="-70" y="-11" width="140" height="22"/><text class="own-t" x="0" y="4">Owned by Sara</text></g>
+
+      <!-- MASAR LEARN (step 1) -->
+      <g id="gLearn" class="g hide" transform="translate(600 250)">
+        <rect class="card" x="-120" y="-78" width="240" height="156"/>
+        <text class="card-s" x="0" y="-50">Masar learning path</text>
+        <text class="card-t" x="0" y="-26">How to build AI agents</text>
+        <g id="lessons">
+          <rect class="chk" x="-100" y="-8" width="200" height="22"/><text class="chk-t" x="0" y="7" style="font-size:11px">1 · How agents work</text>
+          <rect class="chk" x="-100" y="20" width="200" height="22"/><text class="chk-t" x="0" y="35" style="font-size:11px">2 · Workflows and tools</text>
+          <rect class="chk" x="-100" y="48" width="200" height="22"/><text class="chk-t" x="0" y="63" style="font-size:11px">3 · Build your first agent</text>
+        </g>
+      </g>
+
+      <!-- INVESTOR (step 7) -->
+      <g id="gInv" class="g hide" transform="translate(1080 480)">
+        <circle class="av" cx="0" cy="0" r="48" style="stroke:var(--gold)"/>
+        <circle class="head" cx="0" cy="-12" r="13"/>
+        <path class="body" d="M-26 30 C -26 8, 26 8, 26 30 Z"/>
+        <text class="name" x="0" y="74">Investor</text>
+        <text class="role gold" x="0" y="92">Backs Sara</text>
+      </g>
+      <text class="tagline" id="invNote" x="700" y="560"></text>
 
       <!-- QUALITY GATE -->
       <g id="gGate" class="g hide">
@@ -212,12 +241,13 @@ var fmt = function(n){ return 'SAR ' + Math.round(n).toLocaleString('en-US'); };
 
 /* Six steps. One sentence each. One thing happens at a time. */
 var SCENES = [
-  {k:'Learn',  t:'Sara learns to build AI agents on Masar.', d:4.0},
+  {k:'Learn',  t:'Sara learns to build AI agents through Masar’s learning path.', d:5.0},
   {k:'Build',  t:'She builds her first AI agent.', d:3.6},
   {k:'Check',  t:'Masar checks it for accuracy, precision and data privacy.', d:4.6},
   {k:'List',   t:'It goes live on the Masar marketplace.', d:3.2},
   {k:'Use',    t:'Khalid subscribes and uses it in his business. Sara stays the owner.', d:6.0},
-  {k:'Grow',   t:'More businesses subscribe. Sara’s revenue grows — and she builds the next agent.', d:6.5}
+  {k:'Grow',   t:'More businesses subscribe. Sara’s revenue grows.', d:5.5},
+  {k:'Invest', t:'Investors see the traction and back Sara — so she builds the next agent.', d:5.5}
 ];
 var scene = 0, sceneT = 0, playing = true, speed = 1, money = 0, agentNo = 1;
 
@@ -227,7 +257,7 @@ stepsEl.addEventListener('click', function(e){ var b = e.target.closest('[data-i
 
 /* ---- particles along paths ---- */
 var PART = $('particles'), flows = {}, particles = [], P = {};
-['pList','pUse1','pUse2','pUse3','pPay'].forEach(function(id){ var el = $(id); P[id] = {el:el, len:el.getTotalLength()}; });
+['pLearn','pInv','pList','pUse1','pUse2','pUse3','pPay'].forEach(function(id){ var el = $(id); P[id] = {el:el, len:el.getTotalLength()}; });
 function setFlow(name, cfg){ var prev = flows[name]; if (cfg) flows[name] = Object.assign({acc:0}, cfg); else delete flows[name]; var pid = cfg ? cfg.path : (prev && prev.path); if (pid) $(pid).classList.toggle('on', !!cfg); }
 function clearFlows(){ Object.keys(flows).forEach(function(k){ $(flows[k].path).classList.remove('on'); }); flows = {}; particles.forEach(function(p){ p.el.remove(); }); particles = []; }
 function spawn(cfg){
@@ -260,6 +290,7 @@ function put(id, x, y){ $(id).setAttribute('transform', 'translate('+x+' '+y+')'
 function moveTo(id, x, y, dur, done){ var from = pos(id); tween(from, [x,y], dur, function(a,b){ put(id, a.toFixed(1), b.toFixed(1)); }, done); }
 function setRing(p){ $('ringF').setAttribute('stroke-dashoffset', (540.4*(1-p)).toFixed(1)); }
 function setChecks(n){ [1,2,3].forEach(function(k){ var on = k <= n; $('chk'+k).querySelectorAll('.chk,.chk-i,.chk-t').forEach(function(el){ el.classList.toggle('on', on); }); }); }
+function setLessons(n){ var rows = $('lessons').querySelectorAll('.chk'), txt = $('lessons').querySelectorAll('.chk-t'); rows.forEach(function(r,i){ r.classList.toggle('on', i < n); txt[i].classList.toggle('on', i < n); }); }
 function setMoney(v){ money = v; $('moneyV').textContent = fmt(v); }
 function setCaption(i){
   $('capK').textContent = 'Step ' + (i+1) + ' of ' + SCENES.length;
@@ -270,11 +301,11 @@ function setCaption(i){
 /* ---- base state: everything off, then build up to the step ---- */
 function resetAll(){
   clearFlows(); tweens = []; timers.forEach(clearTimeout); timers = [];
-  ['gMoney','gAgent','gVer','gOwn','gGate','gShelf','gKhalid','gBiz2','gBiz3'].forEach(function(id){ show(id,false); });
-  ['gSara','gAgent','gGate','gShelf','gKhalid','gBiz2','gBiz3','gMoney','gOwn'].forEach(function(id){ dim(id,false); });
-  ['saraNote','midNote','rightNote'].forEach(function(id){ $(id).textContent = ''; $(id).setAttribute('class','tagline'); });
-  $('ctL').setAttribute('class','col-t'); $('ctM').setAttribute('class','col-t'); $('ctR').setAttribute('class','col-t');
-  $('saraRole').textContent = 'Learner'; put('gAgent', 150, 100); setRing(0); setChecks(0); setMoney(0);
+  ['gMoney','gAgent','gVer','gOwn','gGate','gShelf','gKhalid','gBiz2','gBiz3','gLearn','gInv'].forEach(function(id){ show(id,false); });
+  ['gSara','gAgent','gGate','gShelf','gKhalid','gBiz2','gBiz3','gMoney','gOwn','gLearn','gInv'].forEach(function(id){ dim(id,false); });
+  ['saraNote','midNote','rightNote','invNote'].forEach(function(id){ $(id).textContent = ''; $(id).setAttribute('class','tagline'); });
+  $('ctL').setAttribute('class','col-t'); $('ctM').setAttribute('class','col-t'); $('ctR').setAttribute('class','col-t'); $('ctR').textContent = 'Businesses';
+  $('saraRole').textContent = 'Learner'; put('gAgent', 150, 100); setRing(0); setChecks(0); setLessons(0); setMoney(0);
 }
 function creator(){ $('saraRole').textContent = 'Creator'; }
 function enter(i){
@@ -287,9 +318,13 @@ function enter(i){
   if (i >= 5){ show('gBiz2', true); show('gBiz3', true); setMoney(4500); }
 
   if (i === 0){
-    $('ctL').setAttribute('class','col-t hi'); $('saraNote').textContent = 'Learning: how AI agents work';
-    dim('gKhalid', true);
-    tween([0,0],[1,0],3.2,function(a){ setRing(a); });
+    $('ctL').setAttribute('class','col-t hi'); $('ctM').setAttribute('class','col-t hi');
+    show('gLearn', true); $('midNote').textContent = 'Masar teaches her, step by step'; $('midNote').setAttribute('class','tagline mint');
+    setFlow('learn', {path:'pLearn', rate:1.6, sp:.7, r:3.6, cls:'mint-p'});
+    tween([0,0],[1,0],4.2,function(a){ setRing(a); });
+    later(function(){ setLessons(1); $('saraNote').textContent = 'Lesson 1 done'; }, 1200);
+    later(function(){ setLessons(2); $('saraNote').textContent = 'Lesson 2 done'; }, 2500);
+    later(function(){ setLessons(3); $('saraNote').textContent = 'Ready to build'; $('saraNote').setAttribute('class','tagline mint'); creator(); }, 3900);
   }
   if (i === 1){
     $('ctL').setAttribute('class','col-t hi'); $('saraNote').textContent = agentNo > 1 ? 'Building agent number ' + agentNo : 'Building it for a real business problem';
@@ -321,7 +356,14 @@ function enter(i){
     $('saraNote').textContent = 'Monthly revenue keeps coming'; $('saraNote').setAttribute('class','tagline gold');
     later(function(){ show('gBiz2', true); setFlow('use2', {path:'pUse2', rate:1.2, sp:.65, r:4, cls:'use'}); flows.pay.rate = 2.2; tween([1500,0],[3000,0],1.4,function(a){ setMoney(a); }); }, 800);
     later(function(){ show('gBiz3', true); setFlow('use3', {path:'pUse3', rate:1.2, sp:.65, r:4, cls:'use'}); flows.pay.rate = 3; tween([3000,0],[4500,0],1.4,function(a){ setMoney(a); }); $('rightNote').textContent = 'Three businesses, one agent'; $('rightNote').setAttribute('class','tagline violet'); }, 2400);
-    later(function(){ $('saraNote').textContent = 'Sara starts building agent number ' + (agentNo+1); $('saraNote').setAttribute('class','tagline mint'); $('ctL').setAttribute('class','col-t hi'); }, 4400);
+  }
+  if (i === 6){
+    setMoney(4500); show('gInv', false); $('ctR').textContent = 'Businesses & investors'; $('ctR').setAttribute('class','col-t gold');
+    setFlow('use', {path:'pUse1', rate:1.2, sp:.7, r:4, cls:'use'}); setFlow('pay', {path:'pPay', rate:2.2, sp:.6, r:5, cls:'coin'});
+    ['gKhalid','gBiz2','gBiz3'].forEach(function(id){ dim(id, true); });
+    later(function(){ show('gInv', true); $('invNote').textContent = 'Sees real usage and real revenue'; $('invNote').setAttribute('class','tagline gold'); }, 500);
+    later(function(){ setFlow('inv', {path:'pInv', rate:5, sp:.5, r:5, cls:'coin'}); $('invNote').textContent = 'Invests in Sara’s agent business'; }, 1800);
+    later(function(){ $('saraNote').textContent = 'Backed — starts building agent number ' + (agentNo+1); $('saraNote').setAttribute('class','tagline mint'); $('ctL').setAttribute('class','col-t hi'); }, 3600);
   }
 }
 function goTo(i){
@@ -340,7 +382,11 @@ function loop(now){
   var d = SCENES[scene].d; $('prog').style.width = (Math.min(1, sceneT/d)*100).toFixed(2)+'%';
   if (sceneT >= d) goTo(scene+1);
 }
-$('play').addEventListener('click', function(){ playing = !playing; this.textContent = playing ? 'Pause' : 'Play'; this.setAttribute('aria-pressed', String(playing)); last = performance.now(); });
+function setPlaying(v){ playing = v; $('play').textContent = playing ? 'Pause' : 'Play'; $('play').setAttribute('aria-pressed', String(playing)); last = performance.now(); }
+$('play').addEventListener('click', function(){ setPlaying(!playing); });
+/* embed mode: the host page tells us when we are on screen */
+if (/[?&]embed/.test(location.search)){ document.body.classList.add('embed'); setPlaying(false);
+  addEventListener('message', function(e){ if (!e.data || typeof e.data.masar !== 'string') return; if (e.data.masar === 'play') setPlaying(true); if (e.data.masar === 'pause') setPlaying(false); if (e.data.masar === 'restart'){ agentNo = 1; goTo(0); } }); }
 $('next').addEventListener('click', function(){ goTo(scene+1); });
 $('prev').addEventListener('click', function(){ goTo(scene-1); });
 $('restart').addEventListener('click', function(){ agentNo = 1; goTo(0); });
