@@ -740,20 +740,20 @@ footer{border-top:1px solid var(--line);padding:40px 0 34px;background:var(--bg)
 </style>
 <style>
 /* ============================ HERO: moving background + bridge ============================ */
-.hero-canvas{position:absolute;inset:0;z-index:0}
+.hero-canvas{position:absolute;inset:0;z-index:0;opacity:.5}
 .hero-canvas canvas{width:100%;height:100%;display:block}
 .hero-scrim{position:absolute;inset:0;z-index:1;pointer-events:none;
   background:linear-gradient(100deg,var(--bg) 0%,rgba(8,9,11,.88) 34%,rgba(8,9,11,.45) 62%,rgba(8,9,11,.55) 100%),linear-gradient(to top,var(--bg) 0,transparent 26%)}
 .hero .wrap{position:relative;z-index:2}
-.hero-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.hero-grid{grid-template-columns:minmax(0,.86fr) minmax(0,1.14fr)}
 @media(max-width:960px){.hero-grid{grid-template-columns:1fr}}
 @media(max-width:960px){.hero-canvas{opacity:.55}.hero-scrim{background:linear-gradient(to bottom,rgba(8,9,11,.6),rgba(8,9,11,.85) 70%,var(--bg))}}
 .bridge-wrap{display:flex;flex-direction:column;gap:10px}
-.bridge{position:relative;width:100%;max-width:640px;margin:0 auto}
+.bridge{position:relative;width:100%;max-width:760px;margin:0 auto}
 .bridge svg{width:100%;height:auto;display:block;overflow:visible}
 .bridge .lane{fill:none;stroke:rgba(245,245,240,.14);stroke-width:1.2}
 .bridge .lane.back{stroke:rgba(124,140,255,.22);stroke-dasharray:3 6}
-.bridge .who{fill:var(--dim);font-family:var(--mono);font-size:10.5px;letter-spacing:2.2px;text-transform:uppercase;text-anchor:middle}
+.bridge .who{fill:var(--dim);font-family:var(--mono);font-size:12px;letter-spacing:2.2px;text-transform:uppercase;text-anchor:middle}
 .bridge .who.hi{fill:var(--mint)}
 .bridge .who.v{fill:#B7C0FF}
 .bridge .av{fill:var(--bg-2);stroke:var(--line-2);stroke-width:1.2}
@@ -761,12 +761,13 @@ footer{border-top:1px solid var(--line);padding:40px 0 34px;background:var(--bg)
 .bridge .biz{fill:var(--bg-2);stroke:var(--violet);stroke-width:1.2}
 .bridge .bizi{fill:none;stroke:#B7C0FF;stroke-width:1.4}
 .bridge .core{fill:#0B1614;stroke:var(--mint);stroke-width:1.4}
-.bridge .core-glow{fill:none;stroke:rgba(102,246,210,.2);stroke-width:1;transform-origin:center;transform-box:fill-box;animation:corepulse 4s var(--ease) infinite}
-.bridge .core-t{fill:var(--fg);font-family:var(--display);font-weight:700;font-size:16px;letter-spacing:3px;text-anchor:middle}
-.bridge .core-s{fill:var(--mint);font-family:var(--mono);font-size:8.5px;letter-spacing:2px;text-transform:uppercase;text-anchor:middle}
+.bridge .core-glow{fill:none;stroke:rgba(102,246,210,.28);stroke-width:1;animation:glowpulse 4.5s var(--ease) infinite}
+@keyframes glowpulse{0%,100%{opacity:.9}50%{opacity:.2}}
+.bridge .core-t{fill:var(--fg);font-family:var(--display);font-weight:700;font-size:18px;letter-spacing:3px;text-anchor:middle}
+.bridge .core-s{fill:var(--mint);font-family:var(--mono);font-size:9.5px;letter-spacing:2px;text-transform:uppercase;text-anchor:middle}
 .bridge .gate{fill:rgba(102,246,210,.08);stroke:rgba(102,246,210,.45);rx:5}
 .bridge .gate-t{fill:var(--mint);font-family:var(--mono);font-size:8px;letter-spacing:1.6px;text-transform:uppercase;text-anchor:middle}
-.bridge .flow-t{fill:var(--muted);font-family:var(--mono);font-size:9.5px;letter-spacing:1.8px;text-transform:uppercase;text-anchor:middle}
+.bridge .flow-t{fill:var(--muted);font-family:var(--mono);font-size:10.5px;letter-spacing:1.8px;text-transform:uppercase;text-anchor:middle}
 .bridge .p{fill:var(--mint)}.bridge .pg{fill:rgba(102,246,210,.25)}
 .bridge .d{fill:var(--violet)}.bridge .dg{fill:rgba(124,140,255,.25)}
 .bridge .c{fill:var(--gold)}.bridge .cg{fill:rgba(232,177,92,.25)}
@@ -777,9 +778,23 @@ footer{border-top:1px solid var(--line);padding:40px 0 34px;background:var(--bg)
 
 /* bridge on phones: bigger type, no gate line */
 @media(max-width:700px){
-  .bridge .who{font-size:19px}.bridge .core-t{font-size:27px}.bridge .core-s{font-size:14px}.bridge .flow-t{font-size:15px}
+  .bridge .who{font-size:19px}.bridge .core-t{font-size:26px}.bridge .core-s{font-size:11.5px}.bridge .flow-t{font-size:15px}
   .bridge .gate,.bridge .gate-t{display:none}
 }
+
+/* problem-first marketplace */
+.probs-h{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+.probs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:22px}
+@media(max-width:900px){.probs{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.probs{grid-template-columns:1fr}}
+.pcard{display:flex;flex-direction:column;gap:5px;text-decoration:none;border:1px solid var(--line-2);border-radius:12px;padding:14px 16px;background:var(--bg-2);transition:.28s var(--ease)}
+.pcard .pq{font:600 1rem/1.3 var(--display);letter-spacing:-.015em;color:var(--fg)}
+.pcard .pa{font:500 .656rem/1.5 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--mint)}
+.pcard:hover{border-color:rgba(102,246,210,.5);background:rgba(102,246,210,.05);transform:translateY(-2px)}
+.mk-more{display:flex;justify-content:center;margin-top:16px}
+.meta dd.ww{display:flex;flex-wrap:wrap;gap:5px}
+.meta dd.ww .chip{text-decoration:none;font-size:.6rem;padding:3px 7px}
+.meta dd.ww .chip:hover{border-color:rgba(102,246,210,.5);color:var(--mint)}
 
 /* ============================ STORYBOARD ============================ */
 .board{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
@@ -946,9 +961,9 @@ footer{border-top:1px solid var(--line);padding:40px 0 34px;background:var(--bg)
         <p class="lede reveal" data-d="1">Good AI models, courses and agent-building tools already exist. What is missing is the connection between them: a place where a creator&#8217;s agent meets a business that actually needs it, with a quality check in between.</p>
       </div>
       <div class="grid3 after-head">
-        <article class="card reveal"><span class="label">Creators</span><h3 class="display">Bring agents</h3><ul class="list plain"><li><i>01</i>Learn on Masar or arrive with skills</li><li><i>02</i>Build for a real business brief</li><li><i>03</i>Keep ownership, earn monthly</li></ul></article>
+        <article class="card reveal"><span class="label">Creators</span><h3 class="display">Bring agents</h3><ul class="list plain"><li><i>01</i>Learn on Masar or arrive with skills</li><li><i>02</i>Build for a real business brief</li><li><i>03</i>Keep it private or publish it; ownership stays yours</li></ul></article>
         <article class="card tint reveal" data-d="1"><span class="label">Masar</span><h3 class="display">Checks and connects</h3><ul class="list plain"><li><i>01</i>Turns a described workflow into an AI opportunity</li><li><i>02</i>Checks every agent: accuracy, precision, data privacy</li><li><i>03</i>Matches agents to businesses and creators to demand</li></ul></article>
-        <article class="card violet reveal" data-d="2"><span class="label">Businesses</span><h3 class="display">Bring demand</h3><ul class="list plain"><li><i>01</i>Describe repetitive work in plain language</li><li><i>02</i>Get a matched agent with stated limitations</li><li><i>03</i>Subscribe, with people staying in control</li></ul></article>
+        <article class="card violet reveal" data-d="2"><span class="label">Businesses</span><h3 class="display">Bring demand</h3><ul class="list plain"><li><i>01</i>Describe repetitive work in plain language</li><li><i>02</i>Get matched agents with stated limitations; they work together</li><li><i>03</i>Subscribe, with people staying in control</li></ul></article>
       </div>
       <div class="qa">
         <div class="card reveal"><span class="label">A fair question</span><p class="q">&#8220;Why can&#8217;t I just ask ChatGPT?&#8221;</p></div>
@@ -1029,7 +1044,7 @@ footer{border-top:1px solid var(--line);padding:40px 0 34px;background:var(--bg)
               <li><b>01</b><div>Pick a real brief<span>Workflows described by businesses in the discovery engine become briefs.</span></div></li>
               <li><b>02</b><div>Build or adapt your agent<span>Any stack. Masar cares about the result, not the tools.</span></div></li>
               <li><b>03</b><div>Pass the Masar check<span>Accuracy, precision and data privacy, with a human review step designed in.</span></div></li>
-              <li><b>04</b><div>Get listed, matched and paid monthly<span>Businesses subscribe. You keep ownership of the agent.</span></div></li>
+              <li><b>04</b><div>Keep it private, or publish it<span>Use the agent inside your own business, or publish it on the marketplace: businesses subscribe, you keep ownership and earn monthly.</span></div></li>
             </ol></div>
           <aside class="tp-side"><span class="label">What Masar provides</span><ul class="list plain"><li><i>&#10003;</i>Demand, not guesses</li><li><i>&#10003;</i>A quality check businesses trust</li><li><i>&#10003;</i>Listing and matching</li><li><i>&#10003;</i>Recurring revenue and visibility to investors</li></ul><a class="btn btn-caps" href="#creators">How builders join <span class="ar">&#8594;</span></a></aside>
         </div>
@@ -1130,14 +1145,17 @@ footer{border-top:1px solid var(--line);padding:40px 0 34px;background:var(--bg)
       <div class="sec-mark reveal"><span class="label role">Explore AI agents</span><span class="label of">The marketplace</span></div>
       <div class="sec-head">
         <h2 class="display reveal">Agents built<br><span class="l2">for real business workflows.</span></h2>
-        <p class="lede reveal" data-d="1">Every agent states the problem it solves, what it does, where it fits, its limitations, and where humans stay involved. The examples below are fictional prototype agents that show how a listing works.</p>
+        <p class="lede reveal" data-d="1">Every agent states the problem it solves, what it does, where it fits, its limitations, and where humans stay involved. <b>Agents work together:</b> a business can run several, and they hand information to each other. The examples are fictional prototype agents that show how a listing works.</p>
       </div>
       <div class="after-head reveal" data-d="1">
+        <div class="probs-h"><span class="label" style="color:var(--mint)">What do you need to solve?</span><span class="how-note">Search for the problem, then discover the agent.</span></div>
+        <div class="probs" id="mkProblems"></div>
         <div class="mk-bar">
           <div class="chips" role="group" aria-label="Filter by workflow" id="mkCats"></div>
           <span class="mk-count" id="mkCount" aria-live="polite"></span>
         </div>
         <div class="mk-grid" id="mkGrid"></div>
+        <div class="mk-more"><button class="btn btn-caps" type="button" id="mkMore"></button></div>
       </div>
       <p class="note"><span class="demo-flag">Fictional prototype examples</span> &nbsp; Not real customers, companies or deployed products. In the live product, a workflow with no matching agent becomes a brief that creators can build for.</p>
     </div>
@@ -1159,7 +1177,7 @@ footer{border-top:1px solid var(--line);padding:40px 0 34px;background:var(--bg)
       </div>
       <div class="grid2" style="margin-top:14px">
         <div class="card reveal"><span class="label">What creators get</span>
-          <ul class="list plain"><li><i>01</i>Real business problems to build for</li><li><i>02</i>A quality check that opens doors</li><li><i>03</i>Discovery by businesses looking for exactly that workflow</li><li><i>04</i>Monthly revenue, ownership kept</li><li><i>05</i>Investor visibility as adoption grows</li></ul>
+          <ul class="list plain"><li><i>01</i>Real business problems to build for</li><li><i>02</i>A quality check that opens doors</li><li><i>03</i>Discovery by businesses looking for exactly that workflow</li><li><i>04</i>Your choice: keep the agent private or publish it</li><li><i>05</i>Monthly revenue, ownership kept</li><li><i>06</i>Investor visibility as adoption grows</li></ul>
         </div>
         <div class="card violet reveal" data-d="1"><span class="label">Where the first creators come from</span>
           <p class="lede" style="font-size:.906rem">Saudi and regional developers, AI students and freelancers who already build agents but have no channel to businesses. The first briefs come from the discovery engine above.</p>
@@ -1354,91 +1372,212 @@ var isSmall = function(){ return innerWidth < 900; };
    companies or deployed products.
    ============================================================ */
 var BUSINESS = ['Retail','Restaurant','E-commerce','Recruitment','Professional Services','Other'];
-var DEPTS = ['Finance & Accounting','HR & Recruitment','Customer Service','Sales','Marketing','Operations'];
+var DEPTS = ['Finance','HR','Operations','Sales','Marketing','Customer Service','Procurement','Legal & Compliance','IT','Management'];
 
 var EXAMPLES = [
-  {t:'We receive hundreds of CVs every week and employees manually compare candidates against our hiring criteria.', dept:'HR & Recruitment'},
-  {t:'Every week we manually take information from invoices and enter it into a spreadsheet.', dept:'Finance & Accounting'},
-  {t:'We receive hundreds of customer messages every day asking about orders, returns and delivery status.', dept:'Customer Service'},
-  {t:'Every morning someone checks stock levels in each branch and updates the reorder sheet by hand.', dept:'Operations'}
+  {t:'Every week we manually take information from invoices and receipts and enter it into our accounting spreadsheet.', dept:'Finance'},
+  {t:'We receive hundreds of CVs every week and employees manually compare candidates against our hiring criteria.', dept:'HR'},
+  {t:'We get many leads but sales staff decide by hand which ones to follow up, and some are never contacted.', dept:'Sales'},
+  {t:'For every purchase we compare supplier quotations, prices and terms manually in a spreadsheet.', dept:'Procurement'}
 ];
 
+/* problem-first entry points into the marketplace */
+var PROBLEMS = [
+  ['Reduce manual data entry','invoice'], ['Find the right candidates faster','recruitment'], ['Stop losing sales leads','leads'],
+  ['Reduce repetitive customer queries','support'], ['Compare suppliers faster','procurement'], ['Turn business data into insights','insights']
+];
+var CURATED = ['invoice','recruitment','operations','leads','marketing','procurement'];
+
 var SOLUTIONS = [
-{ id:'invoiceflow', name:'InvoiceFlow AI', dept:'Finance & Accounting', kind:'Document workflow automation', workflow:'Finance & accounting',
-  desc:'AI-powered workflow automation for extracting information from invoices and structuring it for accounting workflows.',
-  short:'Extract information from incoming invoices, structure the data and prepare it for human review.',
-  bestFor:'SMEs and accounting teams entering invoices and receipts by hand',
-  keywords:['invoice','receipt','spreadsheet','excel','sheet','bookkeeping','accounting','accountant','expense','financial record','ledger','vat','tax','payment','reconcil','purchase order','bill','فاتورة','فواتير','محاسب','مصاريف','إيصال'],
-  bias:{'Finance & Accounting':1.5},
+{ id:'invoice', name:'Invoice Processing Agent', dept:'Finance', kind:'Document workflow', workflow:'Finance & accounting', worksWith:['insights','procurement'],
+  desc:'Extracts information from invoices and receipts, structures it for your accounting system, and flags anything missing or inconsistent.',
+  short:'Upload an invoice, get structured data with the gaps flagged, ready for a person to approve.',
+  bestFor:'Businesses and accounting teams entering invoices and receipts by hand',
+  keywords:['invoice','receipt','spreadsheet','excel','bookkeeping','accounting','accountant','expense','vat','tax','payment','reconcil','bill','ledger','فاتورة','فواتير','محاسب','مصاريف','إيصال'],
+  bias:{'Finance':1.5},
   task:'Reading invoices and receipts and re-typing the same fields', bottleneck:'A person reads every document and enters it by hand before anything can be checked or paid.',
   opportunity:'Document reading + field extraction + a structured hand-off for review', why:'Structured documents + the same fields every time + a clear human review step',
   oppLead:'The repetitive part of this workflow is reading documents and re-typing the same fields into a system.',
-  oppBody:'That is structured, rule-based work. An Agentic AI workflow can read each incoming document, extract the fields your team enters today, and hand a structured draft to a person for review &#8212; so your team checks instead of types.',
-  ai:['Reading each incoming document','Extracting the same fields every time','Entering the data into the spreadsheet or system','Flagging entries that look incomplete'],
-  human:['Checking flagged or unusual entries','Approving before anything is posted','Handling exceptions and supplier questions'],
-  problem:'Finance teams spend hours every week reading invoices and receipts and re-typing the same fields &#8212; supplier, date, amounts, VAT &#8212; into spreadsheets or accounting systems. The work is repetitive, error-prone and delays month-end. The team&#8217;s judgment is needed for the exceptions, not the typing.',
-  flow:[['Input','Invoices and receipts arrive','PDF, photo or email attachment'],['AI processing','Fields are extracted and structured','Supplier, date, line items, totals, VAT'],['Human review','A person checks what is flagged','Low-confidence fields are highlighted'],['Output','Clean records, ready to use','Spreadsheet rows or accounting draft entries']],
-  caps:['Extract information from invoices and receipts','Structure information into consistent fields','Reduce repetitive data entry','Identify missing or inconsistent information','Prepare entries for human review'],
-  limits:['Human review remains important','Accuracy depends on document and input quality','Does not make final financial decisions','Does not replace professional accounting judgment'],
-  before:['Manual extraction','Data entry','Checking','Spreadsheet update'], after:['Document received','AI extracts information','Structured output','Human review'],
-  before3:['Manual work','Data entry','Checking','Updating systems'], after3:['Information received','AI processes workflow','Human reviews','Structured output'] },
+  oppBody:'That is structured, rule-based work. The agent reads each incoming invoice or receipt, extracts supplier, date, amounts and VAT, flags what is missing or inconsistent, and hands a structured draft to a person for approval &#8212; so your team checks instead of types.',
+  ai:['Reading each incoming invoice or receipt','Extracting supplier, date, amount, VAT and line items','Structuring the data for your system','Flagging missing or inconsistent information'],
+  human:['Approving before anything is posted','Handling flagged exceptions','Supplier questions and disputes'],
+  problem:'Employees manually extract information from invoices and receipts and enter it into accounting systems or spreadsheets. The work is repetitive, error-prone and delays month-end, while the team&#8217;s judgment is only really needed for the exceptions.',
+  flow:[['Input','Invoice or receipt uploaded','PDF, photo or email attachment'],['AI processing','Fields extracted and structured','Supplier, date, amount, VAT, line items'],['Human review','Flags checked by a person','Missing or unusual values highlighted'],['Output','Clean records for your system','Accounting draft entries or spreadsheet rows']],
+  caps:['Extract supplier, date, amount and VAT from invoices','Structure information into consistent fields','Reduce repetitive data entry','Flag missing or incorrect information','Prepare entries for human approval'],
+  limits:['Human approval remains the final step','Accuracy depends on document quality','Does not make payments or financial decisions','Does not replace professional accounting judgment'],
+  before:['Open each invoice','Type the fields','Check for errors','Update the spreadsheet'], after:['Invoice uploaded','Agent extracts and structures','Gaps flagged','Person approves'],
+  before3:['Manual work','Data entry','Checking','Updating systems'], after3:['Information received','Agent processes it','Human reviews','Structured output'] },
 
-{ id:'supportflow', name:'SupportFlow AI', dept:'Customer Service', kind:'Customer inquiry workflow', workflow:'Customer support',
-  desc:'An AI workflow for handling repetitive customer inquiries and routing more complex requests for human review.',
-  short:'Answer repetitive customer questions consistently, and route complex or sensitive requests to your team.',
-  bestFor:'Stores, clinics and service businesses with high message volume',
-  keywords:['customer','question','whatsapp','support','inquir','enquir','complaint','message','chat','reply','respond','ticket','order status','delivery','shipping','return','faq','client','caller','call','عملاء','عميل','واتساب','استفسار','رسائل','شكوى','أسئلة'],
-  bias:{'Customer Service':1.5,'Sales':.5,'Marketing':.5},
-  task:'Answering recurring order, delivery and policy questions', bottleneck:'Employees repeatedly retrieve the same information and respond manually, one message at a time.',
-  opportunity:'Automated inquiry handling + information retrieval, with escalation', why:'High-volume repetitive inquiries + structured information + defined escalation points',
-  oppLead:'The repetitive part of this workflow is answering the same questions again and again, one message at a time.',
-  oppBody:'Most of those questions have a known answer. An Agentic AI workflow can understand each inquiry, answer the routine ones consistently from your own information, and route anything complex, sensitive or unusual to a person &#8212; so your team handles the exceptions, not the repetition.',
-  ai:['Understanding what each customer is asking','Answering routine questions from your information','Collecting the details a person will need','Routing complex requests to the right team member'],
-  human:['Complaints, refunds and sensitive cases','Anything the AI is not confident about','Final decisions about the customer'],
-  problem:'Customer-facing teams answer the same questions dozens of times a day &#8212; order status, opening hours, prices, policies. Each reply is typed by hand, response times stretch, and the genuinely difficult conversations get less attention than they deserve.',
-  flow:[['Input','A customer sends a message','WhatsApp, chat, email or a web form'],['AI processing','The request is understood and drafted','Routine answers from your own information'],['Human review','Complex cases go to your team','Complaints and exceptions are handed over'],['Output','A consistent, timely answer','Every conversation logged for review']],
-  caps:['Understand repetitive customer inquiries','Answer routine questions consistently','Route complex requests for human review','Collect information needed to resolve a case','Keep a record of every conversation'],
-  limits:['Human review remains important','Accuracy depends on the quality of your information','Does not resolve complaints or refunds on its own','Does not replace your team&#8217;s judgment with customers'],
-  before:['Message arrives','Staff read and search','Type the reply','Repeat for the next message'], after:['Message received','AI understands and drafts','Routine answered, complex routed','Human handles exceptions'],
-  before3:['Manual work','Reading and searching','Typing replies','Updating records'], after3:['Information received','AI processes workflow','Human reviews','Structured output'] },
-
-{ id:'recruitmatch', name:'RecruitMatch AI', dept:'HR & Recruitment', kind:'Recruitment screening workflow', workflow:'Recruitment',
-  desc:'An AI-assisted recruitment workflow that helps organize and screen candidates against defined criteria.',
-  short:'Organize incoming applications and screen candidates against the criteria you define, ready for your decision.',
+{ id:'recruitment', name:'Recruitment Screening Agent', dept:'HR', kind:'Screening workflow', workflow:'Recruitment', worksWith:['operations'],
+  desc:'Reads CVs against a job description, extracts the relevant details, compares them to your requirements and produces a shortlist with reasons.',
+  short:'Upload CVs and a job description, get a reasoned shortlist. You make every decision.',
   bestFor:'Recruitment agencies and hiring teams with high application volume',
-  keywords:['cv','resume','candidate','recruit','hiring','hire','interview','applicant','application','shortlist','screen','job post','vacancy','talent','onboard','سيرة','مرشح','توظيف','مقابلة','متقدم'],
-  bias:{'HR & Recruitment':1.5},
-  task:'Manual candidate screening against the same criteria', bottleneck:'Every application is read by hand and compared against the criteria before a shortlist exists.',
-  opportunity:'Candidate screening and ranking against defined criteria', why:'High volume + repeatable criteria + a human decision at the end',
-  oppLead:'The repetitive part of this workflow is reading every application and checking it against the same criteria by hand.',
-  oppBody:'Screening is structured work: the same questions asked of every candidate. An Agentic AI workflow can organize incoming applications, extract the relevant details, and screen them against criteria you define &#8212; so your team spends its time on the shortlist, not the pile.',
-  ai:['Organizing applications as they arrive','Extracting experience, skills and availability','Screening against your defined criteria','Preparing a structured shortlist'],
+  keywords:['cv','resume','candidate','recruit','hiring','hire','interview','applicant','application','shortlist','screen','job description','vacancy','talent','سيرة','مرشح','توظيف','مقابلة','متقدم'],
+  bias:{'HR':1.5},
+  task:'Manual candidate screening against the same criteria', bottleneck:'Every CV is read by hand and compared against the requirements before a shortlist exists.',
+  opportunity:'Candidate screening and ranking against your defined criteria', why:'High volume + repeatable criteria + a human decision at the end',
+  oppLead:'The repetitive part of this workflow is reading every CV and checking it against the same requirements by hand.',
+  oppBody:'Screening is structured work: the same questions asked of every candidate. The agent extracts experience, skills and availability from each CV, compares them to the job description, and produces a shortlist with the reasons &#8212; so your team spends its time on the shortlist, not the pile.',
+  ai:['Extracting experience, skills and availability from CVs','Comparing each candidate to the job requirements','Ranking and explaining the shortlist','Flagging missing information'],
   human:['Setting and adjusting the criteria','Reviewing the shortlist and edge cases','Every interview and hiring decision'],
-  problem:'Recruiters and hiring managers receive far more applications than they can read carefully. CVs arrive in different formats, the same criteria are checked by hand for each one, and strong candidates can be missed simply because of volume.',
-  flow:[['Input','Applications arrive','Email, job boards or a careers form'],['AI processing','Details are organized and screened','Against the criteria you define'],['Human review','You review the shortlist','Edge cases and judgment calls stay with you'],['Output','A structured shortlist','Ready for interviews and decisions']],
-  caps:['Organize applications from different sources','Extract experience, skills and availability','Screen candidates against defined criteria','Identify missing information in applications','Prepare a structured shortlist for review'],
-  limits:['Human review remains important','Accuracy depends on application quality','Does not make hiring decisions','Does not replace the recruiter&#8217;s judgment or the interview'],
-  before:['CVs arrive by email','Manual reading','Spreadsheet shortlist','Scheduling by hand'], after:['Applications received','AI organizes and screens','Structured shortlist','Human decides'],
-  before3:['Manual work','Reading every CV','Checking criteria','Updating the tracker'], after3:['Information received','AI processes workflow','Human reviews','Structured output'] },
+  problem:'Recruiters spend significant time reviewing CVs against job requirements. CVs arrive in different formats, the same criteria are checked by hand for each one, and strong candidates can be missed simply because of volume.',
+  flow:[['Input','CVs and a job description','Email, job boards or a careers form'],['AI processing','Details extracted and compared','Against the requirements you define'],['Human review','You review the shortlist and reasons','Edge cases stay with you'],['Output','A reasoned shortlist','Ready for interviews and decisions']],
+  caps:['Extract experience, skills and availability from CVs','Compare candidates against job requirements','Produce a shortlist with reasons','Identify missing information in applications','Organize applications from several sources'],
+  limits:['Human review remains important','Accuracy depends on CV quality','Does not make hiring decisions','Does not replace the interview or the recruiter&#8217;s judgment'],
+  before:['CVs arrive by email','Read each one','Compare by hand','Build a spreadsheet shortlist'], after:['CVs and job description uploaded','Agent extracts and compares','Shortlist with reasons','Recruiter decides'],
+  before3:['Manual work','Reading every CV','Checking criteria','Updating the tracker'], after3:['Information received','Agent processes it','Human reviews','Structured output'] },
 
-{ id:'workflowpilot', name:'WorkflowPilot AI', dept:'Operations', kind:'Multi-step operations workflow', workflow:'Operations', fallback:true,
-  desc:'An AI workflow designed to identify repetitive operational tasks, organize information and assist teams with multi-step processes.',
-  short:'Organize the information behind a repetitive multi-step process and prepare each step for your team to review.',
-  bestFor:'Operations teams running the same routine daily or weekly',
-  keywords:['stock','inventory','report','schedul','order','data entry','copy','paste','update','form','checklist','manual','tracking','follow','lead','quote','reorder','branch','supplier','log','record','approval','مخزون','تقرير','جدول','متابعة'],
-  bias:{'Operations':1,'Sales':.5,'Marketing':.5},
-  task:'Collecting information and repeating the same multi-step routine', bottleneck:'One person gathers, copies and updates by hand, every time, and the routine depends on them remembering every step.',
-  opportunity:'Information gathering + step preparation + a structured hand-off', why:'A repeated multi-step routine + information spread across places + approval by a person',
-  oppLead:'The repetitive part of this workflow is gathering information from several places and repeating the same steps every time.',
-  oppBody:'Multi-step routines like this follow a pattern. An Agentic AI workflow can collect the information, organize it into a consistent structure, and prepare each step for your team to review &#8212; so people make the decisions while the routine moves on its own.',
-  ai:['Collecting information from the places it lives today','Organizing it into a consistent structure','Preparing the repeated steps','Highlighting anything unusual'],
-  human:['Reviewing the prepared steps','Approving actions that matter','Handling exceptions'],
-  problem:'Operations teams run the same multi-step routine every day or week &#8212; checking, collecting, copying and updating. Each step is small, but together they consume hours and depend on one person remembering every step.',
-  flow:[['Input','Information from your systems and team','Sheets, messages, reports, forms'],['AI processing','The routine is organized and prepared','Consistent structure, every time'],['Human review','Your team reviews and approves','Exceptions stay with people'],['Output','A completed, documented routine','Updated records and a clear log']],
-  caps:['Identify repetitive operational tasks','Organize information from several sources','Assist with multi-step processes','Highlight unusual or missing information','Prepare each step for human review'],
-  limits:['Human review remains important','Accuracy depends on input quality','Does not take actions without approval','Does not replace operational judgment'],
-  before:['Task arrives','Gather information by hand','Repeat the same steps','Update systems'], after:['Information received','AI organizes the routine','Structured output','Human review'],
-  before3:['Manual work','Data entry','Checking','Updating systems'], after3:['Information received','AI processes workflow','Human reviews','Structured output'] }
+{ id:'operations', name:'Operations Workflow Agent', dept:'Operations', kind:'Coordination workflow', workflow:'Operations', worksWith:['support','insights'], fallback:true,
+  desc:'Receives a workflow request, organizes and assigns the tasks, tracks their status, spots delays and sends the follow-ups your team sends by hand today.',
+  short:'Turn a repetitive multi-step routine into tracked tasks with automatic follow-ups. People approve what matters.',
+  bestFor:'Operations teams coordinating repetitive tasks across people and systems',
+  keywords:['task','coordinat','status','follow','chasing','update','checklist','schedul','stock','inventory','reorder','tracking','manual','routine','process','مهام','متابعة','مخزون','جدول'],
+  bias:{'Operations':1.5},
+  task:'Coordinating repetitive tasks, checking statuses and chasing people for updates', bottleneck:'One person tracks everything by hand and the routine depends on them remembering every step.',
+  opportunity:'Task organization + status tracking + automatic follow-ups', why:'A repeated multi-step routine + many people involved + approval by a person',
+  oppLead:'The repetitive part of this workflow is coordinating the same steps, checking who has done what, and chasing updates.',
+  oppBody:'Coordination follows a pattern. The agent receives the request, breaks it into tasks, assigns and tracks them, identifies delays and sends the follow-up notifications &#8212; so people make the decisions while the routine moves on its own.',
+  ai:['Organizing a request into tasks','Assigning and tracking status','Identifying delays','Sending follow-up notifications'],
+  human:['Approving actions that matter','Handling exceptions','Deciding priorities'],
+  problem:'Employees spend time coordinating repetitive tasks, checking statuses and chasing people for updates. Each step is small, but together they consume hours and depend on one person remembering every step.',
+  flow:[['Input','A workflow request','Form, message or recurring schedule'],['AI processing','Tasks organized, assigned and tracked','Delays identified automatically'],['Human review','Your team approves and resolves exceptions','Nothing important happens without a person'],['Output','A completed, documented routine','Status log and follow-ups sent']],
+  caps:['Organize requests into tasks','Assign and track status','Identify delays','Send follow-up notifications','Keep a clear log of the routine'],
+  limits:['Human approval remains important','Accuracy depends on input quality','Does not take actions without approval','Does not replace operational judgment'],
+  before:['Request arrives','Assign by hand','Check statuses','Chase for updates'], after:['Request received','Agent organizes and tracks','Delays flagged, follow-ups sent','Team approves'],
+  before3:['Manual work','Coordinating','Checking','Chasing updates'], after3:['Request received','Agent processes it','Human reviews','Structured output'] },
+
+{ id:'leads', name:'Lead Qualification Agent', dept:'Sales', kind:'Sales workflow', workflow:'Sales', worksWith:['marketing','insights'],
+  desc:'Analyzes each new lead, qualifies and prioritizes it, and prepares a recommended next action so no lead is lost or followed up inconsistently.',
+  short:'Every new lead qualified, prioritized and handed to sales with a recommended next step.',
+  bestFor:'Sales teams that receive more leads than they can review consistently',
+  keywords:['lead','prospect','pipeline','crm','quote','deal','sales','qualify','follow-up','inquiry form','enquiry form','conversion','عملاء محتملين','مبيعات','عرض سعر'],
+  bias:{'Sales':1.5},
+  task:'Deciding by hand which leads are worth pursuing, and following up inconsistently', bottleneck:'Leads pile up, are judged inconsistently, and some are never contacted.',
+  opportunity:'Lead analysis + qualification + prioritized next actions', why:'Many similar leads + repeatable criteria + a person closing the deal',
+  oppLead:'The repetitive part of this workflow is reading each new lead and deciding, by hand, whether and how to follow up.',
+  oppBody:'Qualification follows criteria you can define. The agent analyzes the company or customer information behind each lead, qualifies and prioritizes it, and prepares a recommended next action &#8212; so your sales team follows up on the right leads, consistently.',
+  ai:['Analyzing company or customer information for each lead','Qualifying against your criteria','Prioritizing the pipeline','Preparing a recommended next action'],
+  human:['Every conversation with the customer','Pricing and negotiation','Final decisions on the deal'],
+  problem:'Sales teams receive many leads but manually determine which ones are worth pursuing. The result is inconsistent follow-up, lost leads and time spent on the wrong prospects.',
+  flow:[['Input','A new lead arrives','Web form, WhatsApp, referral or CRM'],['AI processing','Lead analyzed, qualified and prioritized','Against your criteria'],['Human review','Sales reviews the recommendation','And owns the conversation'],['Output','A prioritized pipeline with next actions','Nothing slips through']],
+  caps:['Analyze lead information','Qualify leads against defined criteria','Prioritize the pipeline','Prepare recommended next actions','Keep follow-up consistent'],
+  limits:['Human review remains important','Depends on the quality of lead information','Does not contact customers without approval','Does not replace the salesperson'],
+  before:['Lead arrives','Someone judges it by hand','Follow-up if remembered','Some leads never contacted'], after:['Lead received','Agent qualifies and prioritizes','Next action recommended','Sales follows up'],
+  before3:['Manual work','Judging leads','Inconsistent follow-up','Lost leads'], after3:['Lead received','Agent processes it','Human reviews','Structured output'] },
+
+{ id:'marketing', name:'Marketing Content Agent', dept:'Marketing', kind:'Content workflow', workflow:'Marketing', worksWith:['leads'],
+  desc:'Takes your business information and a campaign objective, generates content variations, adapts the message for each channel and organizes the campaign assets.',
+  short:'One objective in, a set of channel-ready content variations out, organized and ready for your approval.',
+  bestFor:'Small businesses that need constant marketing content without a marketing team',
+  keywords:['content','post','social','campaign','caption','newsletter','ad','instagram','tiktok','snapchat','brand','marketing','promotion','محتوى','تسويق','حملة','إعلان'],
+  bias:{'Marketing':1.5},
+  task:'Creating and distributing marketing content by hand', bottleneck:'Every post, caption and campaign asset is written and adapted for each channel manually.',
+  opportunity:'Content generation + channel adaptation + campaign organization', why:'Constant demand for content + a repeatable brief + a person approving the message',
+  oppLead:'The repetitive part of this workflow is producing and adapting the same message for every channel, again and again.',
+  oppBody:'Content follows a brief. The agent takes your business information and campaign objective, generates variations, adapts them for each channel and organizes the assets &#8212; so you approve and publish instead of writing from scratch.',
+  ai:['Generating content variations from a brief','Adapting messaging for each channel','Organizing campaign assets','Suggesting a publishing schedule'],
+  human:['Approving every message','Brand voice and claims','Publishing decisions'],
+  problem:'Small businesses need constant marketing content but do not have the time or people to create it. Every campaign means writing, adapting and organizing content across channels by hand.',
+  flow:[['Input','Business information and a campaign objective','Products, audience, offer'],['AI processing','Content variations generated and adapted','Per channel and format'],['Human review','You approve or edit','Brand and claims stay with you'],['Output','Organized, channel-ready campaign assets','Ready to publish']],
+  caps:['Generate content variations from a brief','Adapt messaging for different channels','Organize campaign assets','Suggest schedules','Keep tone consistent with your examples'],
+  limits:['Human approval remains the final step','Quality depends on the brief and examples','Does not publish without approval','Does not replace brand judgment'],
+  before:['Decide what to post','Write it','Rewrite per channel','Organize files'], after:['Objective given','Agent drafts variations','Adapted per channel','You approve and publish'],
+  before3:['Manual work','Writing content','Adapting per channel','Organizing assets'], after3:['Brief received','Agent processes it','Human reviews','Structured output'] },
+
+{ id:'support', name:'Customer Support Agent', dept:'Customer Service', kind:'Customer inquiry workflow', workflow:'Customer support', worksWith:['operations','insights'],
+  desc:'Identifies what a customer is asking, retrieves the relevant company information, responds, and escalates unusual cases to your staff.',
+  short:'Routine questions answered consistently from your own information. Unusual cases go to your team.',
+  bestFor:'Stores, clinics and service businesses with high message volume',
+  keywords:['customer','question','whatsapp','support','inquir','enquir','complaint','message','chat','reply','respond','ticket','order status','delivery','shipping','return','faq','عملاء','عميل','واتساب','استفسار','رسائل','شكوى','أسئلة'],
+  bias:{'Customer Service':1.5},
+  task:'Answering the same customer questions repeatedly', bottleneck:'Staff repeatedly retrieve the same information and respond manually, one message at a time.',
+  opportunity:'Intent identification + information retrieval + escalation', why:'High-volume repetitive inquiries + structured information + defined escalation points',
+  oppLead:'The repetitive part of this workflow is answering the same questions again and again, one message at a time.',
+  oppBody:'Most of those questions have a known answer. The agent identifies the intent, retrieves the relevant company information, responds, and escalates anything unusual or sensitive to a person &#8212; so your team handles the exceptions, not the repetition.',
+  ai:['Identifying what the customer is asking','Retrieving the relevant company information','Responding to routine questions','Escalating unusual cases to staff'],
+  human:['Complaints, refunds and sensitive cases','Anything the agent is not confident about','Final decisions about the customer'],
+  problem:'Staff repeatedly answer the same customer questions: order status, opening hours, prices, policies. Each reply is typed by hand, response times stretch, and the difficult conversations get less attention.',
+  flow:[['Input','A customer question','WhatsApp, chat, email or web form'],['AI processing','Intent identified, information retrieved','From your own information'],['Human review','Unusual cases escalated to staff','Complaints and exceptions'],['Output','A consistent, timely answer','Every conversation logged']],
+  caps:['Identify customer intent','Retrieve relevant company information','Respond to routine questions consistently','Escalate unusual cases to staff','Keep a record of every conversation'],
+  limits:['Human review remains important','Accuracy depends on your information','Does not resolve complaints or refunds on its own','Does not replace your team&#8217;s judgment'],
+  before:['Message arrives','Staff read and search','Type the reply','Repeat for the next message'], after:['Question received','Agent identifies and retrieves','Routine answered, unusual escalated','Staff handle exceptions'],
+  before3:['Manual work','Reading and searching','Typing replies','Updating records'], after3:['Question received','Agent processes it','Human reviews','Structured output'] },
+
+{ id:'procurement', name:'Procurement Comparison Agent', dept:'Procurement', kind:'Document comparison', workflow:'Procurement', worksWith:['invoice','compliance'],
+  desc:'Extracts prices, terms and specifications from supplier quotations, compares them side by side and produces a comparison report.',
+  short:'Upload quotations, get a side-by-side comparison with the price and term differences highlighted.',
+  bestFor:'Businesses comparing several supplier quotations for every purchase',
+  keywords:['supplier','quotation','tender','purchase','vendor','price comparison','procurement','sourcing','offers','bids','مورد','عرض سعر','مناقصة','مشتريات'],
+  bias:{'Procurement':1.5},
+  task:'Comparing supplier quotations, prices, terms and specifications by hand', bottleneck:'Every quotation is read and re-typed into a comparison sheet before a decision can be made.',
+  opportunity:'Quotation extraction + side-by-side comparison + exception highlighting', why:'Several similar documents + the same fields to compare + a person choosing the supplier',
+  oppLead:'The repetitive part of this workflow is reading each quotation and lining up prices, terms and specifications by hand.',
+  oppBody:'Comparison is structured work. The agent extracts the information from each quotation, compares suppliers, highlights price and term differences, and produces a comparison report &#8212; so your team decides instead of retypes.',
+  ai:['Extracting prices, terms and specifications from quotations','Comparing suppliers side by side','Highlighting price and term differences','Producing a comparison report'],
+  human:['Choosing the supplier','Negotiation','Approving the purchase'],
+  problem:'Employees manually compare supplier quotations, prices, terms and specifications. The information sits in different formats, is retyped into spreadsheets, and small differences in terms are easy to miss.',
+  flow:[['Input','Supplier quotations uploaded','PDF, email or spreadsheet'],['AI processing','Information extracted and compared','Prices, terms, specifications'],['Human review','You review the highlighted differences','And choose the supplier'],['Output','A comparison report','Ready for the purchase decision']],
+  caps:['Extract information from quotations','Compare suppliers side by side','Highlight price and term differences','Produce a comparison report','Flag missing specifications'],
+  limits:['Human decision remains the final step','Accuracy depends on quotation quality','Does not negotiate or place orders','Does not replace procurement judgment'],
+  before:['Collect quotations','Read each one','Retype into a sheet','Compare by hand'], after:['Quotations uploaded','Agent extracts and compares','Differences highlighted','You choose the supplier'],
+  before3:['Manual work','Reading quotations','Retyping','Comparing'], after3:['Documents received','Agent processes it','Human reviews','Structured output'] },
+
+{ id:'compliance', name:'Document Compliance Agent', dept:'Legal & Compliance', kind:'Document checking', workflow:'Legal & compliance', worksWith:['procurement','invoice'],
+  desc:'Checks documents against your predefined requirements, identifies missing information and produces an exception report. Document checking, not legal advice.',
+  short:'Upload a document and a checklist, get the missing or non-conforming items listed for a person to review.',
+  bestFor:'Businesses that check contracts, forms and submissions for required information',
+  keywords:['contract','compliance','document check','missing field','required information','policy','regulation','audit','review documents','forms','clauses','عقد','امتثال','مراجعة'],
+  bias:{'Legal & Compliance':1.5},
+  task:'Checking documents for required information and missing fields', bottleneck:'Someone reads every document against a checklist by hand before it can move on.',
+  opportunity:'Requirement checking + missing-information detection + exception reports', why:'Defined requirements + many similar documents + a person deciding on exceptions',
+  oppLead:'The repetitive part of this workflow is reading every document against the same checklist.',
+  oppBody:'Checking against defined requirements is structured work. The agent checks each document against your requirements, identifies missing information and produces an exception report &#8212; so your team reviews the exceptions, not every page. It checks documents; it does not give legal advice.',
+  ai:['Checking documents against your predefined requirements','Identifying missing or inconsistent information','Producing an exception report','Tracking which documents passed'],
+  human:['Interpreting the exceptions','Any legal judgment','Final sign-off'],
+  problem:'Businesses spend time checking documents for required information and missing fields. The requirements are known, the documents are many, and mistakes are costly.',
+  flow:[['Input','A document and your requirements','Contract, form or submission'],['AI processing','Checked against the requirements','Missing or non-conforming items found'],['Human review','A person reviews the exceptions','Legal judgment stays with people'],['Output','An exception report','Pass, fail or needs attention per item']],
+  caps:['Check documents against predefined requirements','Identify missing information','Produce an exception report','Track document status','Apply the same checklist consistently'],
+  limits:['Document checking, not legal advice','Accuracy depends on document quality and clear requirements','Does not approve or sign anything','Does not replace legal or compliance professionals'],
+  before:['Document arrives','Read it fully','Check against the list','Note what is missing'], after:['Document uploaded','Agent checks requirements','Exceptions listed','Person reviews and signs off'],
+  before3:['Manual work','Reading documents','Checking lists','Noting gaps'], after3:['Document received','Agent processes it','Human reviews','Structured output'] },
+
+{ id:'itsupport', name:'IT Support Agent', dept:'IT', kind:'Internal support workflow', workflow:'IT support', worksWith:['operations'],
+  desc:'Identifies an employee&#8217;s IT issue, searches your company knowledge base, provides the solution and escalates to IT when necessary.',
+  short:'Common internal IT requests answered from your knowledge base. The rest goes to IT.',
+  bestFor:'Companies whose IT team answers the same internal questions every week',
+  keywords:['password','laptop','vpn','printer','access','login','it ticket','install','helpdesk','wifi','email setup','software','كلمة المرور','طابعة','دخول'],
+  bias:{'IT':1.5},
+  task:'Answering the same internal IT requests repeatedly', bottleneck:'IT staff answer common issues by hand while real incidents wait.',
+  opportunity:'Issue identification + knowledge-base retrieval + escalation', why:'Repeated requests + documented answers + a clear escalation point',
+  oppLead:'The repetitive part of this workflow is answering the same internal requests over and over.',
+  oppBody:'Most common IT questions already have an answer in your documentation. The agent identifies the issue, searches your knowledge base, provides the solution, and escalates anything it cannot resolve &#8212; so IT spends its time on real incidents.',
+  ai:['Identifying the issue from the request','Searching the company knowledge base','Providing the documented solution','Escalating unresolved issues to IT'],
+  human:['Real incidents and security issues','Access approvals','Anything outside the documentation'],
+  problem:'Employees repeatedly ask IT about common internal issues: passwords, access, printers, software. Each answer is given by hand while more serious problems wait.',
+  flow:[['Input','An employee request','Chat, email or ticket'],['AI processing','Issue identified, knowledge base searched','Documented solutions only'],['Human review','Unresolved issues escalated to IT','Security and access decisions stay with people'],['Output','A resolved request or a clean ticket','Logged for review']],
+  caps:['Identify common IT issues','Search the company knowledge base','Provide documented solutions','Escalate when necessary','Log every request'],
+  limits:['Answers only from your documentation','Does not change access or security settings','Does not replace IT staff','Escalation remains essential'],
+  before:['Employee messages IT','IT reads the request','Finds the known answer','Replies by hand'], after:['Request received','Agent identifies and searches','Solution provided','IT handles escalations'],
+  before3:['Manual work','Reading requests','Finding answers','Replying'], after3:['Request received','Agent processes it','Human reviews','Structured output'] },
+
+{ id:'insights', name:'Business Insights Agent', dept:'Management', kind:'Data summarization', workflow:'Management', worksWith:['invoice','leads','support'],
+  desc:'Brings together data from spreadsheets, reports and operations, summarizes KPIs, identifies trends, flags anomalies and produces management insights.',
+  short:'Connect your business data, get a clear summary of what changed, what is trending and what needs attention.',
+  bestFor:'Managers with information scattered across spreadsheets, reports and systems',
+  keywords:['report','dashboard','kpi','trend','performance','numbers','metrics','summary','scattered','insight','overview','monthly review','تقرير','مؤشرات','ملخص'],
+  bias:{'Management':1.5},
+  task:'Pulling information together from scattered reports and spreadsheets', bottleneck:'Managers spend time collecting and reconciling numbers before they can think about them.',
+  opportunity:'Data consolidation + KPI summaries + anomaly flags', why:'Recurring reporting + data in known places + decisions that stay with managers',
+  oppLead:'The repetitive part of this workflow is collecting numbers from several places and rebuilding the same summary.',
+  oppBody:'Summaries follow a pattern. The agent connects to your business data, identifies trends, summarizes KPIs, flags anomalies and produces management insights &#8212; so managers spend their time deciding, not collecting.',
+  ai:['Consolidating data from spreadsheets and reports','Summarizing KPIs','Identifying trends','Flagging anomalies'],
+  human:['Interpreting the insights','Every decision','Setting what matters'],
+  problem:'Managers have information spread across spreadsheets, reports and operational data. Building a clear picture takes hours every week, and anomalies are noticed late.',
+  flow:[['Input','Business data connected or uploaded','Spreadsheets, reports, exports'],['AI processing','Trends and KPIs summarized','Anomalies flagged'],['Human review','Managers interpret and decide','The agent informs, it does not decide'],['Output','Management insights','Clear, recurring and comparable']],
+  caps:['Consolidate data from several sources','Summarize KPIs','Identify trends','Flag anomalies','Produce management insights'],
+  limits:['Insights depend on data quality','Does not make decisions','Does not replace management judgment','Works best with agents that structure the data first'],
+  before:['Open every report','Copy the numbers','Rebuild the summary','Notice problems late'], after:['Data connected','Agent summarizes and flags','Insights produced','Managers decide'],
+  before3:['Manual work','Collecting numbers','Rebuilding summaries','Late anomalies'], after3:['Data received','Agent processes it','Human reviews','Structured output'] }
 ];
 function solById(id){ for (var i=0;i<SOLUTIONS.length;i++) if (SOLUTIONS[i].id===id) return SOLUTIONS[i]; return null; }
 
@@ -1659,7 +1798,7 @@ function renderSolution(sol, browse){
       '<div class="badges"><span class="verified">&#10003; Masar Verified</span><span class="demo-flag">Fictional prototype example</span></div></div>'+
     '<div class="sgrid">'+
       '<article class="card reveal"><span class="label">Problem it solves</span><p class="prob">'+sol.problem+'</p>'+
-        '<div class="quote-meta" style="margin-top:18px"><span><b>Best fit</b>'+esc(sol.bestFor)+'</span>'+(r ? '<span><b>Your case</b>'+esc(r.business)+' &#183; '+esc(r.department)+(r.frequency ? ' &#183; '+esc(r.frequency) : '')+'</span>' : '')+'</div></article>'+
+        '<div class="quote-meta" style="margin-top:18px"><span><b>Best fit</b>'+esc(sol.bestFor)+'</span><span><b>Works with</b>'+worksWithHTML(sol)+'</span>'+(r ? '<span><b>Your case</b>'+esc(r.business)+' &#183; '+esc(r.department)+(r.frequency ? ' &#183; '+esc(r.frequency) : '')+'</span>' : '')+'</div></article>'+
       yours+
     '</div>'+
     '<article class="card reveal" style="margin-top:14px"><span class="label">How it works &#183; input &#8594; AI processing &#8594; human review &#8594; output</span><div class="hiw">'+hiw+'</div></article>'+
@@ -1680,25 +1819,31 @@ function renderSolution(sol, browse){
 }
 
 /* ============================================================
-   MARKETPLACE
+   MARKETPLACE — problem first, six curated agents, view all
    ============================================================ */
-var mkCat = 'all', mkGrid = document.getElementById('mkGrid'), mkCount = document.getElementById('mkCount'), mkCats = document.getElementById('mkCats');
-mkCats.innerHTML = ['all'].concat(DEPTS).map(function(d){ return '<button class="chipbtn'+(d === 'all' ? ' on' : '')+'" type="button" data-cat="'+esc(d)+'">'+(d === 'all' ? 'All workflows' : esc(d))+'</button>'; }).join('');
+var mkCat = 'all', mkAll = false, mkGrid = document.getElementById('mkGrid'), mkCount = document.getElementById('mkCount'), mkCats = document.getElementById('mkCats'), mkProblems = document.getElementById('mkProblems'), mkMore = document.getElementById('mkMore');
+mkCats.innerHTML = ['all'].concat(DEPTS).map(function(d){ return '<button class="chipbtn'+(d === 'all' ? ' on' : '')+'" type="button" data-cat="'+esc(d)+'">'+(d === 'all' ? 'All' : esc(d))+'</button>'; }).join('');
+mkProblems.innerHTML = PROBLEMS.map(function(p){ var s = solById(p[1]); return '<a class="pcard" href="#/solution/'+s.id+'"><span class="pq">'+esc(p[0])+'</span><span class="pa">&#8594; '+esc(s.name)+'</span></a>'; }).join('');
+function worksWithHTML(s){ return (s.worksWith || []).map(function(id){ var w = solById(id); return w ? '<a class="chip" href="#/solution/'+w.id+'">'+esc(w.name.replace(' Agent',''))+'</a>' : ''; }).join(''); }
 function tileHTML(s){
   return '<article class="tile"><div class="tile-top"><span class="label">'+esc(s.dept)+'</span><span class="demo-flag">Fictional example</span></div>'+
     '<h3>'+esc(s.name)+'</h3><p class="prob">'+esc(s.task)+'.</p>'+
-    '<dl class="meta"><dt>Workflow</dt><dd>'+esc(s.workflow)+'</dd><dt>What it does</dt><dd>'+s.short+'</dd><dt>Best fit</dt><dd>'+esc(s.bestFor)+'</dd><dt>Humans</dt><dd>'+esc(s.human[0])+'</dd></dl>'+
-    '<div class="quote-meta" style="margin-top:4px"><span><b>Capabilities</b>'+s.caps.length+'</span><span><b>Limitations</b>'+s.limits.length+' stated</span></div>'+
-    '<div class="tile-foot"><span class="verified">&#10003; Masar Verified</span><a class="btn btn-sm" href="#/solution/'+s.id+'">View solution <span class="ar">&#8594;</span></a></div></article>';
+    '<dl class="meta"><dt>What it does</dt><dd>'+s.short+'</dd><dt>Best fit</dt><dd>'+esc(s.bestFor)+'</dd><dt>Humans</dt><dd>'+esc(s.human[0])+'</dd><dt>Works with</dt><dd class="ww">'+worksWithHTML(s)+'</dd></dl>'+
+    '<div class="tile-foot"><span class="verified">&#10003; Masar Verified</span><a class="btn btn-sm" href="#/solution/'+s.id+'">View agent <span class="ar">&#8594;</span></a></div></article>';
 }
 function renderMarket(){
   var list = SOLUTIONS.filter(function(s){ return mkCat === 'all' || s.dept === mkCat; });
+  var curated = mkCat === 'all' && !mkAll;
+  if (curated) list = CURATED.map(solById);
   mkCats.querySelectorAll('.chipbtn').forEach(function(b){ b.classList.toggle('on', b.dataset.cat === mkCat); });
-  mkCount.textContent = list.length + ' fictional example solution' + (list.length === 1 ? '' : 's') + (mkCat === 'all' ? ' across ' + DEPTS.length + ' workflows' : ' · ' + mkCat);
+  mkCount.textContent = curated ? '6 curated agents · ' + SOLUTIONS.length + ' in total across ' + DEPTS.length + ' departments' : list.length + ' agent' + (list.length === 1 ? '' : 's') + (mkCat === 'all' ? ' across ' + DEPTS.length + ' departments' : ' · ' + mkCat);
   mkGrid.innerHTML = list.length ? list.map(tileHTML).join('') :
-    '<div class="mk-empty"><span><b>No example solution yet for '+esc(mkCat)+'.</b> In the live product this is exactly where a business brief appears for builders to build for &#8212; demand first, solution second.</span><a class="btn btn-sm" href="#build">See how builders join <span class="ar">&#8594;</span></a></div>';
+    '<div class="mk-empty"><span><b>No example agent yet for '+esc(mkCat)+'.</b> In the live product this is exactly where a business brief appears for creators to build for.</span><a class="btn btn-sm" href="#build">How creators join <span class="ar">&#8594;</span></a></div>';
+  mkMore.hidden = !(mkCat === 'all');
+  mkMore.innerHTML = mkAll ? 'Show the six curated agents <span class="ar">&#8593;</span>' : 'View all ' + SOLUTIONS.length + ' agents <span class="ar">&#8594;</span>';
 }
 mkCats.addEventListener('click', function(e){ var b = e.target.closest('[data-cat]'); if (b){ mkCat = b.dataset.cat; renderMarket(); } });
+mkMore.addEventListener('click', function(){ mkAll = !mkAll; renderMarket(); if (!mkAll) mkGrid.scrollIntoView({block:'start', behavior: REDUCED ? 'auto' : 'smooth'}); });
 renderMarket();
 
 /* ============================================================
@@ -1933,7 +2078,7 @@ var RGB = {mint:'102,246,210', violet:'124,140,255', white:'245,245,240'};
 function HeroField(canvas){
   var self = this; this.canvas = canvas; this.ctx = canvas.getContext('2d'); this.host = canvas.parentElement;
   this.w = 0; this.h = 0; this.time = 0; this.raf = null; this.visible = true; this.mouse = {x:-9999,y:-9999,on:false};
-  this.sprites = {b:glowSprite(RGB.white,5,.55), a:glowSprite(RGB.mint,8,1), e:glowSprite(RGB.violet,10,.9)};
+  this.sprites = {b:glowSprite(RGB.white,5,.3), a:glowSprite(RGB.mint,8,.55), e:glowSprite(RGB.violet,10,.45)};
   this.build(); this.resize();
   if (window.ResizeObserver) new ResizeObserver(function(){ self.resize(); }).observe(this.host);
   if (window.IntersectionObserver) new IntersectionObserver(function(en){ self.visible = en[0].isIntersecting; if (self.visible) self.start(); else self.stop(); }, {threshold:0.01}).observe(this.host);
@@ -1957,25 +2102,25 @@ HeroField.prototype.build = function(){
 };
 HeroField.prototype.resize = function(){ var r = this.host.getBoundingClientRect(); if (!r.width || !r.height) return; this.dpr = Math.min(devicePixelRatio||1,2); this.w = r.width; this.h = r.height; this.canvas.width = Math.round(r.width*this.dpr); this.canvas.height = Math.round(r.height*this.dpr); this.ctx.setTransform(this.dpr,0,0,this.dpr,0,0); this.draw(); };
 HeroField.prototype.pos = function(n,t){ var nx = n.hx + Math.cos(t*n.spd + n.ph)*n.amp, ny = n.hy + Math.sin(t*n.spd*0.83 + n.ph*1.4)*n.amp*1.25, x = nx*this.w, y = ny*this.h;
-  if (this.mouse.on){ var dx = this.mouse.x-x, dy = this.mouse.y-y, d = Math.hypot(dx,dy), R = 170; if (d < R && d > .5){ var f = (1-d/R); f = f*f*16; x += dx/d*f; y += dy/d*f; } } return [x,y]; };
+  if (this.mouse.on){ var dx = this.mouse.x-x, dy = this.mouse.y-y, d = Math.hypot(dx,dy), R = 110; if (d < R && d > .5){ var f = (1-d/R); f = f*f*5; x += dx/d*f; y += dy/d*f; } } return [x,y]; };
 HeroField.prototype.draw = function(){
   var ctx = this.ctx, t = this.time, i, n, p; if (!this.w) return; ctx.clearRect(0,0,this.w,this.h);
   for (i=0;i<this.nodes.length;i++){ n = this.nodes[i]; p = this.pos(n,t); n.x = p[0]; n.y = p[1]; }
   ctx.lineWidth = 1;
-  for (i=0;i<this.edges.length;i++){ var ed = this.edges[i], A = this.nodes[ed.a], B = this.nodes[ed.b], a = ed.w*0.16*(ed.peer?.6:1), mx = (A.x+B.x)/2, my = (A.y+B.y)/2;
-    if (this.mouse.on){ var dx = this.mouse.x-mx, dy = this.mouse.y-my, d = Math.hypot(dx,dy); if (d < 200 && d > 1){ var f = (1-d/200); f = f*f*22; mx += dx/d*f; my += dy/d*f; } }
+  for (i=0;i<this.edges.length;i++){ var ed = this.edges[i], A = this.nodes[ed.a], B = this.nodes[ed.b], a = ed.w*0.10*(ed.peer?.6:1), mx = (A.x+B.x)/2, my = (A.y+B.y)/2;
+    if (this.mouse.on){ var dx = this.mouse.x-mx, dy = this.mouse.y-my, d = Math.hypot(dx,dy); if (d < 140 && d > 1){ var f = (1-d/140); f = f*f*8; mx += dx/d*f; my += dy/d*f; } }
     ctx.strokeStyle = B.type==='e' ? 'rgba(150,160,210,'+a+')' : 'rgba(220,235,235,'+a+')'; ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.quadraticCurveTo(mx,my,B.x,B.y); ctx.stroke(); }
   for (i=0;i<this.particles.length;i++){ var pt = this.particles[i], F = this.nodes[pt.from], T = this.nodes[pt.to], u = pt.t, iu = 1-u, mx2 = (F.x+T.x)/2, my2 = (F.y+T.y)/2;
     var px = iu*iu*F.x + 2*iu*u*mx2 + u*u*T.x, py = iu*iu*F.y + 2*iu*u*my2 + u*u*T.y;
-    ctx.fillStyle = 'rgba(102,246,210,.9)'; ctx.beginPath(); ctx.arc(px,py,1.7,0,6.2832); ctx.fill(); ctx.fillStyle = 'rgba(102,246,210,.25)'; ctx.beginPath(); ctx.arc(px,py,4.2,0,6.2832); ctx.fill(); }
+    ctx.fillStyle = 'rgba(102,246,210,.55)'; ctx.beginPath(); ctx.arc(px,py,1.6,0,6.2832); ctx.fill(); ctx.fillStyle = 'rgba(102,246,210,.12)'; ctx.beginPath(); ctx.arc(px,py,4,0,6.2832); ctx.fill(); }
   for (i=0;i<this.nodes.length;i++){ n = this.nodes[i]; var sp = this.sprites[n.type]; ctx.drawImage(sp, n.x-sp.width/2, n.y-sp.width/2);
-    if (n.type==='e'){ ctx.strokeStyle = 'rgba(124,140,255,.8)'; ctx.lineWidth = 1.2; ctx.strokeRect(n.x-n.r,n.y-n.r,n.r*2,n.r*2); ctx.fillStyle = 'rgba(124,140,255,.12)'; ctx.fillRect(n.x-n.r,n.y-n.r,n.r*2,n.r*2); }
-    else { ctx.fillStyle = n.type==='a' ? 'rgba(140,255,225,.95)' : 'rgba(245,245,240,.82)'; ctx.beginPath(); ctx.arc(n.x,n.y,n.r,0,6.2832); ctx.fill();
-      if (n.type==='a'){ ctx.strokeStyle = 'rgba(102,246,210,.32)'; ctx.lineWidth = 1; ctx.beginPath(); ctx.arc(n.x,n.y,n.r+4,0,6.2832); ctx.stroke(); } } }
+    if (n.type==='e'){ ctx.strokeStyle = 'rgba(124,140,255,.5)'; ctx.lineWidth = 1.1; ctx.strokeRect(n.x-n.r,n.y-n.r,n.r*2,n.r*2); ctx.fillStyle = 'rgba(124,140,255,.08)'; ctx.fillRect(n.x-n.r,n.y-n.r,n.r*2,n.r*2); }
+    else { ctx.fillStyle = n.type==='a' ? 'rgba(140,255,225,.65)' : 'rgba(245,245,240,.5)'; ctx.beginPath(); ctx.arc(n.x,n.y,n.r,0,6.2832); ctx.fill();
+      if (n.type==='a'){ ctx.strokeStyle = 'rgba(102,246,210,.2)'; ctx.lineWidth = 1; ctx.beginPath(); ctx.arc(n.x,n.y,n.r+4,0,6.2832); ctx.stroke(); } } }
 };
-HeroField.prototype.step = function(dt){ this.time += dt;
+HeroField.prototype.step = function(dt){ this.time += dt*0.35;
   for (var i=this.particles.length-1;i>=0;i--){ var p = this.particles[i]; p.t += p.sp*dt*60; if (p.t >= 1){ if (p.leg === 0){ p.leg = 1; p.t = 0; p.from = p.j[1]; p.to = p.j[2]; } else this.particles.splice(i,1); } }
-  if (this.particles.length < Math.round(this.nodes.length*0.22) && Math.random() < 0.06*dt*60 && this.journeys.length){ var j = this.journeys[(Math.random()*this.journeys.length)|0]; this.particles.push({from:j[0], to:j[1], t:0, sp:.006+Math.random()*.006, leg:0, j:j}); } };
+  if (this.particles.length < Math.round(this.nodes.length*0.12) && Math.random() < 0.02*dt*60 && this.journeys.length){ var j = this.journeys[(Math.random()*this.journeys.length)|0]; this.particles.push({from:j[0], to:j[1], t:0, sp:.0025+Math.random()*.002, leg:0, j:j}); } };
 HeroField.prototype.start = function(){ if (this.raf) return; var self = this, last = performance.now(); if (REDUCED){ this.draw(); return; } (function loop(now){ self.raf = requestAnimationFrame(loop); var dt = Math.min((now-last)/16.667, 3); last = now; self.step(dt); self.draw(); })(last); };
 HeroField.prototype.stop = function(){ if (this.raf){ cancelAnimationFrame(this.raf); this.raf = null; } };
 var heroField = null, heroCanvas = $('heroCanvas');
@@ -1992,19 +2137,20 @@ addEventListener('resize', function(){ if (heroField && isSmall() !== wasSmall){
   var L = [{y:105},{y:215},{y:325}], R = [{y:105},{y:215},{y:325}], lx = 92, rx = 548;
   function avatar(x,y){ return '<g><circle class="av" cx="'+x+'" cy="'+y+'" r="30"/><circle class="head" cx="'+x+'" cy="'+(y-8)+'" r="8"/><path class="body" d="M'+(x-16)+' '+(y+18)+' C '+(x-16)+' '+(y+4)+', '+(x+16)+' '+(y+4)+', '+(x+16)+' '+(y+18)+' Z"/></g>'; }
   function biz(x,y){ return '<g><circle class="biz" cx="'+x+'" cy="'+y+'" r="30"/><g class="bizi" transform="translate('+(x-12)+' '+(y-12)+')"><rect x="0" y="4" width="24" height="20" rx="2"/><path d="M5 9h4M15 9h4M5 14h4M15 14h4M9 24v-5h6v5"/></g></g>'; }
-  var lanesF = L.map(function(l){ return 'M'+(lx+34)+' '+l.y+' C 200 '+l.y+', 220 '+cy+', '+(cx-82)+' '+cy; }).concat(R.map(function(r){ return 'M'+(cx+82)+' '+cy+' C 420 '+cy+', 440 '+r.y+', '+(rx-34)+' '+r.y; }));
-  var lanesB = R.map(function(r){ return 'M'+(rx-34)+' '+(r.y+14)+' C 440 '+(r.y+14)+', 420 '+(cy+26)+', '+(cx+82)+' '+(cy+26); }).concat(L.map(function(l){ return 'M'+(cx-82)+' '+(cy+26)+' C 220 '+(cy+26)+', 200 '+(l.y+14)+', '+(lx+34)+' '+(l.y+14); }));
+  var lanesF = L.map(function(l){ return 'M'+(lx+34)+' '+l.y+' C 200 '+l.y+', 230 '+cy+', '+cx+' '+cy; }).concat(R.map(function(r){ return 'M'+cx+' '+cy+' C 410 '+cy+', 440 '+r.y+', '+(rx-34)+' '+r.y; }));
+  var lanesB = R.map(function(r){ return 'M'+(rx-34)+' '+(r.y+14)+' C 440 '+(r.y+14)+', 410 '+(cy+26)+', '+cx+' '+(cy+26); }).concat(L.map(function(l){ return 'M'+cx+' '+(cy+26)+' C 230 '+(cy+26)+', 200 '+(l.y+14)+', '+(lx+34)+' '+(l.y+14); }));
   host.innerHTML = '<svg viewBox="0 0 '+W+' '+H+'" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">'+
     '<text class="who" x="'+lx+'" y="46">Creators</text><text class="who hi" x="'+cx+'" y="46">Masar</text><text class="who v" x="'+rx+'" y="46">Businesses</text>'+
     lanesF.map(function(d,i){ return '<path class="lane" id="bf'+i+'" d="'+d+'"/>'; }).join('')+
     lanesB.map(function(d,i){ return '<path class="lane back" id="bb'+i+'" d="'+d+'"/>'; }).join('')+
     L.map(function(l){ return avatar(lx,l.y); }).join('')+R.map(function(r){ return biz(rx,r.y); }).join('')+
+    '<g id="bparts"></g>'+
     '<rect class="core-glow" x="'+(cx-92)+'" y="'+(cy-44)+'" width="184" height="88" rx="18"/>'+
     '<rect class="core" x="'+(cx-82)+'" y="'+(cy-36)+'" width="164" height="72" rx="14"/>'+
     '<text class="core-t" x="'+cx+'" y="'+(cy-6)+'">MASAR</text><text class="core-s" x="'+cx+'" y="'+(cy+12)+'">checks &#183; connects</text>'+
     '<rect class="gate" x="'+(cx-62)+'" y="'+(cy+20)+'" width="124" height="14"/><text class="gate-t" x="'+cx+'" y="'+(cy+30.5)+'">accuracy &#183; precision &#183; privacy</text>'+
     '<text class="flow-t" x="'+cx+'" y="392">AI agents &#8594; &nbsp;&nbsp; &#8592; demand &#183; revenue</text>'+
-    '<g id="bparts"></g></svg>';
+    '</svg>';
   var svg = host.querySelector('svg'), parts = svg.querySelector('#bparts');
   var F = lanesF.map(function(_,i){ var el = svg.querySelector('#bf'+i); return {el:el, len:el.getTotalLength()}; });
   var Bk = lanesB.map(function(_,i){ var el = svg.querySelector('#bb'+i); return {el:el, len:el.getTotalLength()}; });
@@ -2051,7 +2197,7 @@ addEventListener('resize', function(){ if (heroField && isSmall() !== wasSmall){
      g: av(80,100,34,'Sara','Creator','m') + card(240,96,150,86,'CV Screening','AI agent') + arrow(118,92,165,92,'m') },
     {t:'Masar checks it', s:'Accuracy, precision and data privacy, with a human review step designed in. Then it is Verified.',
      g: '<rect class="fr-gate" x="60" y="22" width="240" height="160"/><text class="fr-gt" x="180" y="42">Masar quality check</text>' + card(180,88,150,74,'CV Screening','&#10003; Verified') + [['Accuracy',110],['Precision',180],['Privacy',250]].map(function(c){ return '<rect class="fr-chk" x="'+(c[1]-30)+'" y="138" width="60" height="30"/><text class="fr-chki" x="'+c[1]+'" y="151">&#10003;</text><text class="fr-chkt" x="'+c[1]+'" y="163">'+c[0]+'</text>'; }).join('') },
-    {t:'It goes live on the marketplace', s:'Listed where businesses are already searching. Owned by Sara.',
+    {t:'It goes live on the marketplace', s:'Sara chooses to publish it. Listed where businesses search, still owned by her.',
      g: card(180,86,150,80,'CV Screening','&#10003; Verified') + '<line class="fr-shelf" x1="80" y1="136" x2="280" y2="136"/><text class="fr-role" x="180" y="152">Masar marketplace</text>' + tag(180,172,110,'Owned by Sara','') + card(300,86,70,80,'Other','agents',true).replace('class="fr-ct"','class="fr-ct" style="fill:#858A93"') },
     {t:'Khalid subscribes and uses it', s:'In his own business, with people staying in control. A monthly fee goes to Sara. She stays the owner.',
      g: av(58,84,26,'Sara','Owner','m') + card(180,70,120,64,'CV Screening','&#10003; Verified') + av(300,84,26,'Khalid','Subscriber','g') + arrow(273,74,242,70,'v') + dots([[262,72]]) + arrow(120,92,88,100,'g') + coins([[140,96],[128,99]]) + money(112,168,'SAR 1,500','Sara &#183; monthly') + tag(272,150,100,'Uses it daily','v') },

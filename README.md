@@ -44,21 +44,30 @@ Homepage → **Find your path** → **I want AI for my business** → describe a
 
 Routes: `#/opportunity`, `#/solution`, `#/solution/<id>` (marketplace browse mode), and `#<section>` anchors on the homepage. State survives refresh via `sessionStorage`.
 
-### Recommendation engine
+### Recommendation engine and the agent catalogue
 
-Local, rule-based, deterministic (`recommend()` in `index.html`). Keyword evidence outweighs department; department breaks ties; **WorkflowPilot AI** is the honest fallback. Exercise it from the console: `Masar.recommend("text", "Department", "Business type")`. The UI labels it as rule-based and explains that a production version would place a language model behind the same reasoning steps.
+Local, rule-based, deterministic (`recommend()` in `index.html`). Keyword evidence outweighs department; department breaks ties; the **Operations Workflow Agent** is the honest fallback. Exercise it from the console: `Masar.recommend("text", "Department", "Business type")`. The UI labels it as rule-based.
 
-| Signals in the text | Recommendation |
-| --- | --- |
-| invoice, receipt, spreadsheet, bookkeeping, accounting, expense… | InvoiceFlow AI |
-| customers, questions, WhatsApp, support, inquiries, complaints, messages… | SupportFlow AI |
-| CV, resumes, candidates, recruitment, hiring, interviews, applicants… | RecruitMatch AI |
-| anything else repetitive | WorkflowPilot AI |
+Ten fictional prototype agents, six curated on the marketplace (View all reveals the rest). The marketplace is problem-first: "What do you need to solve?" leads to the agent.
+
+| Department | Business problem | Agent |
+| --- | --- | --- |
+| Finance | Manual invoice / receipt processing | Invoice Processing Agent |
+| HR | CV screening and shortlisting | Recruitment Screening Agent |
+| Operations | Repetitive task coordination and follow-ups | Operations Workflow Agent |
+| Sales | Leads lost or followed up inconsistently | Lead Qualification Agent |
+| Marketing | Creating and distributing content | Marketing Content Agent |
+| Customer Service | Repetitive customer questions | Customer Support Agent |
+| Procurement | Comparing supplier quotations manually | Procurement Comparison Agent |
+| Legal & Compliance | Checking documents for required information | Document Compliance Agent |
+| IT | Repetitive internal support requests | IT Support Agent |
+| Management | Information scattered across reports | Business Insights Agent |
+
+Agents work together (each listing shows "Works with"), and a creator chooses whether to keep an agent private or publish it.
 
 ### What is real and what is not
 
-- The four solutions are **fictional prototype examples**, labelled as such throughout. No customers, partners, revenue, funding, users, market sizes or testimonials are claimed.
-- The only statistic shown is verified: **45.2% of Saudi internet users use AI tools** (Saudi Internet Report 2025, CST) — labelled as AI-tool use, not agent adoption.
+- The ten agents are **fictional prototype examples**, labelled as such throughout. No customers, partners, revenue, funding, users, market sizes or testimonials are claimed.
 - **Masar Verified** is an internal Masar evaluation label, not government, SDAIA or Vision 2030 certification.
 - Masar is aligned with Vision 2030 priorities but is an independent startup prototype, not a government product.
 - Only the Business path is functional. Learn, Build and Invest are positioning for later phases and say so.
