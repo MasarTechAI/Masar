@@ -104,6 +104,25 @@ body.embed header,body.embed .small{display:none}
 body.embed .caption{padding-top:16px;min-height:96px}
 body.embed main{padding:0 clamp(10px,2vw,20px)}
 body.embed footer{padding:10px 4px 12px}
+/* compact: embedded in a column narrower than 900px — bigger type inside the SVG, fewer controls */
+body.compact .steps,body.compact #speed{display:none}
+body.compact .caption{padding:12px 4px 2px;min-height:78px}
+body.compact .caption .k{font-size:.625rem}
+body.compact .caption h1{font-size:clamp(1.05rem,3.4vw,1.5rem);max-width:34ch}
+body.compact footer{justify-content:center}
+body.compact .col-t{font-size:15px}
+body.compact .name{font-size:22px}
+body.compact .role{font-size:13.5px}
+body.compact .card-t{font-size:20px}
+body.compact .card-s,body.compact .card-o,body.compact .own-t,body.compact .ver-t,body.compact .biz-s{font-size:12.5px}
+body.compact .chk-t{font-size:13px}
+body.compact .chk-i{font-size:14px}
+body.compact #lessons .chk-t{font-size:14.5px!important}
+body.compact .gate-t,body.compact .shelf-t{font-size:13.5px}
+body.compact .tagline{font-size:16.5px}
+body.compact .money-k{font-size:12px}
+body.compact .money-v{font-size:38px}
+body.compact .money-s{font-size:13.5px}
 @media(prefers-reduced-motion:reduce){*{transition-duration:.01ms!important;animation-duration:.01ms!important}}
 </style>
 </head>
@@ -188,9 +207,9 @@ body.embed footer{padding:10px 4px 12px}
       <g id="gGate" class="g hide">
         <rect class="gate" x="470" y="110" width="260" height="290"/>
         <text class="gate-t" x="600" y="140">Masar quality check</text>
-        <g id="chk1"><rect class="chk" x="500" y="330" width="60" height="50"/><text class="chk-i" x="530" y="352">&#10003;</text><text class="chk-t" x="530" y="370">Accuracy</text></g>
-        <g id="chk2"><rect class="chk" x="570" y="330" width="60" height="50"/><text class="chk-i" x="600" y="352">&#10003;</text><text class="chk-t" x="600" y="370">Precision</text></g>
-        <g id="chk3"><rect class="chk" x="640" y="330" width="60" height="50"/><text class="chk-i" x="670" y="352">&#10003;</text><text class="chk-t" x="670" y="370">Privacy</text></g>
+        <g id="chk1"><rect class="chk" x="486" y="330" width="72" height="50"/><text class="chk-i" x="522" y="352">&#10003;</text><text class="chk-t" x="522" y="370">Accuracy</text></g>
+        <g id="chk2"><rect class="chk" x="564" y="330" width="72" height="50"/><text class="chk-i" x="600" y="352">&#10003;</text><text class="chk-t" x="600" y="370">Precision</text></g>
+        <g id="chk3"><rect class="chk" x="642" y="330" width="72" height="50"/><text class="chk-i" x="678" y="352">&#10003;</text><text class="chk-t" x="678" y="370">Privacy</text></g>
       </g>
       <!-- MARKETPLACE shelf -->
       <g id="gShelf" class="g hide">
@@ -386,6 +405,7 @@ function setPlaying(v){ playing = v; $('play').textContent = playing ? 'Pause' :
 $('play').addEventListener('click', function(){ setPlaying(!playing); });
 /* embed mode: the host page tells us when we are on screen */
 if (/[?&]embed/.test(location.search)){ document.body.classList.add('embed'); setPlaying(false);
+  var mq = matchMedia('(max-width: 900px)'); var compact = function(){ document.body.classList.toggle('compact', mq.matches); }; compact(); mq.addEventListener ? mq.addEventListener('change', compact) : mq.addListener(compact);
   addEventListener('message', function(e){ if (!e.data || typeof e.data.masar !== 'string') return; if (e.data.masar === 'play') setPlaying(true); if (e.data.masar === 'pause') setPlaying(false); if (e.data.masar === 'restart'){ agentNo = 1; goTo(0); } }); }
 $('next').addEventListener('click', function(){ goTo(scene+1); });
 $('prev').addEventListener('click', function(){ goTo(scene-1); });

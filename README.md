@@ -9,7 +9,7 @@ It creates a pathway from learning and building to connecting, adopting solution
 
 ---
 
-## The Arabic-first Agentic AI Ecosystem — Start Smart prototype
+## The Agentic AI Ecosystem — Start Smart prototype
 
 `index.html` is a self-contained, working prototype. Open it in any modern browser. No build step, no server, no API keys.
 
@@ -18,13 +18,13 @@ It creates a pathway from learning and building to connecting, adopting solution
 
 ### Positioning
 
-**Learn → Use → Build → Connect → Adopt → Scale.** One ecosystem with four entry points: learners/users, builders/creators, businesses, investors. Masar's differentiation is the **connection layer** between stages that already have good tools — it does not claim to have invented Arabic AI agents.
+**Learn → Use → Build → Connect → Adopt → Scale.** One ecosystem with four entry points: learners/users, builders/creators, businesses, investors. Masar's differentiation is the **connection layer** between stages that already have good tools — it makes no "first" or "only" claims.
 
 ### What the homepage does
 
 | # | Section | Question it answers |
 | --- | --- | --- |
-| 1 | Hero + living ecosystem map | What is Masar? |
+| 1 | Hero + the 40-second animated story (learn → build → check → list → subscribe → grow → invest) | What is Masar? |
 | 2 | Why Masar exists (six stages light up on scroll) | Why does it exist? |
 | 3 | The connection layer + "Why not ChatGPT?" | Why is it different? |
 | 4 | From AI capability to economic value + one verified data point | Why does it matter in Saudi Arabia? |
@@ -38,6 +38,7 @@ It creates a pathway from learning and building to connecting, adopting solution
 | 12 | Why Saudi / Vision 2030 | Why here, why now? |
 | 13 | Start small: four phases + initial monetization hypothesis | Is it feasible? Who pays? |
 | 14 | Trust | Why is this responsible? |
+| 14b | Five questions every judge asks, with links to the evidence | Does it hold up? |
 | 15 | Final CTA | Try it. |
 
 ### The live demo (2–3 minutes)

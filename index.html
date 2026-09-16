@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Masar — The Arabic-first Agentic AI Ecosystem</title>
+<title>Masar — The Agentic AI Ecosystem</title>
 <meta name="description" content="Masar connects the people learning and using Agentic AI with the creators building it, the businesses adopting it, and the investors backing what comes next. Saudi Arabia first.">
 <meta name="theme-color" content="#08090B">
-<meta property="og:title" content="Masar — The Arabic-first Agentic AI Ecosystem">
+<meta property="og:title" content="Masar — The Agentic AI Ecosystem">
 <meta property="og:description" content="Learn AI. Use AI. Build what's next. Masar connects learners, builders, businesses and investors around Agentic AI.">
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2308090B'/%3E%3Ccircle cx='8' cy='16' r='2' fill='%23F5F5F0'/%3E%3Ccircle cx='16' cy='16' r='3.2' fill='%2366F6D2'/%3E%3Crect x='22' y='12.5' width='6.5' height='6.5' rx='1' fill='none' stroke='%237C8CFF' stroke-width='1.6'/%3E%3Cpath d='M10.4 16h2.6M19.4 16h2.2' stroke='%23F5F5F0' stroke-opacity='.4' stroke-width='1'/%3E%3C/svg%3E">
@@ -194,7 +194,7 @@ main{position:relative;z-index:1}
 .hero-bg{position:absolute;inset:0;z-index:0;pointer-events:none;
   background:radial-gradient(60% 50% at 70% 45%,rgba(102,246,210,.07),transparent 70%),radial-gradient(40% 40% at 20% 80%,rgba(124,140,255,.06),transparent 70%)}
 .hero .wrap{width:100%}
-.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(30px,5vw,64px);align-items:center}
+.hero-grid{display:grid;grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);gap:clamp(28px,4vw,56px);align-items:center}
 .hero-copy{display:flex;flex-direction:column;gap:24px;max-width:600px}
 .hero-copy h1 .l3{color:var(--mint)}
 .hero-cta{display:flex;gap:12px;flex-wrap:wrap}
@@ -236,13 +236,16 @@ main{position:relative;z-index:1}
 .map-legend i{width:6px;height:6px;border-radius:50%;background:var(--mint);box-shadow:0 0 8px var(--mint)}
 .map-legend i.w{background:var(--fg);box-shadow:none}
 
-/* animated story (embedded diagram) */
-.story-frame{position:relative;border:1px solid var(--line-2);border-radius:18px;overflow:hidden;background:var(--bg-2);aspect-ratio:1200/790;box-shadow:0 40px 100px -50px rgba(0,0,0,.9)}
+/* animated story (embedded diagram) in the hero */
+.hero-story{display:flex;flex-direction:column;gap:12px}
+.story-frame{position:relative;border:1px solid var(--line-2);border-radius:18px;overflow:hidden;background:var(--bg-2);aspect-ratio:1200/960;box-shadow:0 40px 100px -50px rgba(0,0,0,.9)}
 .story-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:var(--bg)}
-.story-steps{list-style:none;margin:14px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.story-steps{list-style:none;margin:0;padding:0;display:none;flex-direction:column;gap:8px}
 .story-steps li{display:inline-flex;align-items:center;gap:9px;font-size:.813rem;color:var(--muted);border:1px solid var(--line);border-radius:8px;padding:8px 12px;background:var(--bg-2)}
 .story-steps li b{font:500 .625rem/1 var(--mono);letter-spacing:.12em;color:var(--mint)}
-@media(max-width:760px){.story-frame{display:none}.story-steps{flex-direction:column}.story-steps li{width:100%}}
+.story-foot{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+@media(max-width:960px){.story-frame{aspect-ratio:1200/900}}
+@media(max-width:700px){.story-frame{display:none}.story-steps{display:flex}}
 
 /* stage rail */
 .stages{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:16px;overflow:hidden}
@@ -503,6 +506,16 @@ textarea.work::placeholder{color:var(--dim)}
 .compounds li{font-size:.844rem;color:var(--muted);display:grid;grid-template-columns:auto 1fr;gap:9px}
 .compounds li::before{content:"+";color:var(--mint);font-family:var(--mono)}
 .compounds b{color:var(--fg);font-weight:500}
+
+/* five questions */
+.qa5{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+@media(max-width:860px){.qa5{grid-template-columns:1fr}}
+.qa5 .card:last-child{grid-column:1/-1}
+.qa5-q{margin:0;font:600 1.05rem/1.3 var(--display);letter-spacing:-.015em;color:var(--fg)}
+.qa5-a{margin:10px 0 0;font-size:.906rem;color:var(--muted);line-height:1.6}
+.qa5-l{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:14px;padding-top:12px;border-top:1px solid var(--line)}
+.qa5-l a,.qa5-l .linkish{color:var(--mint);text-decoration:none;font:500 .688rem/1.6 var(--mono);letter-spacing:.12em;text-transform:uppercase;background:none;border:0;padding:0;cursor:pointer}
+.qa5-l a:hover,.qa5-l .linkish:hover{text-decoration:underline}
 
 /* ============================ SAUDI / PLAN / TRUST ============================ */
 .geo-line{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-family:var(--display);font-weight:700;letter-spacing:-.02em;font-size:clamp(1.3rem,2.2vw,1.8rem)}
@@ -770,18 +783,23 @@ footer{border-top:1px solid var(--line);padding:40px 0 34px;background:var(--bg)
     <div class="wrap">
       <div class="hero-grid">
         <div class="hero-copy">
-          <div class="eyebrow"><i></i><span class="label">The Arabic-first Agentic AI ecosystem</span></div>
-          <h1 class="display" id="h-home" tabindex="-1">Learn AI.<br><span class="l2">Use AI.</span><br><span class="l3">Build what&#8217;s next.</span></h1>
-          <p class="lede">Masar connects the people learning and using Agentic AI with the creators building it, the businesses adopting it, and the investors backing what comes next.</p>
+          <div class="eyebrow"><i></i><span class="label">Masar &nbsp;/&nbsp; Saudi Arabia &#8594; GCC &#8594; Global</span></div>
+          <h1 class="display" id="h-home" tabindex="-1">The Agentic AI<br><span class="l3">Ecosystem.</span></h1>
+          <p class="lede">Learn AI. Use AI. Build AI. Masar connects the people learning and using Agentic AI with the creators building it, the businesses adopting it, and the investors backing what comes next.</p>
           <div class="hero-cta">
             <button class="btn btn-primary btn-lg btn-caps" type="button" data-action="open-path">Find your path <span class="ar">&#8594;</span></button>
-            <a class="btn btn-lg" href="#story">Watch how it works <span class="ar">&#8595;</span></a>
+            <a class="btn btn-lg" href="#business">Try the live demo <span class="ar">&#8595;</span></a>
           </div>
           <div class="pipeline" aria-label="Learn, use, build, connect, adopt, scale"><b>Learn</b><i>&#8594;</i><b>Use</b><i>&#8594;</i><b>Build</b><i>&#8594;</i>Connect<i>&#8594;</i>Adopt<i>&#8594;</i>Scale</div>
         </div>
-        <div>
-          <div class="ecomap" id="ecomap" role="img" aria-label="Ecosystem map: Masar at the centre connecting Learn, Use, Build, Business and Invest. A journey moves around the ring: a learner learns to use AI, builds an agent, solves a business problem, grows, and investors back the next builders."></div>
-          <div class="map-legend" aria-hidden="true"><span><i></i>One person&#8217;s journey</span><span><i class="w"></i>Masar connects every stage</span><span>Click a node to jump</span></div>
+        <div class="hero-story">
+          <div class="story-frame" id="storyFrame">
+            <iframe id="storyIframe" src="diagrams/agent-economy.html?embed=1" title="How the Masar agent economy works — animated story in seven steps" allow="autoplay"></iframe>
+          </div>
+          <ol class="story-steps" aria-label="The seven steps of the story">
+            <li><b>01</b>Sara learns through Masar</li><li><b>02</b>She builds an agent</li><li><b>03</b>Masar checks accuracy, precision, privacy</li><li><b>04</b>Listed on the marketplace</li><li><b>05</b>Businesses subscribe &#183; Sara stays owner</li><li><b>06</b>Her monthly revenue grows</li><li><b>07</b>Investors back her next agent</li>
+          </ol>
+          <div class="story-foot"><span class="label">How the ecosystem works &#183; 40-second story &#183; illustrative</span><a class="btn btn-sm btn-ghost" href="diagrams/agent-economy.html" target="_blank" rel="noopener">Full screen <span class="ar">&#8599;</span></a></div>
         </div>
       </div>
       <div class="hero-foot">
@@ -791,26 +809,8 @@ footer{border-top:1px solid var(--line);padding:40px 0 34px;background:var(--bg)
     </div>
   </div>
 
-  <!-- 1b · THE STORY (animated) -->
-  <section class="sec" id="story">
-    <div class="wrap">
-      <div class="sec-mark reveal"><span class="label role">How it works &#183; one story</span><span class="label of">About 40 seconds &#183; illustrative</span></div>
-      <div class="sec-head">
-        <h2 class="display reveal">One person. One agent.<br><span class="l2">The whole ecosystem.</span></h2>
-        <p class="lede reveal" data-d="1">Sara learns through Masar, builds an agent, Masar checks it, businesses subscribe and pay her monthly, and investors back what works &#8212; so she builds the next one. Every stage of Masar in a single loop.</p>
-      </div>
-      <div class="story-frame after-head reveal" data-d="1" id="storyFrame">
-        <iframe id="storyIframe" src="diagrams/agent-economy.html?embed=1" title="How the Masar agent economy works — animated story" loading="lazy" allow="autoplay"></iframe>
-      </div>
-      <ol class="story-steps reveal" data-d="2" aria-label="The seven steps">
-        <li><b>01</b>Sara learns through Masar</li><li><b>02</b>She builds an agent</li><li><b>03</b>Masar checks accuracy, precision, privacy</li><li><b>04</b>Listed on the marketplace</li><li><b>05</b>Businesses subscribe &#183; Sara stays owner</li><li><b>06</b>Her monthly revenue grows</li><li><b>07</b>Investors back her next agent</li>
-      </ol>
-      <p class="note"><a class="btn btn-sm" href="diagrams/agent-economy.html" target="_blank" rel="noopener">Open the story full screen <span class="ar">&#8599;</span></a></p>
-    </div>
-  </section>
-
   <!-- 2 · WHY MASAR EXISTS -->
-  <section class="sec tight" id="explore">
+  <section class="sec" id="explore">
     <div class="wrap">
       <div class="sec-mark reveal"><span class="label role">Why Masar exists</span><span class="label of">The pathway</span></div>
       <div class="sec-head">
@@ -1145,7 +1145,7 @@ footer{border-top:1px solid var(--line);padding:40px 0 34px;background:var(--bg)
         <div class="card reveal"><span class="label">Where Masar grows</span>
           <div class="geo-line" aria-label="Saudi Arabia, then GCC, then global"><span class="g1">Saudi Arabia</span><i>&#8594;</i><span class="g2">GCC</span><i>&#8594;</i><span class="g3">Global</span></div>
           <ul class="list plain" style="margin-top:14px">
-            <li><i>01</i>Arabic-first readiness: the engine reads Arabic and English workflow descriptions today; the Arabic interface is planned</li>
+            <li><i>01</i>Arabic-ready: the engine reads Arabic and English workflow descriptions today; an Arabic interface is planned</li>
             <li><i>02</i>Saudi business workflows: invoices, WhatsApp support, recruitment, operations</li>
             <li><i>03</i>A local creator ecosystem, sourced around real demand</li>
             <li><i>04</i>Business adoption with human oversight</li>
@@ -1201,6 +1201,38 @@ footer{border-top:1px solid var(--line);padding:40px 0 34px;background:var(--bg)
     </div>
   </section>
 
+  <!-- 14b · FIVE QUESTIONS, FIVE ANSWERS -->
+  <section class="sec" id="judges">
+    <div class="wrap">
+      <div class="sec-mark reveal"><span class="label role">For the skeptical reader</span><span class="label of">Five questions &#183; five answers</span></div>
+      <div class="sec-head">
+        <h2 class="display reveal">Five questions every judge asks.<br><span class="l2">Where the answer lives on this page.</span></h2>
+      </div>
+      <div class="qa5 after-head">
+        <article class="card reveal"><span class="label">01 &#183; Problem &amp; solution clarity</span>
+          <p class="qa5-q">Is the problem real, specific and validated? Does the solution address it?</p>
+          <p class="qa5-a">Saudi SMEs have repetitive work and no clear path from &#8220;we waste hours on this&#8221; to a working AI solution. AI capability exists; the pathway between learning, building, adopting and investing is fragmented. Masar is the connection layer, and the business discovery engine turns a described workflow into an opportunity, a solution and a creator. The verified data point: 45.2% of Saudi internet users already use AI tools.</p>
+          <div class="qa5-l"><a href="#explore">The problem</a><a href="#business">The live solution</a><a href="#value">The data</a></div></article>
+        <article class="card reveal" data-d="1"><span class="label">02 &#183; Feasibility &amp; applicability</span>
+          <p class="qa5-q">Can this team build and run it in the Saudi market?</p>
+          <p class="qa5-a">Phase 1 is deliberately narrow: businesses and builders around real workflows, with a working prototype as the instrument. No infrastructure is needed to start beyond the discovery engine, briefs and a builder bench. Later phases are sequenced, not promised. One revenue engine first: connection and transaction revenue when a solution is adopted.</p>
+          <div class="qa5-l"><a href="#plan">Four phases</a><a href="#plan">Monetization hypothesis</a><a href="#build">Where builders come from</a></div></article>
+        <article class="card reveal" data-d="2"><span class="label">03 &#183; Value proposition &amp; originality</span>
+          <p class="qa5-q">What makes this better than what users have today?</p>
+          <p class="qa5-a">Today a business googles, asks a chatbot, compares tools and talks to developers, then often stops. Masar replaces six searches with one pathway that ends in a specific solution and a specific creator. It does not compete with models, courses or agent builders. It connects them, and it creates AI creators, not only AI users.</p>
+          <div class="qa5-l"><a href="#ecosystem">The connection layer</a><a href="#business">Before / with Masar</a><a href="#learn">User to creator</a></div></article>
+        <article class="card reveal" data-d="3"><span class="label">04 &#183; Innovation &amp; AI adoption</span>
+          <p class="qa5-q">Is AI core to the solution, not decoration?</p>
+          <p class="qa5-a">AI does three jobs in the product: it interprets a described workflow, identifies the repetitive task and the bottleneck, and matches a solution with stated limitations. Every solution keeps humans in control. In this prototype the engine is transparent and rule-based, and it says so. Production places a language model behind the same reasoning steps.</p>
+          <div class="qa5-l"><a href="#business">Where is the AI</a><a href="#solutions">Solutions with limitations</a><a href="#trust">Trust</a></div></article>
+        <article class="card tint reveal" data-d="3"><span class="label">05 &#183; Quality of the pitch</span>
+          <p class="qa5-q">A clear story in four minutes, a working demo, solid answers in Q&amp;A.</p>
+          <p class="qa5-a">The 40-second story at the top explains the whole ecosystem without a slide. The live demo runs in about a minute: describe a workflow, watch the analysis, see the opportunity, explore the solution, connect with the creator. Every claim on this page is labelled real, illustrative or planned, so Q&amp;A has nothing to unpick.</p>
+          <div class="qa5-l"><a href="#top">The story</a><a href="#business">Run the demo</a><button class="linkish" type="button" data-action="open-path">Find your path</button></div></article>
+      </div>
+    </div>
+  </section>
+
   <!-- 15 · FINAL CTA -->
   <section class="sec" id="start">
     <div class="wrap">
@@ -1241,7 +1273,7 @@ footer{border-top:1px solid var(--line);padding:40px 0 34px;background:var(--bg)
     <div class="foot-grid">
       <div class="foot-brand">
         <a class="brand" href="#/"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>MASAR</a>
-        <span class="label">The Arabic-first Agentic AI ecosystem</span>
+        <span class="label">The Agentic AI ecosystem</span>
       </div>
       <div class="foot-links">
         <a href="#explore">Explore</a><a href="#solutions">AI Solutions</a><a href="#learn">Learn</a><a href="#build">Build</a><a href="#business">Businesses</a><a href="#invest">Invest</a><a href="#plan">Feasibility</a>
@@ -1695,7 +1727,7 @@ function requestConnection(){
    solution/<id> (marketplace browse)
    ============================================================ */
 var SCREENS = ['home','opportunity','solution'];
-var HOME_SECTIONS = ['top','story','explore','ecosystem','value','paths','learn','business','solutions','build','invest','flywheel','saudi','plan','trust','start'];
+var HOME_SECTIONS = ['top','judges','explore','ecosystem','value','paths','learn','business','solutions','build','invest','flywheel','saudi','plan','trust','start'];
 var current = null, pendingAnchor = null;
 var stepLinks = [].slice.call(document.querySelectorAll('#steps a')), navLinks = [].slice.call(document.querySelectorAll('#navLinks a'));
 var navReset = document.getElementById('navReset'), nav = document.getElementById('nav'), mnav = document.getElementById('mnav'), burger = document.getElementById('burger');
@@ -1822,95 +1854,7 @@ var ticking = false;
 function onScroll(){ nav.classList.toggle('stuck', scrollY > 30); ticking = false; }
 addEventListener('scroll', function(){ if (!ticking){ ticking = true; requestAnimationFrame(onScroll); } }, {passive:true});
 
-/* ============================================================
-   ECOSYSTEM MAP — Masar at the centre; Learn, Use, Build,
-   Business, Invest around it. One journey travels the ring.
-   ============================================================ */
-var MAP_NODES = [
-  {k:'learn', l:'LEARN', who:'Learners', a:-90, go:'learn'},
-  {k:'use', l:'USE', who:'Users', a:-18, go:'learn'},
-  {k:'build', l:'BUILD', who:'Builders', a:54, go:'build'},
-  {k:'business', l:'BUSINESS', who:'Businesses', a:126, go:'business'},
-  {k:'invest', l:'INVEST', who:'Investors', a:198, go:'invest'}
-];
-var VERBS = ['learns to use AI','builds an agent','solves a business problem','grows and gets noticed','backs the next builders'];
-function EcoMap(host){
-  var self = this; this.host = host; this.raf = null; this.seg = 0; this.t = 0; this.time = 0; this.built = false; this.small = isSmall();
-  this.build();
-  addEventListener('resize', function(){ if (isSmall() !== self.small){ self.small = isSmall(); self.build(); } }, {passive:true});
-}
-EcoMap.prototype.build = function(){
-  var W = 600, H = 560, cx = 300, cy = 285, R = 188, NR = this.small ? 44 : 36, self = this;
-  var fs = this.small ? 15 : 11.5, fw = this.small ? 12 : 9.5;
-  var pts = MAP_NODES.map(function(n){ var a = n.a*Math.PI/180; return {x: cx + R*Math.cos(a), y: cy + R*Math.sin(a), n:n}; });
-  var arcs = pts.map(function(p, i){ var q = pts[(i+1)%pts.length]; return '<path class="arc" data-i="'+i+'" d="M'+p.x.toFixed(1)+' '+p.y.toFixed(1)+' A'+R+' '+R+' 0 0 1 '+q.x.toFixed(1)+' '+q.y.toFixed(1)+'"/>'; }).join('');
-  var spokes = pts.map(function(p, i){ var dx = cx-p.x, dy = cy-p.y, d = Math.hypot(dx,dy), ux = dx/d, uy = dy/d;
-    return '<line class="spoke" data-i="'+i+'" x1="'+(p.x+ux*NR).toFixed(1)+'" y1="'+(p.y+uy*NR).toFixed(1)+'" x2="'+(cx-ux*52).toFixed(1)+'" y2="'+(cy-uy*52).toFixed(1)+'"/>'; }).join('');
-  var nodes = pts.map(function(p, i){ return '<g class="node" data-i="'+i+'" data-go="'+p.n.go+'" tabindex="0" role="button" aria-label="'+p.n.l+' — '+p.n.who+'">'+
-    '<circle class="h" cx="'+p.x.toFixed(1)+'" cy="'+p.y.toFixed(1)+'" r="'+(NR+8)+'"/><circle class="o" cx="'+p.x.toFixed(1)+'" cy="'+p.y.toFixed(1)+'" r="'+NR+'"/>'+
-    '<text x="'+p.x.toFixed(1)+'" y="'+(p.y+ (self.small ? 1 : 0)).toFixed(1)+'" font-size="'+fs+'" dy="-2">'+p.n.l+'</text>'+
-    '<text class="who" x="'+p.x.toFixed(1)+'" y="'+(p.y+fw+6).toFixed(1)+'" font-size="'+fw+'">'+p.n.who+'</text></g>'; }).join('');
-  this.host.innerHTML = '<svg viewBox="0 0 '+W+' '+H+'" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">'+
-    '<circle class="ring" cx="'+cx+'" cy="'+cy+'" r="'+R+'"/>'+spokes+arcs+
-    '<g class="core"><circle class="glow" cx="'+cx+'" cy="'+cy+'" r="66"/><circle cx="'+cx+'" cy="'+cy+'" r="50"/>'+
-    '<text x="'+cx+'" y="'+(cy+2)+'" font-size="'+(this.small ? 17 : 15)+'">MASAR</text><text class="s" x="'+cx+'" y="'+(cy+20)+'" font-size="'+(this.small ? 9 : 7.5)+'">CONNECTS</text></g>'+
-    '<g class="pulses">'+pts.map(function(){ return '<circle class="pulse" r="2.2" cx="-9" cy="-9"/>'; }).join('')+'</g>'+
-    '<circle class="pg" r="9" cx="-9" cy="-9"/><circle class="p" r="3.6" cx="-9" cy="-9"/>'+
-    nodes+
-    '<g class="verbg"><rect class="verb-bg" x="0" y="0" width="10" height="'+(this.small ? 24 : 20)+'"/><text class="verb" x="0" y="0" font-size="'+(this.small ? 11 : 9)+'"></text></g>'+
-    '</svg>';
-  var svg = this.host.querySelector('svg');
-  this.arcs = [].slice.call(svg.querySelectorAll('.arc')); this.spokes = [].slice.call(svg.querySelectorAll('.spoke')); this.nodesEl = [].slice.call(svg.querySelectorAll('.node'));
-  this.p = svg.querySelector('.p'); this.pg = svg.querySelector('.pg'); this.pulses = [].slice.call(svg.querySelectorAll('.pulse'));
-  this.verb = svg.querySelector('.verb'); this.verbBg = svg.querySelector('.verb-bg'); this.cx = cx; this.cy = cy; this.pts = pts; this.NR = NR;
-  this.lens = this.arcs.map(function(a){ return a.getTotalLength(); });
-  this.nodesEl.forEach(function(g, i){
-    g.addEventListener('mouseenter', function(){ self.hot(i); }); g.addEventListener('mouseleave', function(){ self.hot(null); });
-    g.addEventListener('focus', function(){ self.hot(i); }); g.addEventListener('blur', function(){ self.hot(null); });
-    g.addEventListener('click', function(){ location.hash = '#'+g.dataset.go; if (current === 'home') scrollToSection(g.dataset.go); });
-    g.addEventListener('keydown', function(e){ if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); g.click(); } });
-  });
-  this.hotIx = null; this.built = true;
-  if (REDUCED){ this.seg = 2; this.t = 0.5; this.draw(); }
-};
-EcoMap.prototype.hot = function(i){
-  this.hotIx = i;
-  var n = this.pts.length;
-  this.arcs.forEach(function(a, k){ a.classList.toggle('hot', i !== null && (k === i || k === (i-1+n)%n)); });
-  this.spokes.forEach(function(s, k){ s.classList.toggle('hot', i !== null && k === i); });
-  this.nodesEl.forEach(function(g, k){ g.classList.toggle('hot', i !== null && k === i); });
-};
-EcoMap.prototype.draw = function(){
-  var arc = this.arcs[this.seg], L = this.lens[this.seg], pt = arc.getPointAtLength(this.t*L);
-  this.p.setAttribute('cx', pt.x); this.p.setAttribute('cy', pt.y); this.pg.setAttribute('cx', pt.x); this.pg.setAttribute('cy', pt.y);
-  var dx = pt.x-this.cx, dy = pt.y-this.cy, d = Math.hypot(dx,dy), ox = dx/d, oy = dy/d;
-  var label = VERBS[this.seg]; if (this.verb.textContent !== label) this.verb.textContent = label;
-  var w = label.length * (this.small ? 7.2 : 5.9) + 16, h = +this.verbBg.getAttribute('height');
-  var off = this.NR + 16, lx = pt.x + ox*off, ly = pt.y + oy*off, anchorRight = lx > this.cx;
-  var bx = anchorRight ? lx : lx - w;
-  bx = Math.max(6, Math.min(600 - w - 6, bx)); ly = Math.max(h/2 + 4, Math.min(560 - h/2 - 4, ly));
-  this.verbBg.setAttribute('x', bx); this.verbBg.setAttribute('y', ly - h/2); this.verbBg.setAttribute('width', w);
-  this.verb.setAttribute('x', bx + 8); this.verb.setAttribute('y', ly + (this.small ? 4 : 3.2));
-  var fade = this.t < 0.12 ? this.t/0.12 : this.t > 0.88 ? (1-this.t)/0.12 : 1;
-  this.verb.setAttribute('opacity', fade); this.verbBg.setAttribute('opacity', fade);
-  /* pulses along spokes toward the centre: Masar receives every stage */
-  var self = this;
-  this.pulses.forEach(function(c, i){
-    var u = ((self.time*0.18) + i*0.2) % 1, p = self.pts[i];
-    var sx = p.x + (self.cx-p.x)/Math.hypot(self.cx-p.x, self.cy-p.y)*self.NR, sy = p.y + (self.cy-p.y)/Math.hypot(self.cx-p.x, self.cy-p.y)*self.NR;
-    var ex = self.cx - (self.cx-p.x)/Math.hypot(self.cx-p.x, self.cy-p.y)*52, ey = self.cy - (self.cy-p.y)/Math.hypot(self.cx-p.x, self.cy-p.y)*52;
-    c.setAttribute('cx', sx + (ex-sx)*u); c.setAttribute('cy', sy + (ey-sy)*u); c.setAttribute('opacity', (u < 0.15 ? u/0.15 : u > 0.85 ? (1-u)/0.15 : 1) * 0.7);
-  });
-};
-EcoMap.prototype.start = function(){
-  if (this.raf || REDUCED) return; var self = this, last = performance.now();
-  (function loop(now){ self.raf = requestAnimationFrame(loop); var dt = Math.min((now-last)/1000, 0.05); last = now; self.time += dt;
-    self.t += dt / 3.2; if (self.t >= 1){ self.t = 0; self.seg = (self.seg+1) % self.arcs.length; } self.draw(); })(last);
-};
-EcoMap.prototype.stop = function(){ if (this.raf){ cancelAnimationFrame(this.raf); this.raf = null; } };
-var ecomap = null, ecoHost = document.getElementById('ecomap');
-if (ecoHost){ try { ecomap = new EcoMap(ecoHost); } catch(e){ ecomap = null; } }
-document.addEventListener('visibilitychange', function(){ if (!ecomap) return; if (document.hidden) ecomap.stop(); else if (current === 'home') ecomap.start(); });
+var ecomap = null;
 
 /* ============================================================
    FLYWHEEL — nine stations around Masar, four pillars
