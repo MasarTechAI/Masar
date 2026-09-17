@@ -1644,9 +1644,10 @@ function recommend(text, dept, biz){
    ============================================================ */
 var KEY = 'masar.prototype.v2';
 var state = { business:'', department:'', workflow:'', result:null, requested:false };
-try { var saved = JSON.parse(sessionStorage.getItem(KEY) || 'null'); if (saved && typeof saved === 'object') state = Object.assign(state, saved); } catch(e){}
-function save(){ try { sessionStorage.setItem(KEY, JSON.stringify(state)); } catch(e){} }
-function resetState(){ state = { business:'', department:'', workflow:'', result:null, requested:false }; try { sessionStorage.removeItem(KEY); } catch(e){} }
+/* Every page load starts clean: nothing is restored from storage. Any state from an older version is cleared. */
+try { sessionStorage.removeItem(KEY); sessionStorage.removeItem('masar.prototype.v1'); } catch(e){}
+function save(){ /* state lives in memory only, for the current visit */ }
+function resetState(){ state = { business:'', department:'', workflow:'', result:null, requested:false }; }
 
 /* ============================================================
    BUSINESS FORM

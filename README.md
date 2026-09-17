@@ -42,7 +42,7 @@ It creates a pathway from learning and building to connecting, adopting solution
 
 Homepage → **Find your path** → **I want AI for my business** → describe a workflow (or tap an example) → **Analyze my workflow** → five-step analysis → **Opportunity** screen with the step-by-step reasoning (workflow → repetitive task → bottleneck → AI opportunity → recommended solution → why) → **Explore solution** → problem, how it works, capabilities, limitations, human involvement, Masar Verified → **Connect with builder** → request → confirmation → **Back to the ecosystem** (flywheel).
 
-Routes: `#/opportunity`, `#/solution`, `#/solution/<id>` (marketplace browse mode), and `#<section>` anchors on the homepage. State survives refresh via `sessionStorage`.
+Routes: `#/opportunity`, `#/solution`, `#/solution/<id>` (marketplace browse mode), and `#<section>` anchors on the homepage. Nothing is stored: every page load starts with a clean form, and refreshing a demo screen returns to the homepage.
 
 ### Recommendation engine and the agent catalogue
 
